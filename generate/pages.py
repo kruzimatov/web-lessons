@@ -1,6 +1,6 @@
 """The four pages of every lesson, plus the course home page."""
 
-from html_kit import SANDBOX, blocks_html, esc, fmt, page, part_titles, plain, play
+from html_kit import SANDBOX, blocks_html, esc, fmt, page, part_titles, plain, play, tags_in
 
 LEVELS = ["Easy", "Medium", "Find the bug", "Medium", "Mini project"]
 
@@ -65,7 +65,8 @@ def practice_page(L):
     parts = [header(L, "practice.html"), STUCK]
     for i, t in enumerate(L["practice"], 1):
         parts.append(f"<h3>Task {i} &middot; {LEVELS[i - 1]}</h3>")
-        parts.append(play(t["start"], t["task"], save=f"p{L['n']}-{i}", sandbox=L.get("sandbox", SANDBOX)))
+        parts.append(play(t["start"], t["task"], save=f"p{L['n']}-{i}", sandbox=L.get("sandbox", SANDBOX),
+                          needs=tags_in(t["answer"])))
         parts.append('<div class="hints">' + "".join(
             f'<details class="hint"><summary>Hint {k}</summary><p>{fmt(h)}</p></details>'
             for k, h in enumerate(t["hints"], 1)) + "</div>")
@@ -79,7 +80,9 @@ def homework_page(L):
              "Finish your homework on the same device you started on.</p>", STUCK]
     for i, t in enumerate(homework_tasks(L), 1):
         parts.append(f"<h3>Task {i}{' &middot; Your idea' if i == 3 else ''}</h3>")
-        parts.append(play(t.get("start", ""), t["task"], save=f"h{L['n']}-{i}", sandbox=L.get("sandbox", SANDBOX)))
+        needs = [] if t["answer"].startswith("(") else tags_in(t["answer"])
+        parts.append(play(t.get("start", ""), t["task"], save=f"h{L['n']}-{i}", sandbox=L.get("sandbox", SANDBOX),
+                          needs=needs))
     parts.append(f'<p><button type="button" class="copy-all" data-title="Lesson {L["n"]} homework">'
                  'Copy my homework</button> <span class="copied" aria-live="polite"></span></p>')
     return page(f'Homework {L["n"]}: {plain(L["title"])}', "\n".join(parts))

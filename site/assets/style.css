@@ -178,7 +178,10 @@ ul.mistakes li::marker { color: var(--red); }
 .quiz { margin: 18px 0; padding: 14px 16px; background: var(--card); border: 2px solid var(--line); border-radius: 12px; }
 .quiz .q { margin: 0; font-weight: 700; }
 .quiz .opts { display: flex; flex-wrap: wrap; gap: 8px; }
-.quiz button.right { background: var(--green-soft); border-color: var(--green); }
+.quiz button:disabled { cursor: default; }
+.quiz button:disabled:not(.right):not(.wrong) { opacity: 0.55; }
+.quiz button.right { background: var(--green-soft); border-color: var(--green); color: var(--ink); }
+.quiz button.wrong { color: var(--ink); }
 .quiz button.wrong { background: var(--red-soft); border-color: var(--red); }
 .quiz .verdict { margin: 8px 0 0; font-weight: 700; min-height: 1.6em; }
 

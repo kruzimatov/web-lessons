@@ -54,17 +54,22 @@ document.querySelectorAll(".play").forEach((box) => {
     if (key) store.drop(key);
   });
 
+  const needs = (box.dataset.needs || "").split(" ").filter(Boolean);
   box.querySelector(".check-btn").addEventListener("click", () => {
-    const problems = window.checkHTML ? checkHTML(code.value) : [];
+    const missing = needs.filter((t) => !new RegExp(`<${t}[\\s>/]`, "i").test(code.value));
+    const notes = missing.map((t) => `The task needs <${t}>. You have not used it yet`);
+    const problems = notes.concat((window.checkHTML ? checkHTML(code.value) : []).map((p) => `Line ${p.line}: ${p.msg}`));
     const list = document.createElement(problems.length ? "ul" : "p");
     if (problems.length) {
-      for (const p of problems) {
+      for (const text of problems) {
         const li = document.createElement("li");
-        li.textContent = `Line ${p.line}: ${p.msg}`;
+        li.textContent = text;
         list.append(li);
       }
     } else {
-      list.textContent = "No problems found. Does the page on the right look the way you want?";
+      list.textContent = needs.length
+        ? "No mistakes, and every tag the task needs is there. Read the task once more: is everything done?"
+        : "No mistakes found. Does the page on the right look the way you want?";
     }
     result.className = "checked " + (problems.length ? "bad" : "good");
     result.replaceChildren(list);
@@ -72,13 +77,23 @@ document.querySelectorAll(".play").forEach((box) => {
   show();
 });
 
+// One right answer locks the question. Wrong answers lock one by one, so guessing shows.
 document.querySelectorAll(".quiz").forEach((quiz) => {
   const verdict = quiz.querySelector(".verdict");
-  quiz.querySelectorAll("button").forEach((btn) => {
+  const buttons = quiz.querySelectorAll("button");
+  let tries = 0;
+  buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const ok = btn.dataset.ok === "1";
-      btn.classList.add(ok ? "right" : "wrong");
-      verdict.textContent = ok ? "Correct! Barakalla!" : "Not this one. Try again!";
+      tries += 1;
+      btn.disabled = true;
+      if (btn.dataset.ok === "1") {
+        btn.classList.add("right");
+        buttons.forEach((b) => { b.disabled = true; });
+        verdict.textContent = tries === 1 ? "Correct on the first try! Barakalla!" : `Correct! It took ${tries} tries.`;
+      } else {
+        btn.classList.add("wrong");
+        verdict.textContent = "Not this one. Try again!";
+      }
     });
   });
 });

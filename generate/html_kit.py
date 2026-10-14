@@ -29,10 +29,17 @@ def plain(text):
     return text.replace("`", "").replace("**", "")
 
 
-def play(start, task="", save="", sandbox=SANDBOX):
-    """Live editor. With `save`, his code is kept in the browser between visits."""
+def tags_in(code):
+    """Tag names used in a piece of HTML, for example {"h1", "p"}."""
+    return sorted({t.lower() for t in re.findall(r"<([a-zA-Z][a-zA-Z0-9]*)", code)})
+
+
+def play(start, task="", save="", sandbox=SANDBOX, needs=()):
+    """Live editor. With `save`, his code is kept in the browser between visits.
+    `needs`: tags the task asks for; "Check my code" says which are still missing."""
     head = f'<p class="task">{fmt(task)}</p>' if task else ""
     keep = f' data-save="{save}"' if save else ""
+    keep += f' data-needs="{" ".join(needs)}"' if needs else ""
     return (
         f'<div class="play"{keep}>{head}<div class="panes">'
         f'<textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">{esc(start)}</textarea>'
