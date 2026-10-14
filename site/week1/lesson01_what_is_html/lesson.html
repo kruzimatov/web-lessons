@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1: What is HTML? Your first web page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 1 &middot; Week 1</small>What is HTML? Your first web page</h1><div class="subnav"><a href="lesson.html" aria-current="page">Lesson</a><a href="practice.html">Practice</a><a href="homework.html">Homework</a></div>
+<p class="goal">Today you learn what HTML is, write titles and text, and build a full web page.</p>
+<nav class="jump" aria-label="On this page"><a href="#part-1">Part 1</a><a href="#part-2">Part 2</a><a href="#part-3">Part 3</a><a href="#part-4">Part 4</a><a href="#watch-out">Watch out</a></nav>
+<h2 id="part-1">Part 1: Websites and tags</h2>
+<p>Which websites do you know? YouTube, Google, Roblox, Wikipedia... Every one of them is made with <strong>HTML</strong>.</p>
+<p class="big">A website is a file. The browser (Chrome) reads the file and shows it on the screen.</p>
+<figure class="anim"><svg class="art" data-seconds="6" viewBox="0 0 720 260" role="img" aria-label="The file index.html goes into Chrome, and Chrome shows it as a page">
+<style>
+  .fb-file, .fb-arrow, .fb-win, .fb-page { transform-box: fill-box; }
+  .anim.on .fb-file { animation: fb-file 6s both; }
+  .anim.on .fb-arrow { animation: fb-arrow 6s both; }
+  .anim.on .fb-win { animation: fb-win 6s both; }
+  .anim.on .fb-page { animation: fb-page 6s both; }
+  @keyframes fb-file { 0% { opacity: 0; transform: translateY(-60px); } 18%, 100% { opacity: 1; transform: none; } }
+  @keyframes fb-arrow { 0%, 22% { opacity: 0; transform: translateX(-30px); } 38%, 100% { opacity: 1; transform: none; } }
+  @keyframes fb-win { 0%, 38% { opacity: 0; transform: scale(0.85); } 52%, 100% { opacity: 1; transform: none; } }
+  @keyframes fb-page { 0%, 56% { opacity: 0; } 75%, 100% { opacity: 1; } }
+</style>
+<g class="fb-file">
+  <path d="M60 30 h110 l40 40 v160 h-150 z" fill="#fff" stroke="#1f2a37" stroke-width="3"/>
+  <path d="M170 30 v40 h40" fill="none" stroke="#1f2a37" stroke-width="3"/>
+  <text x="72" y="105" font-family="Menlo, monospace" font-size="15" fill="#1d5fd1">&lt;h1&gt;Hi&lt;/h1&gt;</text>
+  <text x="72" y="135" font-family="Menlo, monospace" font-size="15" fill="#1d5fd1">&lt;p&gt;I am 8&lt;/p&gt;</text>
+  <text x="135" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#1f2a37">index.html</text>
+</g>
+<g class="fb-arrow">
+  <line x1="230" y1="130" x2="300" y2="130" stroke="#16794a" stroke-width="6" stroke-linecap="round"/>
+  <path d="M296 116 l20 14 l-20 14 z" fill="#16794a"/>
+  <text x="270" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#16794a" font-weight="700">Chrome reads it</text>
+</g>
+<g class="fb-win">
+  <rect x="340" y="20" width="350" height="215" rx="12" fill="#fff" stroke="#1f2a37" stroke-width="3"/>
+  <path d="M340 32 a12 12 0 0 1 12 -12 h326 a12 12 0 0 1 12 12 v18 h-350 z" fill="#e8f0ff"/>
+  <circle cx="360" cy="35" r="6" fill="#c0392b"/>
+  <circle cx="380" cy="35" r="6" fill="#e0a800"/>
+  <circle cx="400" cy="35" r="6" fill="#16794a"/>
+  <rect x="420" y="26" width="250" height="18" rx="9" fill="#fff"/>
+  <text x="432" y="40" font-family="Arial, sans-serif" font-size="12" fill="#5b6676">index.html</text>
+</g>
+<g class="fb-page">
+  <text x="365" y="110" font-family="Georgia, serif" font-size="44" font-weight="700" fill="#1f2a37">Hi</text>
+  <text x="365" y="150" font-family="Georgia, serif" font-size="20" fill="#1f2a37">I am 8</text>
+  <text x="515" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#16794a" font-weight="700">You see a page!</text>
+</g>
+</svg>
+<figcaption>Your file goes into Chrome. Chrome turns it into a page.</figcaption><button type="button" class="replay">Play again</button></figure>
+<p>HTML is made of <strong>tags</strong>. A tag tells the browser what something is: a title, some text, a picture.</p>
+<p class="big">A tag is like a box: open it, put something inside, close it.</p>
+<p class="uz" lang="uz">Tag bu quti: ochamiz, ichiga yozamiz, yopamiz.</p>
+<figure class="anim"><svg class="art" data-seconds="7" viewBox="0 0 720 260" role="img" aria-label="Step 1 open the tag h1, step 2 put Hello inside, step 3 close the tag. The browser shows a big Hello">
+<style>
+  .tb-open, .tb-in, .tb-close, .tb-show { transform-box: fill-box; }
+  .anim.on .tb-open { animation: tb-open 7s both; }
+  .anim.on .tb-in { animation: tb-in 7s both; }
+  .anim.on .tb-close { animation: tb-close 7s both; }
+  .anim.on .tb-show { animation: tb-show 7s both; }
+  @keyframes tb-open { 0% { opacity: 0; transform: translateX(-120px); } 15%, 100% { opacity: 1; transform: none; } }
+  @keyframes tb-in { 0%, 20% { opacity: 0; transform: translateY(-110px); } 38%, 100% { opacity: 1; transform: none; } }
+  @keyframes tb-close { 0%, 44% { opacity: 0; transform: translateX(120px); } 58%, 100% { opacity: 1; transform: none; } }
+  @keyframes tb-show { 0%, 64% { opacity: 0; transform: scale(0.6); } 80%, 100% { opacity: 1; transform: none; } }
+</style>
+<g font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">
+  <g class="tb-open">
+    <rect x="30" y="80" width="110" height="100" rx="14" fill="#1d5fd1"/>
+    <text x="85" y="140" font-family="Menlo, monospace" font-size="28" fill="#fff">&lt;h1&gt;</text>
+    <text x="85" y="215" font-size="17" fill="#1d5fd1">1. Open</text>
+  </g>
+  <g class="tb-in">
+    <rect x="150" y="80" width="150" height="100" rx="14" fill="#fff4cc" stroke="#e0a800" stroke-width="3"/>
+    <text x="225" y="141" font-size="30" fill="#1f2a37">Hello!</text>
+    <text x="225" y="215" font-size="17" fill="#b07d00">2. Put inside</text>
+  </g>
+  <g class="tb-close">
+    <rect x="310" y="80" width="120" height="100" rx="14" fill="#1d5fd1"/>
+    <text x="370" y="140" font-family="Menlo, monospace" font-size="28" fill="#fff">&lt;/h1&gt;</text>
+    <text x="370" y="215" font-size="17" fill="#1d5fd1">3. Close</text>
+  </g>
+  <g class="tb-show">
+    <line x1="450" y1="130" x2="490" y2="130" stroke="#16794a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M486 116 l20 14 l-20 14 z" fill="#16794a"/>
+    <rect x="520" y="50" width="180" height="160" rx="12" fill="#fff" stroke="#1f2a37" stroke-width="3"/>
+    <path d="M520 62 a12 12 0 0 1 12 -12 h156 a12 12 0 0 1 12 12 v12 h-180 z" fill="#e8f0ff"/>
+    <text x="610" y="152" font-family="Georgia, serif" font-size="40" fill="#1f2a37">Hello!</text>
+    <text x="610" y="240" font-size="17" fill="#16794a">The browser shows it</text>
+  </g>
+</g>
+</svg>
+<figcaption>Open the tag, put something inside, close the tag.</figcaption><button type="button" class="replay">Play again</button></figure>
+<div class="scroll"><table><thead><tr><th>Part</th><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td>Opening tag</td><td><code>&lt;h1&gt;</code></td><td>Open the box</td></tr><tr><td>Content</td><td><code>Hello!</code></td><td>What is inside</td></tr><tr><td>Closing tag</td><td><code>&lt;/h1&gt;</code></td><td>Close the box. It has a <code>/</code></td></tr></tbody></table></div>
+<div class="play"><p class="task">Change Hello! to your name. Watch the right side change.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;h1&gt;Hello!&lt;/h1&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which one is a closing tag?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;h1&gt;</code></button><button type="button" data-ok="1"><code>&lt;/h1&gt;</code></button><button type="button" data-ok="0"><code>&lt;1h&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-2">Part 2: Headings h1 to h6</h2>
+<p>Headings are titles. There are 6 of them. <code>h1</code> is the biggest, <code>h6</code> is the smallest.</p>
+<figure class="anim"><svg class="art" data-seconds="3.5" viewBox="0 0 720 260" role="img" aria-label="Six stairs: h1 is the biggest, then h2, h3, h4, h5, and h6 is the smallest">
+<style>
+  .hs { transform-box: fill-box; transform-origin: bottom; }
+  .anim.on .hs { animation: hs-up 0.7s both; }
+  .anim.on .hs2 { animation-delay: 0.5s; }
+  .anim.on .hs3 { animation-delay: 1s; }
+  .anim.on .hs4 { animation-delay: 1.5s; }
+  .anim.on .hs5 { animation-delay: 2s; }
+  .anim.on .hs6 { animation-delay: 2.5s; }
+  @keyframes hs-up { from { opacity: 0; transform: scaleY(0.2); } to { opacity: 1; transform: none; } }
+</style>
+<g font-family="Georgia, serif" font-weight="700" text-anchor="middle" fill="#fff">
+  <g class="hs hs1"><rect x="20" y="40" width="105" height="200" rx="10" fill="#1d5fd1"/><text x="72" y="95" font-size="44">h1</text></g>
+  <g class="hs hs2"><rect x="135" y="72" width="105" height="168" rx="10" fill="#2f6fdb"/><text x="187" y="120" font-size="36">h2</text></g>
+  <g class="hs hs3"><rect x="250" y="104" width="105" height="136" rx="10" fill="#4581e2"/><text x="302" y="146" font-size="30">h3</text></g>
+  <g class="hs hs4"><rect x="365" y="136" width="105" height="104" rx="10" fill="#5d93e8"/><text x="417" y="172" font-size="25">h4</text></g>
+  <g class="hs hs5"><rect x="480" y="168" width="105" height="72" rx="10" fill="#77a5ee"/><text x="532" y="198" font-size="21">h5</text></g>
+  <g class="hs hs6"><rect x="595" y="200" width="105" height="40" rx="10" fill="#93b8f2"/><text x="647" y="226" font-size="18">h6</text></g>
+</g>
+<g font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#1f2a37">
+  <text x="20" y="25">Biggest</text>
+  <text x="700" y="185" text-anchor="end">Smallest</text>
+</g>
+</svg>
+<figcaption>Like stairs: every step down is a smaller title.</figcaption><button type="button" class="replay">Play again</button></figure>
+<figure class="code"><figcaption>All 6 headings</figcaption><pre><code>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</code></pre></figure>
+<div class="scroll"><table><thead><tr><th>Heading</th><th>Use it for</th><th>Example</th></tr></thead><tbody><tr><td><code>h1</code></td><td>The page title. Only ONE on a page</td><td>My Website</td></tr><tr><td><code>h2</code></td><td>Big parts of the page</td><td>My Family, My Games</td></tr><tr><td><code>h3</code></td><td>Small parts inside a big part</td><td>My Cat, My Dog</td></tr><tr><td><code>h4</code> to <code>h6</code></td><td>Very small titles. Not used much</td><td>Notes</td></tr></tbody></table></div>
+<p class="uz" lang="uz">h1 bu kitobning nomi, h2 bu boblar, h3 bu bob ichidagi kichik qismlar.</p>
+<div class="play"><p class="task">Change the words. Then try to make an h7. What happens?</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which heading is the biggest?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;h6&gt;</code></button><button type="button" data-ok="1"><code>&lt;h1&gt;</code></button><button type="button" data-ok="0"><code>&lt;h3&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-3">Part 3: Paragraphs</h2>
+<p>Headings are for titles. For normal text we use <code>&lt;p&gt;</code>, a <strong>paragraph</strong>. Every <code>&lt;p&gt;</code> starts on a new line.</p>
+<figure class="code"><figcaption>Title, then text</figcaption><pre><code>&lt;h1&gt;My Cat&lt;/h1&gt;
+&lt;p&gt;My cat is called Momo.&lt;/p&gt;
+&lt;p&gt;She likes to sleep on my bed.&lt;/p&gt;</code></pre></figure>
+<div class="play"><p class="task">Write about your pet, your toy or your best friend: one h1 and two p.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;h1&gt;My Cat&lt;/h1&gt;
+&lt;p&gt;My cat is called Momo.&lt;/p&gt;
+&lt;p&gt;She likes to sleep on my bed.&lt;/p&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which tag is for normal text?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;h1&gt;</code></button><button type="button" data-ok="0"><code>&lt;t&gt;</code></button><button type="button" data-ok="1"><code>&lt;p&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-4">Part 4: The page skeleton and comments</h2>
+<p>A real page needs a <strong>skeleton</strong>. It is always the same. Every HTML page in the world starts like this.</p>
+<figure class="anim"><svg class="art" data-seconds="8" viewBox="0 0 720 260" role="img" aria-label="The page skeleton: html holds head and body. The title in head shows on the browser tab. The body shows on the screen">
+<style>
+  .sk { transform-box: fill-box; }
+  .anim.on .sk-doc { animation: sk-fade 8s both; }
+  .anim.on .sk-html { animation: sk-html 8s both; }
+  .anim.on .sk-head { animation: sk-head 8s both; }
+  .anim.on .sk-tab { animation: sk-tab 8s both; }
+  .anim.on .sk-body { animation: sk-body 8s both; }
+  .anim.on .sk-show { animation: sk-show 8s both; }
+  @keyframes sk-fade { 0% { opacity: 0; } 10%, 100% { opacity: 1; } }
+  @keyframes sk-html { 0%, 10% { opacity: 0; transform: scale(0.9); } 22%, 100% { opacity: 1; transform: none; } }
+  @keyframes sk-head { 0%, 25% { opacity: 0; transform: translateY(-20px); } 38%, 100% { opacity: 1; transform: none; } }
+  @keyframes sk-tab { 0%, 40% { opacity: 0; } 50%, 100% { opacity: 1; } }
+  @keyframes sk-body { 0%, 55% { opacity: 0; transform: translateY(20px); } 68%, 100% { opacity: 1; transform: none; } }
+  @keyframes sk-show { 0%, 70% { opacity: 0; } 82%, 100% { opacity: 1; } }
+</style>
+<g font-family="Menlo, monospace">
+  <text class="sk sk-doc" x="20" y="26" font-size="16" fill="#5b6676">&lt;!DOCTYPE html&gt;</text>
+  <g class="sk sk-html">
+    <rect x="20" y="38" width="340" height="214" rx="12" fill="#fff" stroke="#1f2a37" stroke-width="3"/>
+    <text x="34" y="60" font-size="15" font-weight="700" fill="#1f2a37">&lt;html&gt;</text>
+  </g>
+  <g class="sk sk-head">
+    <rect x="38" y="70" width="304" height="62" rx="10" fill="#fff4cc" stroke="#e0a800" stroke-width="3"/>
+    <text x="52" y="92" font-size="15" font-weight="700" fill="#b07d00">&lt;head&gt;</text>
+    <text x="52" y="118" font-size="14" fill="#1f2a37">&lt;title&gt;My Page&lt;/title&gt;</text>
+  </g>
+  <g class="sk sk-body">
+    <rect x="38" y="144" width="304" height="96" rx="10" fill="#e3f6ec" stroke="#16794a" stroke-width="3"/>
+    <text x="52" y="166" font-size="15" font-weight="700" fill="#16794a">&lt;body&gt;</text>
+    <text x="52" y="206" font-size="14" fill="#1f2a37">&lt;h1&gt;Hello!&lt;/h1&gt;</text>
+  </g>
+</g>
+<rect x="400" y="38" width="300" height="214" rx="12" fill="#fff" stroke="#1f2a37" stroke-width="3"/>
+<path d="M400 50 a12 12 0 0 1 12 -12 h276 a12 12 0 0 1 12 12 v26 h-300 z" fill="#e8f0ff"/>
+<g class="sk sk-tab" font-family="Arial, sans-serif">
+  <rect x="414" y="46" width="130" height="30" rx="8" fill="#fff4cc" stroke="#e0a800" stroke-width="2"/>
+  <text x="479" y="66" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2a37">My Page</text>
+  <path d="M342 101 C 380 101, 380 61, 412 61" fill="none" stroke="#e0a800" stroke-width="3" stroke-dasharray="6 5"/>
+  <text x="620" y="66" text-anchor="middle" font-size="13" fill="#b07d00">head: the tab</text>
+</g>
+<g class="sk sk-show">
+  <text x="430" y="150" font-family="Georgia, serif" font-size="40" font-weight="700" fill="#1f2a37">Hello!</text>
+  <path d="M342 192 C 380 192, 390 140, 425 138" fill="none" stroke="#16794a" stroke-width="3" stroke-dasharray="6 5"/>
+  <text x="550" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#16794a">body: what you see</text>
+</g>
+</svg>
+<figcaption>html holds everything. head is hidden info. body is what you see.</figcaption><button type="button" class="replay">Play again</button></figure>
+<figure class="code"><figcaption>The full page skeleton</figcaption><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello!&lt;/h1&gt;
+  &lt;p&gt;This is my first page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+<div class="scroll"><table><thead><tr><th>Part</th><th>What it does</th></tr></thead><tbody><tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>First line. Says: this is an HTML page</td></tr><tr><td><code>&lt;html&gt;</code></td><td>The big box around everything</td></tr><tr><td><code>&lt;head&gt;</code></td><td>Hidden info about the page</td></tr><tr><td><code>&lt;title&gt;</code></td><td>The name on the browser tab. Goes inside head</td></tr><tr><td><code>&lt;body&gt;</code></td><td>Everything you SEE: headings, text, pictures</td></tr></tbody></table></div>
+<p class="uz" lang="uz">head bu odamning boshi: ichida fikr bor, lekin ko'rinmaydi. body bu tana: hammasi ko'rinadi.</p>
+<div class="play"><p class="task">Change the h1 and the p. The title shows on the browser tab, so you cannot see it here.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello!&lt;/h1&gt;
+  &lt;p&gt;This is my first page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<p>A <strong>comment</strong> is a note for people. The browser does not show it. It starts with <code>&lt;!--</code> and ends with <code>--&gt;</code>.</p>
+<div class="play"><p class="task">Write your own comment. Does it show on the right side?</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!-- My first page --&gt;
+&lt;h1&gt;Hello!&lt;/h1&gt;
+&lt;!-- Text about me --&gt;
+&lt;p&gt;I am 8 years old.&lt;/p&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Where do headings and text go?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;head&gt;</code></button><button type="button" data-ok="1"><code>&lt;body&gt;</code></button><button type="button" data-ok="0"><code>&lt;title&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="watch-out">Watch out!</h2>
+<ul class="mistakes"><li>Forgot the closing tag: <code>&lt;h1&gt;Hello</code> must be <code>&lt;h1&gt;Hello&lt;/h1&gt;</code></li><li>Wrong slash: <code>&lt;\h1&gt;</code> is wrong, <code>&lt;/h1&gt;</code> is right</li><li>Different tags: <code>&lt;h1&gt;Hello&lt;/h2&gt;</code> is wrong. Open and close the same tag</li><li>Text in the head. Everything you want to SEE goes in the body</li></ul>
+<footer>Next: <a href="practice.html">Practice tasks</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

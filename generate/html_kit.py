@@ -1,0 +1,124 @@
+"""Small HTML building blocks shared by every page."""
+
+import html
+import re
+from pathlib import Path
+
+ANIMS_DIR = Path(__file__).resolve().parent / "anims"
+SANDBOX = "allow-popups allow-popups-to-escape-sandbox"
+
+CM = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16"
+EDITOR_FILES = [
+    "codemirror.min.js", "mode/xml/xml.min.js", "mode/javascript/javascript.min.js", "mode/css/css.min.js",
+    "mode/htmlmixed/htmlmixed.min.js", "addon/fold/xml-fold.min.js", "addon/edit/closetag.min.js",
+]
+
+
+def esc(text):
+    return html.escape(text, quote=False)
+
+
+def fmt(text):
+    """Escape, then `code` and **bold**."""
+    t = esc(text)
+    t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+    return re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", t)
+
+
+def plain(text):
+    return text.replace("`", "").replace("**", "")
+
+
+def play(start, task="", save="", sandbox=SANDBOX):
+    """Live editor. With `save`, his code is kept in the browser between visits."""
+    head = f'<p class="task">{fmt(task)}</p>' if task else ""
+    keep = f' data-save="{save}"' if save else ""
+    return (
+        f'<div class="play"{keep}>{head}<div class="panes">'
+        f'<textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">{esc(start)}</textarea>'
+        f'<iframe title="Result" sandbox="{sandbox}"></iframe></div>'
+        f'<div class="tools"><button type="button" class="check-btn">Check my code</button>'
+        f'<button type="button" class="reset">Start again</button></div>'
+        f'<div class="checked" aria-live="polite"></div></div>'
+    )
+
+
+def quiz(question, options, right):
+    btns = "".join(
+        f'<button type="button" data-ok="{int(i == right)}">{fmt(o)}</button>'
+        for i, o in enumerate(options)
+    )
+    return (
+        f'<div class="quiz"><p class="q">{fmt(question)}</p>'
+        f'<div class="opts">{btns}</div><p class="verdict" aria-live="polite"></p></div>'
+    )
+
+
+def table(head, rows):
+    th = "".join(f"<th>{fmt(h)}</th>" for h in head)
+    body = "".join("<tr>" + "".join(f"<td>{fmt(c)}</td>" for c in r) + "</tr>" for r in rows)
+    return f'<div class="scroll"><table><thead><tr>{th}</tr></thead><tbody>{body}</tbody></table></div>'
+
+
+def anim(name, caption):
+    svg = (ANIMS_DIR / f"{name}.html").read_text(encoding="utf-8")
+    return (
+        f'<figure class="anim">{svg}<figcaption>{fmt(caption)}</figcaption>'
+        f'<button type="button" class="replay">Play again</button></figure>'
+    )
+
+
+def code_block(code, caption=""):
+    cap = f"<figcaption>{fmt(caption)}</figcaption>" if caption else ""
+    return f'<figure class="code">{cap}<pre><code>{esc(code)}</code></pre></figure>'
+
+
+BLOCKS = {
+    "say": lambda t: f"<p>{fmt(t)}</p>",
+    "uz": lambda t: f'<p class="uz" lang="uz">{fmt(t)}</p>',
+    "big": lambda t: f'<p class="big">{fmt(t)}</p>',
+    "code": code_block,
+    "quiz": quiz,
+    "table": table,
+    "steps": lambda items: '<ol class="steps">' + "".join(f"<li>{fmt(i)}</li>" for i in items) + "</ol>",
+    "anim": anim,
+}
+
+
+def part_titles(blocks):
+    return [b[1] for b in blocks if b[0] == "h"]
+
+
+def blocks_html(blocks, sandbox=SANDBOX):
+    out, part = [], 0
+    for b in blocks:
+        if b[0] == "h":
+            part += 1
+            out.append(f'<h2 id="part-{part}">{fmt(b[1])}</h2>')
+        elif b[0] == "try":
+            out.append(play(b[2], b[1], sandbox=sandbox))
+        else:
+            out.append(BLOCKS[b[0]](*b[1:]))
+    return "\n".join(out)
+
+
+def page(title, body, root="../../"):
+    """A full page. `root` is the way back to kids_course/ from the page's folder."""
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(title)}</title>
+<link rel="stylesheet" href="{CM}/codemirror.min.css">
+<link rel="stylesheet" href="{root}assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="{root}index.html">&larr; All lessons</a><a href="{root}cheatsheet.html">My tags</a><a href="{root}playground.html">Playground</a></nav>
+{body}
+{"".join(f'<script src="{CM}/{f}"></script>' for f in EDITOR_FILES)}
+<script src="{root}assets/check.js"></script>
+<script src="{root}assets/kit.js"></script>
+</body>
+</html>
+"""

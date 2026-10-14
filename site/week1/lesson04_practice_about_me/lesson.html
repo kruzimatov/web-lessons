@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 4: Practice day: my "About me" page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 4 &middot; Week 1</small>Practice day: my "About me" page</h1><div class="subnav"><a href="lesson.html" aria-current="page">Lesson</a><a href="practice.html">Practice</a><a href="homework.html">Homework</a></div>
+<p class="goal">No new tags today! You build a full "About me" page with everything you know.</p>
+<nav class="jump" aria-label="On this page"><a href="#warm-up">Warm-up</a><a href="#part-1">Part 1</a><a href="#part-2">Part 2</a><a href="#part-3">Part 3</a><a href="#watch-out">Watch out</a></nav>
+<h2 id="warm-up">Warm-up</h2>
+<div class="quiz"><p class="q">Which list has numbers?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;ul&gt;</code></button><button type="button" data-ok="1"><code>&lt;ol&gt;</code></button><button type="button" data-ok="0"><code>&lt;li&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">Every item in a list goes in...</p><div class="opts"><button type="button" data-ok="1"><code>&lt;li&gt;</code></button><button type="button" data-ok="0"><code>&lt;p&gt;</code></button><button type="button" data-ok="0"><code>&lt;item&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">Where does a small list inside a list go?</p><div class="opts"><button type="button" data-ok="0">After <code>&lt;/ul&gt;</code></button><button type="button" data-ok="1">Inside the <code>&lt;li&gt;</code></button><button type="button" data-ok="0">In the head</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-1">Part 1: Plan your page</h2>
+<p>Good builders plan first. Here is what your page will have.</p>
+<div class="scroll"><table><thead><tr><th>Part</th><th>Tags you use</th></tr></thead><tbody><tr><td>Skeleton</td><td><code>&lt;!DOCTYPE html&gt;</code>, <code>html</code>, <code>head</code>, <code>title</code>, <code>body</code></td></tr><tr><td>Your name</td><td><code>&lt;h1&gt;</code></td></tr><tr><td>About you</td><td><code>&lt;p&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></td></tr><tr><td>A line</td><td><code>&lt;hr&gt;</code></td></tr><tr><td>Favorite things</td><td><code>&lt;h2&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code></td></tr><tr><td>Top 3</td><td><code>&lt;h2&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code></td></tr></tbody></table></div>
+<p class="uz" lang="uz">Avval reja, keyin qurilish. Har bir qism uchun qaysi tag kerakligini bilamiz.</p>
+<p>The comments show where each part goes. Write your code under each comment.</p>
+<div class="play"><p class="task">Fill in part 1: your name in an <code>&lt;h1&gt;</code> under the first comment.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About Me&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- 1. Your name --&gt;
+
+  &lt;!-- 2. About you --&gt;
+
+  &lt;!-- 3. Favorite things --&gt;
+
+  &lt;!-- 4. Top 3 --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Your top 3 games: which list?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;ul&gt;</code></button><button type="button" data-ok="1"><code>&lt;ol&gt;</code></button><button type="button" data-ok="0"><code>&lt;hr&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-2">Part 2: A finished example</h2>
+<p>This is how a finished page can look. Yours will have YOUR words.</p>
+<figure class="code"><figcaption>Ali's "About me" page</figcaption><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About Me&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hi, I am Ali!&lt;/h1&gt;
+  &lt;p&gt;I am &lt;strong&gt;8 years old&lt;/strong&gt;. I live in London.&lt;/p&gt;
+  &lt;p&gt;I &lt;em&gt;really&lt;/em&gt; love football.&lt;/p&gt;
+  &lt;hr&gt;
+  &lt;h2&gt;My favorite things&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Pizza&lt;/li&gt;
+    &lt;li&gt;Lego&lt;/li&gt;
+    &lt;li&gt;My cat Momo&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;h2&gt;My top 3 games&lt;/h2&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Minecraft&lt;/li&gt;
+    &lt;li&gt;Football&lt;/li&gt;
+    &lt;li&gt;Chess&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+<div class="play"><p class="task">Change everything to be about YOU: name, age, city, things you love.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About Me&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hi, I am Ali!&lt;/h1&gt;
+  &lt;p&gt;I am &lt;strong&gt;8 years old&lt;/strong&gt;. I live in London.&lt;/p&gt;
+  &lt;p&gt;I &lt;em&gt;really&lt;/em&gt; love football.&lt;/p&gt;
+  &lt;hr&gt;
+  &lt;h2&gt;My favorite things&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Pizza&lt;/li&gt;
+    &lt;li&gt;Lego&lt;/li&gt;
+    &lt;li&gt;My cat Momo&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;h2&gt;My top 3 games&lt;/h2&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Minecraft&lt;/li&gt;
+    &lt;li&gt;Football&lt;/li&gt;
+    &lt;li&gt;Chess&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which tag makes the line between the parts?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;br&gt;</code></button><button type="button" data-ok="1"><code>&lt;hr&gt;</code></button><button type="button" data-ok="0"><code>&lt;line&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-3">Part 3: Check your page</h2>
+<p>Before you finish, check these 4 things:</p>
+<ol class="steps"><li>Every tag that opens also closes (except <code>&lt;br&gt;</code> and <code>&lt;hr&gt;</code>)</li><li>Only ONE <code>&lt;h1&gt;</code> on the page</li><li>Everything you want to see is inside <code>&lt;body&gt;</code></li><li>Every list item is inside <code>&lt;li&gt;</code></li></ol>
+<div class="play"><p class="task">This page has 4 mistakes. Find them all!</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About Me&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hi, I am Sara!&lt;/h1&gt;
+  &lt;h1&gt;I am 9&lt;/h1&gt;
+  &lt;p&gt;I like &lt;strong&gt;cats&lt;/p&gt;&lt;/strong&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Cats&lt;/li&gt;
+    Dogs
+  &lt;/ul&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">How many <code>&lt;h1&gt;</code> should a page have?</p><div class="opts"><button type="button" data-ok="1">One</button><button type="button" data-ok="0">Two</button><button type="button" data-ok="0">As many as you want</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="watch-out">Watch out!</h2>
+<ul class="mistakes"><li>Two <code>&lt;h1&gt;</code> on one page. Use <code>&lt;h2&gt;</code> for the parts</li><li>Forgetting <code>&lt;/body&gt;</code> at the end</li><li>Closing tags in the wrong order: <code>&lt;p&gt;&lt;strong&gt;Hi&lt;/p&gt;&lt;/strong&gt;</code></li><li>Items in a list without <code>&lt;li&gt;</code></li></ul>
+<footer>Next: <a href="practice.html">Practice tasks</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

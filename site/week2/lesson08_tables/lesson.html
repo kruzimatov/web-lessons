@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 8: Tables</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 8 &middot; Week 2</small>Tables</h1><div class="subnav"><a href="lesson.html" aria-current="page">Lesson</a><a href="practice.html">Practice</a><a href="homework.html">Homework</a></div>
+<p class="goal">Today you make tables: a timetable, a scoreboard and more.</p>
+<nav class="jump" aria-label="On this page"><a href="#warm-up">Warm-up</a><a href="#part-1">Part 1</a><a href="#part-2">Part 2</a><a href="#part-3">Part 3</a><a href="#watch-out">Watch out</a></nav>
+<h2 id="warm-up">Warm-up</h2>
+<div class="quiz"><p class="q">Which tag shows a picture?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;pic&gt;</code></button><button type="button" data-ok="1"><code>&lt;img&gt;</code></button><button type="button" data-ok="0"><code>&lt;src&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">What does <code>alt</code> do?</p><div class="opts"><button type="button" data-ok="1">Describes the picture in words</button><button type="button" data-ok="0">Makes it bigger</button><button type="button" data-ok="0">Makes it a link</button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">Does <code>&lt;img&gt;</code> have a closing tag?</p><div class="opts"><button type="button" data-ok="0">Yes, <code>&lt;/img&gt;</code></button><button type="button" data-ok="1">No</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-1">Part 1: Rows and cells</h2>
+<p>A <strong>table</strong> shows information in rows and columns, like a school timetable.</p>
+<figure class="anim"><svg class="art" data-seconds="6" viewBox="0 0 720 260" role="img" aria-label="A table is built row by row. th is a header cell, tr is a row, td is one cell">
+<style>
+  .tg { transform-box: fill-box; }
+  .anim.on .tg-r { animation: tg-in 0.6s both; }
+  .anim.on .tg-r2 { animation-delay: 0.8s; }
+  .anim.on .tg-r3 { animation-delay: 1.6s; }
+  .anim.on .tg-l1 { animation: tg-fade 0.6s 2.6s both; }
+  .anim.on .tg-l2 { animation: tg-fade 0.6s 3.4s both; }
+  .anim.on .tg-l3 { animation: tg-fade 0.6s 4.2s both; }
+  @keyframes tg-in { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: none; } }
+  @keyframes tg-fade { from { opacity: 0; } to { opacity: 1; } }
+</style>
+<g font-family="Arial, sans-serif" font-size="20" text-anchor="middle">
+  <g class="tg tg-r tg-r1" font-weight="700" fill="#fff">
+    <rect x="20" y="30" width="460" height="60" fill="#1d5fd1"/>
+    <text x="96" y="68">Day</text><text x="250" y="68">Morning</text><text x="404" y="68">Evening</text>
+  </g>
+  <g class="tg tg-r tg-r2" fill="#1f2a37">
+    <rect x="20" y="90" width="460" height="60" fill="#fff" stroke="#c9d6ee" stroke-width="2"/>
+    <text x="96" y="128">Monday</text><text x="250" y="128">School</text><text x="404" y="128">Football</text>
+  </g>
+  <g class="tg tg-r tg-r3" fill="#1f2a37">
+    <rect x="20" y="150" width="460" height="60" fill="#f4f8ff" stroke="#c9d6ee" stroke-width="2"/>
+    <text x="96" y="188">Tuesday</text><text x="250" y="188">School</text><text x="404" y="188">Chess</text>
+  </g>
+  <path d="M173 30 v180 M327 30 v180" stroke="#c9d6ee" stroke-width="2"/>
+</g>
+<g font-family="Arial, sans-serif" font-size="17" font-weight="700">
+  <g class="tg tg-l1"><text x="500" y="66" fill="#1d5fd1">&lt;th&gt; header cell</text></g>
+  <g class="tg tg-l2"><path d="M14 150 v60 M486 150 v60" stroke="#e0a800" stroke-width="5"/><text x="500" y="186" fill="#b07d00">&lt;tr&gt; one row</text></g>
+  <g class="tg tg-l3"><rect x="327" y="90" width="153" height="60" fill="none" stroke="#16794a" stroke-width="5"/><text x="500" y="126" fill="#16794a">&lt;td&gt; one cell</text></g>
+  <text x="250" y="245" text-anchor="middle" font-family="Menlo, monospace" font-size="15" font-weight="400" fill="#5b6676">&lt;table&gt; holds everything</text>
+</g>
+</svg>
+<figcaption>A table is built row by row, cell by cell.</figcaption><button type="button" class="replay">Play again</button></figure>
+<div class="scroll"><table><thead><tr><th>Tag</th><th>Means</th></tr></thead><tbody><tr><td><code>&lt;table&gt;</code></td><td>The whole table</td></tr><tr><td><code>&lt;tr&gt;</code></td><td>Table row: one line across</td></tr><tr><td><code>&lt;td&gt;</code></td><td>Table data: one cell (box)</td></tr></tbody></table></div>
+<p class="uz" lang="uz">tr bu qator. td bu bitta katak. Avval qator, keyin uning kataklari.</p>
+<figure class="code"><figcaption>2 rows, 3 cells in each row. <code>border="1"</code> shows the lines</figcaption><pre><code>&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Monday&lt;/td&gt;
+    &lt;td&gt;School&lt;/td&gt;
+    &lt;td&gt;Football&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Tuesday&lt;/td&gt;
+    &lt;td&gt;School&lt;/td&gt;
+    &lt;td&gt;Chess&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre></figure>
+<div class="play"><p class="task">Add a third row: Wednesday, School, Swimming.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Monday&lt;/td&gt;
+    &lt;td&gt;School&lt;/td&gt;
+    &lt;td&gt;Football&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Tuesday&lt;/td&gt;
+    &lt;td&gt;School&lt;/td&gt;
+    &lt;td&gt;Chess&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which tag makes a new row?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;td&gt;</code></button><button type="button" data-ok="1"><code>&lt;tr&gt;</code></button><button type="button" data-ok="0"><code>&lt;table&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-2">Part 2: Header cells</h2>
+<p>The first row usually has the <strong>titles</strong> of the columns. Use <code>&lt;th&gt;</code> instead of <code>&lt;td&gt;</code>: it is bold and centered.</p>
+<figure class="code"><figcaption><code>&lt;thead&gt;</code> holds the title row, <code>&lt;tbody&gt;</code> holds the rest</figcaption><pre><code>&lt;table border="1"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Day&lt;/th&gt;
+      &lt;th&gt;Morning&lt;/th&gt;
+      &lt;th&gt;Evening&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Monday&lt;/td&gt;
+      &lt;td&gt;School&lt;/td&gt;
+      &lt;td&gt;Football&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Tuesday&lt;/td&gt;
+      &lt;td&gt;School&lt;/td&gt;
+      &lt;td&gt;Chess&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre></figure>
+<div class="scroll"><table><thead><tr><th>Tag</th><th>Means</th></tr></thead><tbody><tr><td><code>&lt;th&gt;</code></td><td>Table header: a title cell, bold</td></tr><tr><td><code>&lt;thead&gt;</code></td><td>The top part, with the title row</td></tr><tr><td><code>&lt;tbody&gt;</code></td><td>The body, with all other rows</td></tr></tbody></table></div>
+<div class="play"><p class="task">Make a scoreboard: columns Player and Goals, and 3 players.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;table border="1"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Player&lt;/th&gt;
+      &lt;th&gt;Goals&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Ali&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which tag makes a bold title cell?</p><div class="opts"><button type="button" data-ok="1"><code>&lt;th&gt;</code></button><button type="button" data-ok="0"><code>&lt;td&gt;</code></button><button type="button" data-ok="0"><code>&lt;title&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-3">Part 3: Big cells</h2>
+<p>A cell can be wider than one column: <code>colspan="2"</code>. Or taller than one row: <code>rowspan="2"</code>.</p>
+<figure class="code"><figcaption><code>colspan="2"</code>: one cell, 2 columns wide</figcaption><pre><code>&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Day&lt;/th&gt;
+    &lt;th&gt;Morning&lt;/th&gt;
+    &lt;th&gt;Evening&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Saturday&lt;/td&gt;
+    &lt;td colspan="2"&gt;Fun day!&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre></figure>
+<p class="uz" lang="uz">colspan katakni eniga cho'zadi, rowspan bo'yiga.</p>
+<div class="play"><p class="task">Add a Sunday row where one cell says "Family day" across 2 columns.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Day&lt;/th&gt;
+    &lt;th&gt;Morning&lt;/th&gt;
+    &lt;th&gt;Evening&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Saturday&lt;/td&gt;
+    &lt;td colspan="2"&gt;Fun day!&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">One cell 3 columns wide. What do you write?</p><div class="opts"><button type="button" data-ok="0"><code>rowspan="3"</code></button><button type="button" data-ok="1"><code>colspan="3"</code></button><button type="button" data-ok="0"><code>width="3"</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="watch-out">Watch out!</h2>
+<ul class="mistakes"><li>Writing <code>&lt;td&gt;</code> without a <code>&lt;tr&gt;</code> around it</li><li>Rows with different numbers of cells: the table looks broken</li><li>Forgetting <code>border="1"</code>: the table has no lines and looks like plain text</li><li>Using <code>&lt;td&gt;</code> for the title row instead of <code>&lt;th&gt;</code></li></ul>
+<footer>Next: <a href="practice.html">Practice tasks</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

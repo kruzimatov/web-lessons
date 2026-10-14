@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice 16: Final project: my website</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 16 &middot; Week 3</small>Final project: my website</h1><div class="subnav"><a href="lesson.html">Lesson</a><a href="practice.html" aria-current="page">Practice</a><a href="homework.html">Homework</a></div>
+<details class="stuck" open><summary>When I'm stuck</summary><ol>
+<li>Read my code slowly, line by line.</li>
+<li>Press <strong>Check my code</strong> and read what it says.</li>
+<li>Check that every tag that opens also closes.</li>
+<li>Look it up in <a href="../../cheatsheet.html">My tags</a>.</li>
+<li>Compare with the example in the lesson.</li>
+<li>Try Hint 1, then Hint 2.</li>
+<li>Still stuck? Ask your teacher.</li>
+</ol></details>
+<h3>Task 1 &middot; Easy</h3>
+<div class="play" data-save="p16-1"><p class="task">Write your final <code>index.html</code> with header, nav (4 links), main with 2 sections, and footer.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code"></textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Start from your home page in VS Code.</p></details><details class="hint"><summary>Hint 2</summary><p>4 boxes, 4 menu links, 2 sections.</p></details></div>
+<h3>Task 2 &middot; Medium</h3>
+<div class="play" data-save="p16-2"><p class="task">Check your hobbies page: menu, a table with title cells, a video. Copy it here and fix anything missing.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code"></textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Open hobbies.html in VS Code.</p></details><details class="hint"><summary>Hint 2</summary><p>Menu at the top? Table with th? Video?</p></details></div>
+<h3>Task 3 &middot; Find the bug</h3>
+<div class="play" data-save="p16-3"><p class="task">Fix the 5 mistakes in this home page.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Ali's World&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Ali's World&lt;/h1&gt;
+  
+  &lt;nav&gt;
+    &lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pet.html"&gt;Pets&lt;/a&gt; | &lt;a href="contact.html"&gt;Write to me&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;h2&gt;About me&lt;/h2&gt;
+      &lt;img src="https://picsum.photos/id/237/400/300" width="250"&gt;
+      &lt;p&gt;Hi! I am &lt;strong&gt;Ali, I am 8 and I make websites.&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h2&gt;My top 3&lt;/h2&gt;
+      &lt;ol&gt;
+        &lt;li&gt;Football&lt;/li&gt;
+        &lt;li&gt;Minecraft&lt;/li&gt;
+        Pizza
+      &lt;/ol&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;p&gt;&lt;small&gt;&amp;copy; 2026 Ali&lt;/small&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>5 mistakes: a box, a picture, a link, a bold word, a list item.</p></details><details class="hint"><summary>Hint 2</summary><p>Close header. Add alt. pet.html should be pets.html. Close strong. Pizza needs li.</p></details></div>
+<h3>Task 4 &middot; Medium</h3>
+<div class="play" data-save="p16-4"><p class="task">Check your contact page: every input has a label with the right <code>for</code>, radio buttons share a name, and the form has a button.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code"></textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Look at each label and its input.</p></details><details class="hint"><summary>Hint 2</summary><p>for and id must be the same word.</p></details></div>
+<h3>Task 5 &middot; Mini project</h3>
+<div class="play" data-save="p16-5"><p class="task">Show your site! Open every page in Chrome while your teacher watches on the shared screen. Then write here which page you like most and why.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;p&gt;My favorite page is &lt;/p&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Open index.html in Chrome and click through.</p></details><details class="hint"><summary>Hint 2</summary><p>Write one sentence: which page and why.</p></details></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

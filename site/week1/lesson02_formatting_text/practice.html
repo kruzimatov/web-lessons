@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice 2: Formatting text</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 2 &middot; Week 1</small>Formatting text</h1><div class="subnav"><a href="lesson.html">Lesson</a><a href="practice.html" aria-current="page">Practice</a><a href="homework.html">Homework</a></div>
+<details class="stuck" open><summary>When I'm stuck</summary><ol>
+<li>Read my code slowly, line by line.</li>
+<li>Press <strong>Check my code</strong> and read what it says.</li>
+<li>Check that every tag that opens also closes.</li>
+<li>Look it up in <a href="../../cheatsheet.html">My tags</a>.</li>
+<li>Compare with the example in the lesson.</li>
+<li>Try Hint 1, then Hint 2.</li>
+<li>Still stuck? Ask your teacher.</li>
+</ol></details>
+<h3>Task 1 &middot; Easy</h3>
+<div class="play" data-save="p2-1"><p class="task">Write a 4-line poem. Use <code>&lt;br&gt;</code> so every line starts on a new line.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;p&gt;
+&lt;/p&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p><code>&lt;br&gt;</code> goes at the END of each line.</p></details><details class="hint"><summary>Hint 2</summary><p>Do not put <code>&lt;br&gt;</code> after the last line.</p></details></div>
+<h3>Task 2 &middot; Medium</h3>
+<div class="play" data-save="p2-2"><p class="task">Make the important words strong and the feeling words em.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;p&gt;Wash your hands before you eat.&lt;/p&gt;
+&lt;p&gt;I am so happy today!&lt;/p&gt;
+&lt;p&gt;The test is on Friday.&lt;/p&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Important words: <code>&lt;strong&gt;</code>. Feeling words: <code>&lt;em&gt;</code>.</p></details><details class="hint"><summary>Hint 2</summary><p>"Wash your hands" is important. "so" is a feeling word.</p></details></div>
+<h3>Task 3 &middot; Find the bug</h3>
+<div class="play" data-save="p2-3"><p class="task">There are 3 mistakes. Fix them.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;p&gt;Hello&lt;/br&gt;world&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Wow&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;H&lt;sup&gt;2&lt;/sup&gt;O&lt;/p&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Does <code>&lt;br&gt;</code> have a closing tag? Which box closes first?</p></details><details class="hint"><summary>Hint 2</summary><p><code>&lt;br&gt;</code> not <code>&lt;/br&gt;</code>. Close <code>em</code> before <code>strong</code>. The 2 in H₂O goes DOWN.</p></details></div>
+<h3>Task 4 &middot; Medium</h3>
+<div class="play" data-save="p2-4"><p class="task">Toy shop: the car was 20$, now 15$. Cross out the old price and highlight the new one. Then write 5² = 25 with sup.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;h2&gt;Toy shop&lt;/h2&gt;
+&lt;p&gt;Toy car: &lt;/p&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Old price: <code>&lt;del&gt;</code>. New price: <code>&lt;mark&gt;</code>.</p></details><details class="hint"><summary>Hint 2</summary><p>5² is <code>5&lt;sup&gt;2&lt;/sup&gt;</code>.</p></details></div>
+<h3>Task 5 &middot; Mini project</h3>
+<div class="play" data-save="p2-5"><p class="task">"Fun Facts" page: an h1, 4 facts, at least 5 different tags from today, an <code>&lt;hr&gt;</code>, and a copyright line at the bottom.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code"></textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Count your tags: strong, em, sub, sup, mark, hr, small...</p></details><details class="hint"><summary>Hint 2</summary><p>End with <code>&lt;p&gt;&lt;small&gt;&amp;copy; 2026 Your name&lt;/small&gt;&lt;/p&gt;</code>.</p></details></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

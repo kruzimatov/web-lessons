@@ -1,0 +1,35 @@
+<svg class="art" data-seconds="4.2" viewBox="0 0 720 260" role="img" aria-label="sub moves the 2 in H2O down, sup moves the 2 in x squared up, mark paints a highlight, del crosses out the old price">
+<style>
+  .st { transform-box: fill-box; }
+  .anim.on .st-down { animation: st-down 1.2s 0.3s both; }
+  .anim.on .st-up { animation: st-up 1.2s 1.2s both; }
+  .anim.on .st-mark { transform-origin: left; animation: st-grow 1s 2.2s both; }
+  .anim.on .st-del { transform-origin: left; animation: st-grow 0.8s 3.2s both; }
+  @keyframes st-down { from { transform: translateY(-14px); fill: #c0392b; } to { transform: none; } }
+  @keyframes st-up { from { transform: translateY(16px); fill: #c0392b; } to { transform: none; } }
+  @keyframes st-grow { from { transform: scaleX(0); } to { transform: none; } }
+</style>
+<g font-family="Menlo, monospace" font-size="15" fill="#5b6676">
+  <text x="30" y="30">H&lt;sub&gt;2&lt;/sub&gt;O</text>
+  <text x="390" y="30">x&lt;sup&gt;2&lt;/sup&gt;</text>
+  <text x="30" y="160">&lt;mark&gt;cake&lt;/mark&gt;</text>
+  <text x="390" y="160">&lt;del&gt;10$&lt;/del&gt; 5$</text>
+</g>
+<g font-family="Georgia, serif" fill="#1f2a37">
+  <text x="30" y="95" font-size="48">H</text>
+  <text class="st st-down" x="68" y="109" font-size="28">2</text>
+  <text x="86" y="95" font-size="48">O</text>
+  <text x="390" y="95" font-size="48">x</text>
+  <text class="st st-up" x="414" y="75" font-size="28">2</text>
+  <rect class="st st-mark" x="26" y="185" width="112" height="46" rx="6" fill="#ffd34d"/>
+  <text x="30" y="222" font-size="40">cake</text>
+  <text x="390" y="222" font-size="40">10$  5$</text>
+  <line class="st st-del" x1="388" y1="208" x2="462" y2="208" stroke="#c0392b" stroke-width="4"/>
+</g>
+<g font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1d5fd1">
+  <text x="200" y="85">sub: down</text>
+  <text x="520" y="85">sup: up</text>
+  <text x="200" y="215">mark: highlight</text>
+  <text x="560" y="215">del: crossed out</text>
+</g>
+</svg>

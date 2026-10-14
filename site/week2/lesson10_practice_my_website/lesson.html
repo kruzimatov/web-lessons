@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 10: Practice day: my website grows</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 10 &middot; Week 2</small>Practice day: my website grows</h1><div class="subnav"><a href="lesson.html" aria-current="page">Lesson</a><a href="practice.html">Practice</a><a href="homework.html">Homework</a></div>
+<p class="goal">No new tags today! Your website gets 3 pages with pictures, a table and a video.</p>
+<nav class="jump" aria-label="On this page"><a href="#warm-up">Warm-up</a><a href="#part-1">Part 1</a><a href="#part-2">Part 2</a><a href="#part-3">Part 3</a><a href="#watch-out">Watch out</a></nav>
+<h2 id="warm-up">Warm-up</h2>
+<div class="quiz"><p class="q">Which tag shows a YouTube video?</p><div class="opts"><button type="button" data-ok="1"><code>&lt;iframe&gt;</code></button><button type="button" data-ok="0"><code>&lt;video&gt;</code></button><button type="button" data-ok="0"><code>&lt;a&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">What gives a video a play button?</p><div class="opts"><button type="button" data-ok="1"><code>controls</code></button><button type="button" data-ok="0"><code>play</code></button><button type="button" data-ok="0"><code>start</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">How do you link to your own page <code>pets.html</code>?</p><div class="opts"><button type="button" data-ok="1"><code>href="pets.html"</code></button><button type="button" data-ok="0"><code>src="pets.html"</code></button><button type="button" data-ok="0"><code>href="https://pets"</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-1">Part 1: Plan your website</h2>
+<p>Your website will have 3 pages. Every page has the same menu at the top.</p>
+<div class="scroll"><table><thead><tr><th>Page</th><th>File</th><th>What is on it</th></tr></thead><tbody><tr><td>Home</td><td><code>index.html</code></td><td>Your name, a picture, a short welcome, a list</td></tr><tr><td>Hobbies</td><td><code>hobbies.html</code></td><td>A table of hobbies and a video</td></tr><tr><td>Pets (or any topic)</td><td><code>pets.html</code></td><td>Pictures and facts</td></tr></tbody></table></div>
+<p class="uz" lang="uz">Har bir sahifada bir xil menyu bo'ladi: istalgan sahifadan uyga qaytish mumkin.</p>
+<figure class="code"><figcaption>The menu: put it on all 3 pages</figcaption><pre><code>&lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pets.html"&gt;Pets&lt;/a&gt;</code></pre></figure>
+<div class="play"><p class="task">Write your menu. Change Pets to your own topic if you like.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pets.html"&gt;Pets&lt;/a&gt;</textarea><iframe title="Result" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Why is the menu on EVERY page?</p><div class="opts"><button type="button" data-ok="1">So you can go to any page from any page</button><button type="button" data-ok="0">Because HTML needs it</button><button type="button" data-ok="0">To make it pretty</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-2">Part 2: The home page</h2>
+<figure class="code"><figcaption>A finished home page</figcaption><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Home&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pets.html"&gt;Pets&lt;/a&gt;
+  &lt;h1&gt;Ali's World&lt;/h1&gt;
+  &lt;img src="https://picsum.photos/id/237/400/300" alt="A black puppy" width="300"&gt;
+  &lt;p&gt;Hi! I am &lt;strong&gt;Ali&lt;/strong&gt;. Welcome to my website.&lt;/p&gt;
+  &lt;h2&gt;On this website&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;My hobbies&lt;/li&gt;
+    &lt;li&gt;My pets&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;hr&gt;
+  &lt;p&gt;&lt;small&gt;&amp;copy; 2026 Ali&lt;/small&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+<div class="play"><p class="task">Make it YOURS: your name, your picture number, your words.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Home&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pets.html"&gt;Pets&lt;/a&gt;
+  &lt;h1&gt;Ali's World&lt;/h1&gt;
+  &lt;img src="https://picsum.photos/id/237/400/300" alt="A black puppy" width="300"&gt;
+  &lt;p&gt;Hi! I am &lt;strong&gt;Ali&lt;/strong&gt;. Welcome to my website.&lt;/p&gt;
+  &lt;h2&gt;On this website&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;My hobbies&lt;/li&gt;
+    &lt;li&gt;My pets&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;hr&gt;
+  &lt;p&gt;&lt;small&gt;&amp;copy; 2026 Ali&lt;/small&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">The picture does not show. What do you check first?</p><div class="opts"><button type="button" data-ok="1">The <code>src</code> address</button><button type="button" data-ok="0">The <code>&lt;title&gt;</code></button><button type="button" data-ok="0">The menu</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-3">Part 3: The hobbies page</h2>
+<figure class="code"><figcaption>A table and a video on one page</figcaption><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Hobbies&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pets.html"&gt;Pets&lt;/a&gt;
+  &lt;h1&gt;My hobbies&lt;/h1&gt;
+  &lt;table border="1"&gt;
+    &lt;tr&gt;&lt;th&gt;Hobby&lt;/th&gt;&lt;th&gt;When&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Football&lt;/td&gt;&lt;td&gt;Saturday&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Chess&lt;/td&gt;&lt;td&gt;Every evening&lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;h2&gt;Watch this&lt;/h2&gt;
+  &lt;iframe width="400" height="225" src="https://www.youtube.com/embed/jNQXAC9IVRw" title="A video" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+<div class="play"><p class="task">Add one more hobby row and change the video.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Hobbies&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pets.html"&gt;Pets&lt;/a&gt;
+  &lt;h1&gt;My hobbies&lt;/h1&gt;
+  &lt;table border="1"&gt;
+    &lt;tr&gt;&lt;th&gt;Hobby&lt;/th&gt;&lt;th&gt;When&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Football&lt;/td&gt;&lt;td&gt;Saturday&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Chess&lt;/td&gt;&lt;td&gt;Every evening&lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;h2&gt;Watch this&lt;/h2&gt;
+  &lt;iframe width="400" height="225" src="https://www.youtube.com/embed/jNQXAC9IVRw" title="A video" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<ol class="steps"><li>Click every link in the menu, on every page</li><li>Every picture has an <code>alt</code></li><li>Every table has <code>border="1"</code> and title cells <code>&lt;th&gt;</code></li><li>Save every file before you check in Chrome</li></ol>
+<div class="quiz"><p class="q">You click "Pets" and see "File not found". What is wrong?</p><div class="opts"><button type="button" data-ok="1">The file name and the href are different</button><button type="button" data-ok="0">The picture is too big</button><button type="button" data-ok="0">The table has no border</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="watch-out">Watch out!</h2>
+<ul class="mistakes"><li>Different menus on different pages</li><li>A link to <code>pet.html</code> when the file is <code>pets.html</code></li><li>Forgetting to save one of the files</li><li>Pictures without <code>alt</code></li></ul>
+<footer>Next: <a href="practice.html">Practice tasks</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

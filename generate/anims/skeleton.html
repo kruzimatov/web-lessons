@@ -1,0 +1,47 @@
+<svg class="art" data-seconds="8" viewBox="0 0 720 260" role="img" aria-label="The page skeleton: html holds head and body. The title in head shows on the browser tab. The body shows on the screen">
+<style>
+  .sk { transform-box: fill-box; }
+  .anim.on .sk-doc { animation: sk-fade 8s both; }
+  .anim.on .sk-html { animation: sk-html 8s both; }
+  .anim.on .sk-head { animation: sk-head 8s both; }
+  .anim.on .sk-tab { animation: sk-tab 8s both; }
+  .anim.on .sk-body { animation: sk-body 8s both; }
+  .anim.on .sk-show { animation: sk-show 8s both; }
+  @keyframes sk-fade { 0% { opacity: 0; } 10%, 100% { opacity: 1; } }
+  @keyframes sk-html { 0%, 10% { opacity: 0; transform: scale(0.9); } 22%, 100% { opacity: 1; transform: none; } }
+  @keyframes sk-head { 0%, 25% { opacity: 0; transform: translateY(-20px); } 38%, 100% { opacity: 1; transform: none; } }
+  @keyframes sk-tab { 0%, 40% { opacity: 0; } 50%, 100% { opacity: 1; } }
+  @keyframes sk-body { 0%, 55% { opacity: 0; transform: translateY(20px); } 68%, 100% { opacity: 1; transform: none; } }
+  @keyframes sk-show { 0%, 70% { opacity: 0; } 82%, 100% { opacity: 1; } }
+</style>
+<g font-family="Menlo, monospace">
+  <text class="sk sk-doc" x="20" y="26" font-size="16" fill="#5b6676">&lt;!DOCTYPE html&gt;</text>
+  <g class="sk sk-html">
+    <rect x="20" y="38" width="340" height="214" rx="12" fill="#fff" stroke="#1f2a37" stroke-width="3"/>
+    <text x="34" y="60" font-size="15" font-weight="700" fill="#1f2a37">&lt;html&gt;</text>
+  </g>
+  <g class="sk sk-head">
+    <rect x="38" y="70" width="304" height="62" rx="10" fill="#fff4cc" stroke="#e0a800" stroke-width="3"/>
+    <text x="52" y="92" font-size="15" font-weight="700" fill="#b07d00">&lt;head&gt;</text>
+    <text x="52" y="118" font-size="14" fill="#1f2a37">&lt;title&gt;My Page&lt;/title&gt;</text>
+  </g>
+  <g class="sk sk-body">
+    <rect x="38" y="144" width="304" height="96" rx="10" fill="#e3f6ec" stroke="#16794a" stroke-width="3"/>
+    <text x="52" y="166" font-size="15" font-weight="700" fill="#16794a">&lt;body&gt;</text>
+    <text x="52" y="206" font-size="14" fill="#1f2a37">&lt;h1&gt;Hello!&lt;/h1&gt;</text>
+  </g>
+</g>
+<rect x="400" y="38" width="300" height="214" rx="12" fill="#fff" stroke="#1f2a37" stroke-width="3"/>
+<path d="M400 50 a12 12 0 0 1 12 -12 h276 a12 12 0 0 1 12 12 v26 h-300 z" fill="#e8f0ff"/>
+<g class="sk sk-tab" font-family="Arial, sans-serif">
+  <rect x="414" y="46" width="130" height="30" rx="8" fill="#fff4cc" stroke="#e0a800" stroke-width="2"/>
+  <text x="479" y="66" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2a37">My Page</text>
+  <path d="M342 101 C 380 101, 380 61, 412 61" fill="none" stroke="#e0a800" stroke-width="3" stroke-dasharray="6 5"/>
+  <text x="620" y="66" text-anchor="middle" font-size="13" fill="#b07d00">head: the tab</text>
+</g>
+<g class="sk sk-show">
+  <text x="430" y="150" font-family="Georgia, serif" font-size="40" font-weight="700" fill="#1f2a37">Hello!</text>
+  <path d="M342 192 C 380 192, 390 140, 425 138" fill="none" stroke="#16794a" stroke-width="3" stroke-dasharray="6 5"/>
+  <text x="550" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#16794a">body: what you see</text>
+</g>
+</svg>

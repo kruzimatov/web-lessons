@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo: Ali's World</title>
+<style>
+  .switch { position: sticky; top: 0; z-index: 9; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 16px; background: #1f2a37; color: #fff; font: 16px -apple-system, Arial, sans-serif; }
+  .switch button { min-height: 44px; padding: 8px 16px; font: inherit; font-weight: 700; border: 0; border-radius: 8px; cursor: pointer; background: #ffd34d; color: #1f2a37; }
+  .switch button:hover { background: #ffe38a; }
+  .switch span { opacity: 0.85; }
+</style>
+<style id="css" media="not all">
+  body { margin: 0; font-family: "Trebuchet MS", Arial, sans-serif; background: #f2f8ff; color: #1f2a37; }
+  header { background: #1d5fd1; color: #fff; text-align: center; padding: 36px 16px; }
+  header h1 { margin: 0; font-size: 2.6em; }
+  header p { margin: 6px 0 0; font-size: 1.2em; }
+  nav { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 12px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+  nav a { color: #1d5fd1; font-weight: 700; text-decoration: none; padding: 8px 14px; border-radius: 8px; }
+  nav a:hover { background: #e8f0ff; }
+  main { max-width: 860px; margin: 0 auto; padding: 16px; }
+  section { background: #fff; border-radius: 16px; padding: 18px 22px; margin: 18px 0; box-shadow: 0 4px 14px rgba(29,95,209,.08); }
+  h2 { color: #1d5fd1; margin-top: 0; }
+  mark { background: #ffd34d; padding: 0 4px; border-radius: 4px; }
+  li { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #1d5fd1; color: #fff; }
+  th, td { padding: 10px; text-align: center; border: 1px solid #d8e4f7; }
+  form { display: grid; gap: 10px; max-width: 420px; }
+  input, textarea, select { font: inherit; padding: 10px; border: 2px solid #d8e4f7; border-radius: 10px; }
+  form button { font: inherit; font-weight: 700; padding: 12px; border: 0; border-radius: 10px; background: #16794a; color: #fff; cursor: pointer; }
+  form button:hover { background: #12603b; }
+  footer { text-align: center; padding: 24px; color: #5b6676; }
+  @media (max-width: 600px) { header h1 { font-size: 1.9em; } }
+</style>
+</head>
+<body>
+<div class="switch">
+  <button type="button" id="toggle">Turn CSS on</button>
+  <span id="label">Now: HTML only (after 3 weeks)</span>
+</div>
+
+<header>
+  <h1>Ali's World</h1>
+  <p>Football, dinosaurs and space</p>
+</header>
+
+<nav>
+  <a href="#about">About me</a>
+  <a href="#top5">Top 5</a>
+  <a href="#week">My week</a>
+  <a href="#contact">Write to me</a>
+</nav>
+
+<main>
+  <section id="about">
+    <h2>About me</h2>
+    <p>Hi! My name is <strong>Ali</strong>. I am <em>8 years old</em>.</p>
+    <p>My favorite planet is <mark>Saturn</mark>. Water is H<sub>2</sub>O and 3<sup>2</sup> is 9.</p>
+  </section>
+
+  <section id="top5">
+    <h2>My top 5 dinosaurs</h2>
+    <ol>
+      <li>T-Rex</li>
+      <li>Triceratops</li>
+      <li>Stegosaurus</li>
+      <li>Velociraptor</li>
+      <li>Brachiosaurus</li>
+    </ol>
+    <h2>Things I like</h2>
+    <ul>
+      <li>Football
+        <ul>
+          <li>Playing in the park</li>
+          <li>Watching big matches</li>
+        </ul>
+      </li>
+      <li>Lego</li>
+      <li><a href="https://www.nasa.gov/" target="_blank" rel="noopener">Space pictures from NASA</a></li>
+    </ul>
+  </section>
+
+  <section id="week">
+    <h2>My week</h2>
+    <table>
+      <thead>
+        <tr><th>Day</th><th>Morning</th><th>Evening</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Monday</td><td>School</td><td>Coding</td></tr>
+        <tr><td>Tuesday</td><td>School</td><td>Football</td></tr>
+        <tr><td>Saturday</td><td colspan="2">Fun day!</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="contact">
+    <h2>Write to me</h2>
+    <form onsubmit="event.preventDefault(); this.querySelector('output').value = 'Thank you! (This is a demo.)';">
+      <label for="name">Your name</label>
+      <input id="name" type="text" required>
+      <label for="fav">Favorite dinosaur</label>
+      <select id="fav">
+        <option>T-Rex</option>
+        <option>Triceratops</option>
+        <option>Stegosaurus</option>
+      </select>
+      <label for="msg">Message</label>
+      <textarea id="msg" rows="3"></textarea>
+      <button type="submit">Send</button>
+      <output aria-live="polite"></output>
+    </form>
+  </section>
+</main>
+
+<footer>Made by Ali with HTML and CSS</footer>
+
+<script>
+  const css = document.getElementById("css");
+  const btn = document.getElementById("toggle");
+  const label = document.getElementById("label");
+  btn.addEventListener("click", () => {
+    const on = css.media === "not all";
+    css.media = on ? "all" : "not all";
+    btn.textContent = on ? "Turn CSS off" : "Turn CSS on";
+    label.textContent = on ? "Now: HTML + CSS (after 2 months)" : "Now: HTML only (after 3 weeks)";
+  });
+</script>
+</body>
+</html>

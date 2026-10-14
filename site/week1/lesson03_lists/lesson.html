@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 3: Lists</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 3 &middot; Week 1</small>Lists</h1><div class="subnav"><a href="lesson.html" aria-current="page">Lesson</a><a href="practice.html">Practice</a><a href="homework.html">Homework</a></div>
+<p class="goal">Today you make shopping lists, top-5 lists and lists inside lists.</p>
+<nav class="jump" aria-label="On this page"><a href="#warm-up">Warm-up</a><a href="#part-1">Part 1</a><a href="#part-2">Part 2</a><a href="#part-3">Part 3</a><a href="#watch-out">Watch out</a></nav>
+<h2 id="warm-up">Warm-up</h2>
+<div class="quiz"><p class="q">Which tag makes a new line?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;hr&gt;</code></button><button type="button" data-ok="1"><code>&lt;br&gt;</code></button><button type="button" data-ok="0"><code>&lt;p&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">Which tag says "this is IMPORTANT"?</p><div class="opts"><button type="button" data-ok="1"><code>&lt;strong&gt;</code></button><button type="button" data-ok="0"><code>&lt;i&gt;</code></button><button type="button" data-ok="0"><code>&lt;small&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">How do you write the 2 in H₂O?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;sup&gt;2&lt;/sup&gt;</code></button><button type="button" data-ok="1"><code>&lt;sub&gt;2&lt;/sub&gt;</code></button><button type="button" data-ok="0"><code>&lt;b&gt;2&lt;/b&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-1">Part 1: Two kinds of lists</h2>
+<p>Lists are everywhere: shopping lists, game rules, top-5 lists. HTML has two kinds.</p>
+<figure class="anim"><svg class="art" data-seconds="5" viewBox="0 0 720 260" role="img" aria-label="ul makes a list with dots. ol makes a list with numbers 1, 2, 3">
+<style>
+  .lb { transform-box: fill-box; }
+  .anim.on .lb { animation: lb-drop 0.6s both; }
+  .anim.on .lb2 { animation-delay: 0.6s; }
+  .anim.on .lb3 { animation-delay: 1.2s; }
+  .anim.on .lb4 { animation-delay: 2.2s; }
+  .anim.on .lb5 { animation-delay: 2.8s; }
+  .anim.on .lb6 { animation-delay: 3.4s; }
+  @keyframes lb-drop { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: none; } }
+</style>
+<g font-family="Arial, sans-serif">
+  <rect x="20" y="20" width="320" height="220" rx="14" fill="#e8f0ff"/>
+  <text x="40" y="58" font-family="Menlo, monospace" font-size="22" font-weight="700" fill="#1d5fd1">&lt;ul&gt;</text>
+  <text x="320" y="58" text-anchor="end" font-size="15" font-weight="700" fill="#1d5fd1">dots</text>
+  <g class="lb lb1"><circle cx="60" cy="100" r="7" fill="#1f2a37"/><text x="80" y="108" font-size="24" fill="#1f2a37">Apples</text></g>
+  <g class="lb lb2"><circle cx="60" cy="150" r="7" fill="#1f2a37"/><text x="80" y="158" font-size="24" fill="#1f2a37">Milk</text></g>
+  <g class="lb lb3"><circle cx="60" cy="200" r="7" fill="#1f2a37"/><text x="80" y="208" font-size="24" fill="#1f2a37">Bread</text></g>
+
+  <rect x="380" y="20" width="320" height="220" rx="14" fill="#e3f6ec"/>
+  <text x="400" y="58" font-family="Menlo, monospace" font-size="22" font-weight="700" fill="#16794a">&lt;ol&gt;</text>
+  <text x="680" y="58" text-anchor="end" font-size="15" font-weight="700" fill="#16794a">numbers</text>
+  <g class="lb lb4"><text x="410" y="108" font-size="24" font-weight="700" fill="#16794a">1.</text><text x="445" y="108" font-size="24" fill="#1f2a37">Wake up</text></g>
+  <g class="lb lb5"><text x="410" y="158" font-size="24" font-weight="700" fill="#16794a">2.</text><text x="445" y="158" font-size="24" fill="#1f2a37">Brush teeth</text></g>
+  <g class="lb lb6"><text x="410" y="208" font-size="24" font-weight="700" fill="#16794a">3.</text><text x="445" y="208" font-size="24" fill="#1f2a37">Go to school</text></g>
+</g>
+</svg>
+<figcaption><code>&lt;ul&gt;</code> gives dots. <code>&lt;ol&gt;</code> gives numbers.</figcaption><button type="button" class="replay">Play again</button></figure>
+<div class="scroll"><table><thead><tr><th>Tag</th><th>Means</th><th>Use it when</th></tr></thead><tbody><tr><td><code>&lt;ul&gt;</code></td><td>Unordered list (dots)</td><td>Order does not matter: a shopping list</td></tr><tr><td><code>&lt;ol&gt;</code></td><td>Ordered list (numbers)</td><td>Order matters: steps, a top 5</td></tr><tr><td><code>&lt;li&gt;</code></td><td>List item</td><td>Every item, in both lists</td></tr></tbody></table></div>
+<p class="uz" lang="uz">ul: tartib muhim emas. ol: tartib muhim, raqamlar bilan.</p>
+<figure class="code"><figcaption>A shopping list with dots</figcaption><pre><code>&lt;ul&gt;
+  &lt;li&gt;Apples&lt;/li&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+  &lt;li&gt;Bread&lt;/li&gt;
+&lt;/ul&gt;</code></pre></figure>
+<div class="play"><p class="task">Write your own shopping list. Add 2 more items.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;ul&gt;
+  &lt;li&gt;Apples&lt;/li&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+  &lt;li&gt;Bread&lt;/li&gt;
+&lt;/ul&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<figure class="code"><figcaption>Morning steps with numbers</figcaption><pre><code>&lt;ol&gt;
+  &lt;li&gt;Wake up&lt;/li&gt;
+  &lt;li&gt;Brush teeth&lt;/li&gt;
+  &lt;li&gt;Go to school&lt;/li&gt;
+&lt;/ol&gt;</code></pre></figure>
+<div class="play"><p class="task">Change <code>ol</code> to <code>ul</code> in both places. What changes? Change it back.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;ol&gt;
+  &lt;li&gt;Wake up&lt;/li&gt;
+  &lt;li&gt;Brush teeth&lt;/li&gt;
+  &lt;li&gt;Go to school&lt;/li&gt;
+&lt;/ol&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">You write the steps to make tea. Which list?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;ul&gt;</code></button><button type="button" data-ok="1"><code>&lt;ol&gt;</code></button><button type="button" data-ok="0">No list</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-2">Part 2: Lists inside lists</h2>
+<p>An <code>&lt;li&gt;</code> can hold a whole new list. Like a box with smaller boxes inside.</p>
+<figure class="anim"><svg class="art" data-seconds="5" viewBox="0 0 720 260" role="img" aria-label="A list inside a list: Fruits has its own small list, apple and banana. Drinks has water and juice">
+<style>
+  .nl { transform-box: fill-box; transform-origin: left top; }
+  .anim.on .nl-out { animation: nl-in 0.6s both; }
+  .anim.on .nl-out2 { animation-delay: 0.5s; }
+  .anim.on .nl-box { animation: nl-grow 0.8s 1.3s both; }
+  .anim.on .nl-box2 { animation-delay: 2.4s; }
+  @keyframes nl-in { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
+  @keyframes nl-grow { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: none; } }
+</style>
+<g font-family="Arial, sans-serif">
+  <rect x="20" y="10" width="440" height="240" rx="14" fill="#e8f0ff" stroke="#1d5fd1" stroke-width="2"/>
+  <text x="40" y="40" font-family="Menlo, monospace" font-size="17" font-weight="700" fill="#1d5fd1">&lt;ul&gt; Food</text>
+  <g class="nl nl-out nl-out1"><circle cx="50" cy="72" r="6" fill="#1f2a37"/><text x="66" y="80" font-size="22" font-weight="700" fill="#1f2a37">Fruits</text></g>
+  <g class="nl nl-box nl-box1">
+    <rect x="66" y="92" width="370" height="58" rx="10" fill="#e3f6ec" stroke="#16794a" stroke-width="2"/>
+    <text x="80" y="112" font-family="Menlo, monospace" font-size="13" font-weight="700" fill="#16794a">&lt;ul&gt;</text>
+    <circle cx="90" cy="132" r="4" fill="#16794a"/><text x="102" y="139" font-size="18" fill="#1f2a37">Apple</text>
+    <circle cx="210" cy="132" r="4" fill="#16794a"/><text x="222" y="139" font-size="18" fill="#1f2a37">Banana</text>
+  </g>
+  <g class="nl nl-out nl-out2"><circle cx="50" cy="172" r="6" fill="#1f2a37"/><text x="66" y="180" font-size="22" font-weight="700" fill="#1f2a37">Drinks</text></g>
+  <g class="nl nl-box nl-box2">
+    <rect x="66" y="190" width="370" height="50" rx="10" fill="#e3f6ec" stroke="#16794a" stroke-width="2"/>
+    <circle cx="90" cy="215" r="4" fill="#16794a"/><text x="102" y="222" font-size="18" fill="#1f2a37">Water</text>
+    <circle cx="210" cy="215" r="4" fill="#16794a"/><text x="222" y="222" font-size="18" fill="#1f2a37">Juice</text>
+  </g>
+  <text x="500" y="100" font-size="20" font-weight="700" fill="#1d5fd1">Big list</text>
+  <text x="500" y="128" font-size="17" fill="#1f2a37">Food</text>
+  <text x="500" y="178" font-size="20" font-weight="700" fill="#16794a">Small list</text>
+  <text x="500" y="206" font-size="17" fill="#1f2a37">inside an &lt;li&gt;</text>
+</g>
+</svg>
+<figcaption>The small list goes INSIDE the <code>&lt;li&gt;</code>, before <code>&lt;/li&gt;</code>.</figcaption><button type="button" class="replay">Play again</button></figure>
+<figure class="code"><figcaption>A list inside a list</figcaption><pre><code>&lt;ul&gt;
+  &lt;li&gt;Fruits
+    &lt;ul&gt;
+      &lt;li&gt;Apple&lt;/li&gt;
+      &lt;li&gt;Banana&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Drinks&lt;/li&gt;
+&lt;/ul&gt;</code></pre></figure>
+<p class="uz" lang="uz">Ichki ro'yxat li ichiga yoziladi, &lt;/li&gt; dan oldin.</p>
+<div class="play"><p class="task">Add a small list under Drinks: Water and Juice.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;ul&gt;
+  &lt;li&gt;Fruits
+    &lt;ul&gt;
+      &lt;li&gt;Apple&lt;/li&gt;
+      &lt;li&gt;Banana&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Drinks&lt;/li&gt;
+&lt;/ul&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<p>Use spaces at the start of lines (Tab key) so you can see which list is inside which. The browser ignores them, but your eyes love them.</p>
+<div class="quiz"><p class="q">Where does the small list go?</p><div class="opts"><button type="button" data-ok="0">After <code>&lt;/ul&gt;</code></button><button type="button" data-ok="1">Inside the <code>&lt;li&gt;</code>, before <code>&lt;/li&gt;</code></button><button type="button" data-ok="0">In the <code>&lt;head&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-3">Part 3: Change the numbers</h2>
+<p><code>&lt;ol&gt;</code> can start from another number, or use letters instead of numbers.</p>
+<figure class="code"><figcaption><code>start</code> and <code>type</code> are <strong>attributes</strong>: extra settings inside the opening tag</figcaption><pre><code>&lt;ol start="5"&gt;
+  &lt;li&gt;Five&lt;/li&gt;
+  &lt;li&gt;Six&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol type="A"&gt;
+  &lt;li&gt;First&lt;/li&gt;
+  &lt;li&gt;Second&lt;/li&gt;
+&lt;/ol&gt;</code></pre></figure>
+<div class="scroll"><table><thead><tr><th>Attribute</th><th>What it does</th></tr></thead><tbody><tr><td><code>start="5"</code></td><td>Start counting from 5</td></tr><tr><td><code>type="A"</code></td><td>A, B, C</td></tr><tr><td><code>type="a"</code></td><td>a, b, c</td></tr><tr><td><code>type="I"</code></td><td>I, II, III (Roman numbers)</td></tr><tr><td><code>reversed</code></td><td>Count down: 3, 2, 1</td></tr></tbody></table></div>
+<div class="play"><p class="task">Make a countdown: 3, 2, 1, then "Go!". Try <code>type="I"</code> too.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;ol reversed&gt;
+  &lt;li&gt;Ready&lt;/li&gt;
+  &lt;li&gt;Steady&lt;/li&gt;
+  &lt;li&gt;Go!&lt;/li&gt;
+&lt;/ol&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which list shows A, B, C?</p><div class="opts"><button type="button" data-ok="1"><code>&lt;ol type="A"&gt;</code></button><button type="button" data-ok="0"><code>&lt;ol start="A"&gt;</code></button><button type="button" data-ok="0"><code>&lt;ul type="A"&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="watch-out">Watch out!</h2>
+<ul class="mistakes"><li>Text outside <code>&lt;li&gt;</code>: every item needs its own <code>&lt;li&gt;</code></li><li>Closing the small list in the wrong place. It must end before <code>&lt;/li&gt;</code></li><li>Using <code>&lt;ul&gt;</code> for steps. If order matters, use <code>&lt;ol&gt;</code></li><li>Writing <code>&lt;ol start=5&gt;</code> with no quotes. Use <code>start="5"</code></li></ul>
+<footer>Next: <a href="practice.html">Practice tasks</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

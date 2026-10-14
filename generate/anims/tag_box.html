@@ -1,0 +1,38 @@
+<svg class="art" data-seconds="7" viewBox="0 0 720 260" role="img" aria-label="Step 1 open the tag h1, step 2 put Hello inside, step 3 close the tag. The browser shows a big Hello">
+<style>
+  .tb-open, .tb-in, .tb-close, .tb-show { transform-box: fill-box; }
+  .anim.on .tb-open { animation: tb-open 7s both; }
+  .anim.on .tb-in { animation: tb-in 7s both; }
+  .anim.on .tb-close { animation: tb-close 7s both; }
+  .anim.on .tb-show { animation: tb-show 7s both; }
+  @keyframes tb-open { 0% { opacity: 0; transform: translateX(-120px); } 15%, 100% { opacity: 1; transform: none; } }
+  @keyframes tb-in { 0%, 20% { opacity: 0; transform: translateY(-110px); } 38%, 100% { opacity: 1; transform: none; } }
+  @keyframes tb-close { 0%, 44% { opacity: 0; transform: translateX(120px); } 58%, 100% { opacity: 1; transform: none; } }
+  @keyframes tb-show { 0%, 64% { opacity: 0; transform: scale(0.6); } 80%, 100% { opacity: 1; transform: none; } }
+</style>
+<g font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">
+  <g class="tb-open">
+    <rect x="30" y="80" width="110" height="100" rx="14" fill="#1d5fd1"/>
+    <text x="85" y="140" font-family="Menlo, monospace" font-size="28" fill="#fff">&lt;h1&gt;</text>
+    <text x="85" y="215" font-size="17" fill="#1d5fd1">1. Open</text>
+  </g>
+  <g class="tb-in">
+    <rect x="150" y="80" width="150" height="100" rx="14" fill="#fff4cc" stroke="#e0a800" stroke-width="3"/>
+    <text x="225" y="141" font-size="30" fill="#1f2a37">Hello!</text>
+    <text x="225" y="215" font-size="17" fill="#b07d00">2. Put inside</text>
+  </g>
+  <g class="tb-close">
+    <rect x="310" y="80" width="120" height="100" rx="14" fill="#1d5fd1"/>
+    <text x="370" y="140" font-family="Menlo, monospace" font-size="28" fill="#fff">&lt;/h1&gt;</text>
+    <text x="370" y="215" font-size="17" fill="#1d5fd1">3. Close</text>
+  </g>
+  <g class="tb-show">
+    <line x1="450" y1="130" x2="490" y2="130" stroke="#16794a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M486 116 l20 14 l-20 14 z" fill="#16794a"/>
+    <rect x="520" y="50" width="180" height="160" rx="12" fill="#fff" stroke="#1f2a37" stroke-width="3"/>
+    <path d="M520 62 a12 12 0 0 1 12 -12 h156 a12 12 0 0 1 12 12 v12 h-180 z" fill="#e8f0ff"/>
+    <text x="610" y="152" font-family="Georgia, serif" font-size="40" fill="#1f2a37">Hello!</text>
+    <text x="610" y="240" font-size="17" fill="#16794a">The browser shows it</text>
+  </g>
+</g>
+</svg>

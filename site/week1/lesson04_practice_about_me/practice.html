@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice 4: Practice day: my "About me" page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 4 &middot; Week 1</small>Practice day: my "About me" page</h1><div class="subnav"><a href="lesson.html">Lesson</a><a href="practice.html" aria-current="page">Practice</a><a href="homework.html">Homework</a></div>
+<details class="stuck" open><summary>When I'm stuck</summary><ol>
+<li>Read my code slowly, line by line.</li>
+<li>Press <strong>Check my code</strong> and read what it says.</li>
+<li>Check that every tag that opens also closes.</li>
+<li>Look it up in <a href="../../cheatsheet.html">My tags</a>.</li>
+<li>Compare with the example in the lesson.</li>
+<li>Try Hint 1, then Hint 2.</li>
+<li>Still stuck? Ask your teacher.</li>
+</ol></details>
+<h3>Task 1 &middot; Easy</h3>
+<div class="play" data-save="p4-1"><p class="task">Start the page: the skeleton with the title "About Me" and an <code>&lt;h1&gt;</code> with your name.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code"></textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Look at the skeleton in the lesson.</p></details><details class="hint"><summary>Hint 2</summary><p>The title goes in head, the h1 goes in body.</p></details></div>
+<h3>Task 2 &middot; Medium</h3>
+<div class="play" data-save="p4-2"><p class="task">Add two paragraphs about you. Make your age strong and one word em. Then an <code>&lt;hr&gt;</code>.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About Me&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hi, I am Ali!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Age in <code>&lt;strong&gt;</code>, one word in <code>&lt;em&gt;</code>.</p></details><details class="hint"><summary>Hint 2</summary><p>The <code>&lt;hr&gt;</code> comes after the second <code>&lt;/p&gt;</code>.</p></details></div>
+<h3>Task 3 &middot; Find the bug</h3>
+<div class="play" data-save="p4-3"><p class="task">Fix the 4 mistakes in this page.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About Me&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hi, I am Sara!&lt;/h1&gt;
+  &lt;h1&gt;I am 9&lt;/h1&gt;
+  &lt;p&gt;I like &lt;strong&gt;cats&lt;/p&gt;&lt;/strong&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Cats&lt;/li&gt;
+    Dogs
+  &lt;/ul&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>There are 4: count the h1s, check the order, check the list, check the end.</p></details><details class="hint"><summary>Hint 2</summary><p>Second h1 becomes p. Close strong before p. Dogs needs li. Add <code>&lt;/body&gt;</code>.</p></details></div>
+<h3>Task 4 &middot; Medium</h3>
+<div class="play" data-save="p4-4"><p class="task">Add "My favorite things" (h2 + dots list of 3) and "My top 3" (h2 + numbers list).</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About Me&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- 1. Your name --&gt;
+
+  &lt;!-- 2. About you --&gt;
+
+  &lt;!-- 3. Favorite things --&gt;
+
+  &lt;!-- 4. Top 3 --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Favorite things: <code>&lt;ul&gt;</code>. Top 3: <code>&lt;ol&gt;</code>.</p></details><details class="hint"><summary>Hint 2</summary><p>Each part starts with an <code>&lt;h2&gt;</code>.</p></details></div>
+<h3>Task 5 &middot; Mini project</h3>
+<div class="play" data-save="p4-5"><p class="task">The full "About me" page: all 4 parts, an <code>&lt;hr&gt;</code> between parts, and a fun fact with <code>&lt;sub&gt;</code> or <code>&lt;sup&gt;</code> at the end.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About Me&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- 1. Your name --&gt;
+
+  &lt;!-- 2. About you --&gt;
+
+  &lt;!-- 3. Favorite things --&gt;
+
+  &lt;!-- 4. Top 3 --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="hints"><details class="hint"><summary>Hint 1</summary><p>Do it part by part, under each comment.</p></details><details class="hint"><summary>Hint 2</summary><p>Fun fact: <code>H&lt;sub&gt;2&lt;/sub&gt;O</code>.</p></details></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

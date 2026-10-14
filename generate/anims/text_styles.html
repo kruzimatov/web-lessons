@@ -1,0 +1,47 @@
+<svg class="art" data-seconds="4.5" viewBox="0 0 720 260" role="img" aria-label="strong and b make the word bold, em and i make it italic, u underlines it">
+<style>
+  .ts { transform-box: fill-box; transform-origin: center; }
+  .anim.on .ts-tag { animation: ts-in 0.6s both; }
+  .anim.on .ts-out { animation: ts-pop 0.6s both; }
+  .anim.on .ts-r1 .ts-out { animation-delay: 0.6s; }
+  .anim.on .ts-r2 .ts-tag { animation-delay: 1.6s; }
+  .anim.on .ts-r2 .ts-out { animation-delay: 2.2s; }
+  .anim.on .ts-r3 .ts-tag { animation-delay: 3.2s; }
+  .anim.on .ts-r3 .ts-out { animation-delay: 3.8s; }
+  @keyframes ts-in { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
+  @keyframes ts-pop { 0% { opacity: 0; transform: scale(0.5); } 70% { opacity: 1; transform: scale(1.15); } 100% { opacity: 1; transform: none; } }
+</style>
+<g font-family="Arial, sans-serif">
+  <g class="ts-r1">
+    <g class="ts ts-tag">
+      <rect x="20" y="15" width="300" height="62" rx="10" fill="#1e2530"/>
+      <text x="36" y="54" font-family="Menlo, monospace" font-size="17" fill="#e9edf2">&lt;strong&gt; or &lt;b&gt;</text>
+    </g>
+    <g class="ts ts-out">
+      <text x="350" y="57" font-family="Georgia, serif" font-size="34" font-weight="700" fill="#1f2a37">football</text>
+      <text x="530" y="54" font-size="16" fill="#1d5fd1" font-weight="700">bold</text>
+    </g>
+  </g>
+  <g class="ts-r2">
+    <g class="ts ts-tag">
+      <rect x="20" y="98" width="300" height="62" rx="10" fill="#1e2530"/>
+      <text x="36" y="137" font-family="Menlo, monospace" font-size="17" fill="#e9edf2">&lt;em&gt; or &lt;i&gt;</text>
+    </g>
+    <g class="ts ts-out">
+      <text x="350" y="140" font-family="Georgia, serif" font-size="34" font-style="italic" fill="#1f2a37">football</text>
+      <text x="530" y="137" font-size="16" fill="#1d5fd1" font-weight="700">italic</text>
+    </g>
+  </g>
+  <g class="ts-r3">
+    <g class="ts ts-tag">
+      <rect x="20" y="181" width="300" height="62" rx="10" fill="#1e2530"/>
+      <text x="36" y="220" font-family="Menlo, monospace" font-size="17" fill="#e9edf2">&lt;u&gt;</text>
+    </g>
+    <g class="ts ts-out">
+      <text x="350" y="223" font-family="Georgia, serif" font-size="34" fill="#1f2a37">football</text>
+      <line x1="350" y1="229" x2="483" y2="229" stroke="#1f2a37" stroke-width="2"/>
+      <text x="530" y="220" font-size="16" fill="#1d5fd1" font-weight="700">underline</text>
+    </g>
+  </g>
+</g>
+</svg>

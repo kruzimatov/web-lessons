@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 16: Final project: my website</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 16 &middot; Week 3</small>Final project: my website</h1><div class="subnav"><a href="lesson.html" aria-current="page">Lesson</a><a href="practice.html">Practice</a><a href="homework.html">Homework</a></div>
+<p class="goal">Today you finish your website and show it to your family. You are a web builder now!</p>
+<nav class="jump" aria-label="On this page"><a href="#warm-up">Warm-up</a><a href="#part-1">Part 1</a><a href="#part-2">Part 2</a><a href="#part-3">Part 3</a><a href="#watch-out">Watch out</a></nav>
+<h2 id="warm-up">Warm-up</h2>
+<div class="quiz"><p class="q">Which tag holds the main content?</p><div class="opts"><button type="button" data-ok="1"><code>&lt;main&gt;</code></button><button type="button" data-ok="0"><code>&lt;header&gt;</code></button><button type="button" data-ok="0"><code>&lt;nav&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">Every picture needs...</p><div class="opts"><button type="button" data-ok="1"><code>alt</code></button><button type="button" data-ok="0"><code>border</code></button><button type="button" data-ok="0"><code>colspan</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">Every page of your site has the same...</p><div class="opts"><button type="button" data-ok="1">menu</button><button type="button" data-ok="0">picture</button><button type="button" data-ok="0">table</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-1">Part 1: The checklist</h2>
+<p>A finished website has all of these. Tick them one by one.</p>
+<div class="scroll"><table><thead><tr><th>Page</th><th>Must have</th></tr></thead><tbody><tr><td>Every page</td><td>Skeleton, a good <code>&lt;title&gt;</code>, header, nav (menu), main, footer</td></tr><tr><td>Home <code>index.html</code></td><td>Your name, a picture, a welcome, a list</td></tr><tr><td>Hobbies</td><td>A table and a video</td></tr><tr><td>Pets or your topic</td><td>Pictures with alt, facts, links</td></tr><tr><td>Write to me <code>contact.html</code></td><td>A form with every kind of box</td></tr></tbody></table></div>
+<p class="uz" lang="uz">Har bir sahifada: skelet, title, menyu, header, main, footer.</p>
+<figure class="code"><figcaption>A finished home page</figcaption><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Ali's World&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Ali's World&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;nav&gt;
+    &lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pets.html"&gt;Pets&lt;/a&gt; | &lt;a href="contact.html"&gt;Write to me&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;h2&gt;About me&lt;/h2&gt;
+      &lt;img src="https://picsum.photos/id/237/400/300" alt="A black puppy" width="250"&gt;
+      &lt;p&gt;Hi! I am &lt;strong&gt;Ali&lt;/strong&gt;, I am 8 and I make websites.&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h2&gt;My top 3&lt;/h2&gt;
+      &lt;ol&gt;
+        &lt;li&gt;Football&lt;/li&gt;
+        &lt;li&gt;Minecraft&lt;/li&gt;
+        &lt;li&gt;Pizza&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;p&gt;&lt;small&gt;&amp;copy; 2026 Ali&lt;/small&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+<div class="play"><p class="task">Make it yours: change every word, the picture and the top 3.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Ali's World&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Ali's World&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;nav&gt;
+    &lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pets.html"&gt;Pets&lt;/a&gt; | &lt;a href="contact.html"&gt;Write to me&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;h2&gt;About me&lt;/h2&gt;
+      &lt;img src="https://picsum.photos/id/237/400/300" alt="A black puppy" width="250"&gt;
+      &lt;p&gt;Hi! I am &lt;strong&gt;Ali&lt;/strong&gt;, I am 8 and I make websites.&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h2&gt;My top 3&lt;/h2&gt;
+      &lt;ol&gt;
+        &lt;li&gt;Football&lt;/li&gt;
+        &lt;li&gt;Minecraft&lt;/li&gt;
+        &lt;li&gt;Pizza&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;p&gt;&lt;small&gt;&amp;copy; 2026 Ali&lt;/small&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which file is your home page?</p><div class="opts"><button type="button" data-ok="1"><code>index.html</code></button><button type="button" data-ok="0"><code>home.html</code></button><button type="button" data-ok="0"><code>first.html</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-2">Part 2: Check everything</h2>
+<ol class="steps"><li>Click every menu link on every page</li><li>Every picture shows, and has an alt</li><li>Every video and map plays</li><li>Fill in your form and press Send</li><li>Read every page: no spelling mistakes</li></ol>
+<div class="play"><p class="task">Last bug hunt! This home page has 5 mistakes.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Ali's World&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Ali's World&lt;/h1&gt;
+  
+  &lt;nav&gt;
+    &lt;a href="index.html"&gt;Home&lt;/a&gt; | &lt;a href="hobbies.html"&gt;Hobbies&lt;/a&gt; | &lt;a href="pet.html"&gt;Pets&lt;/a&gt; | &lt;a href="contact.html"&gt;Write to me&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;h2&gt;About me&lt;/h2&gt;
+      &lt;img src="https://picsum.photos/id/237/400/300" width="250"&gt;
+      &lt;p&gt;Hi! I am &lt;strong&gt;Ali, I am 8 and I make websites.&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h2&gt;My top 3&lt;/h2&gt;
+      &lt;ol&gt;
+        &lt;li&gt;Football&lt;/li&gt;
+        &lt;li&gt;Minecraft&lt;/li&gt;
+        Pizza
+      &lt;/ol&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;p&gt;&lt;small&gt;&amp;copy; 2026 Ali&lt;/small&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">You click a menu link and see "File not found". What do you check?</p><div class="opts"><button type="button" data-ok="1">The href and the file name</button><button type="button" data-ok="0">The picture</button><button type="button" data-ok="0">The footer</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-3">Part 3: Show time, and what comes next</h2>
+<p>Open your website in Chrome and show it to your family. Tell them which tags you used!</p>
+<p>Next month: <strong>CSS</strong>. It paints your website: colors, fonts, boxes, layouts. Here is a sneak peek.</p>
+<div class="play"><p class="task">Sneak peek of CSS: change the colors and see what happens.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;h1 style="color: white; background-color: royalblue; padding: 20px"&gt;Ali's World&lt;/h1&gt;
+&lt;p style="font-size: 24px; color: darkgreen"&gt;CSS paints my website!&lt;/p&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<p class="uz" lang="uz">Keyingi oy CSS: saytingizni ranglar, shriftlar va bloklar bilan chiroyli qilamiz.</p>
+<div class="quiz"><p class="q">What will CSS do to your website?</p><div class="opts"><button type="button" data-ok="1">Paint it: colors, fonts, layout</button><button type="button" data-ok="0">Delete it</button><button type="button" data-ok="0">Make it a video</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="watch-out">Watch out!</h2>
+<ul class="mistakes"><li>One page without the menu</li><li>Pictures that do not show because the file name is wrong</li><li>A <code>&lt;title&gt;</code> still saying "Document"</li><li>Not saving before you check</li></ul>
+<footer>Next: <a href="practice.html">Practice tasks</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

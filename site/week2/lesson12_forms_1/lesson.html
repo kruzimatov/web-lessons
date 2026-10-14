@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 12: Forms 1: boxes to type in</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 12 &middot; Week 2</small>Forms 1: boxes to type in</h1><div class="subnav"><a href="lesson.html" aria-current="page">Lesson</a><a href="practice.html">Practice</a><a href="homework.html">Homework</a></div>
+<p class="goal">Today you make forms: boxes where people type their name, email, password and age.</p>
+<nav class="jump" aria-label="On this page"><a href="#warm-up">Warm-up</a><a href="#part-1">Part 1</a><a href="#part-2">Part 2</a><a href="#part-3">Part 3</a><a href="#watch-out">Watch out</a></nav>
+<h2 id="warm-up">Warm-up</h2>
+<div class="quiz"><p class="q">Which box holds the menu?</p><div class="opts"><button type="button" data-ok="1"><code>&lt;nav&gt;</code></button><button type="button" data-ok="0"><code>&lt;footer&gt;</code></button><button type="button" data-ok="0"><code>&lt;header&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">How many <code>&lt;main&gt;</code> on a page?</p><div class="opts"><button type="button" data-ok="1">One</button><button type="button" data-ok="0">Two</button><button type="button" data-ok="0">Many</button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">Which tag colors a few words inside a line?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;div&gt;</code></button><button type="button" data-ok="1"><code>&lt;span&gt;</code></button><button type="button" data-ok="0"><code>&lt;section&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-1">Part 1: Your first form</h2>
+<p>A <strong>form</strong> lets people send you information: sign up, write a message, answer a quiz.</p>
+<figure class="anim"><svg class="art" data-seconds="6" viewBox="0 0 720 260" role="img" aria-label="A form: the label says what to type, the input box is where you type, the password shows dots, the button sends it">
+<style>
+  .ff { transform-box: fill-box; }
+  .anim.on .ff-k { animation: ff-key 0.15s both; }
+  .anim.on .ff-k1 { animation-delay: 0.4s; } .anim.on .ff-k2 { animation-delay: 0.7s; } .anim.on .ff-k3 { animation-delay: 1s; }
+  .anim.on .ff-d1 { animation-delay: 1.8s; } .anim.on .ff-d2 { animation-delay: 2.05s; } .anim.on .ff-d3 { animation-delay: 2.3s; }
+  .anim.on .ff-d4 { animation-delay: 2.55s; } .anim.on .ff-d5 { animation-delay: 2.8s; }
+  .anim.on .ff-btn { transform-origin: center; animation: ff-press 0.4s 3.5s both; }
+  .anim.on .ff-sent { animation: ff-fade 0.5s 4s both; }
+  @keyframes ff-key { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ff-press { 50% { transform: scale(0.9); } }
+  @keyframes ff-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+</style>
+<g font-family="Arial, sans-serif">
+  <text x="30" y="40" font-size="19" font-weight="700" fill="#1f2a37">Name</text>
+  <rect x="30" y="52" width="300" height="46" rx="8" fill="#fff" stroke="#1d5fd1" stroke-width="3"/>
+  <g font-size="24" fill="#1f2a37">
+    <text class="ff ff-k ff-k1" x="44" y="84">A</text><text class="ff ff-k ff-k2" x="61" y="84">l</text><text class="ff ff-k ff-k3" x="68" y="84">i</text>
+  </g>
+  <text x="30" y="130" font-size="19" font-weight="700" fill="#1f2a37">Password</text>
+  <rect x="30" y="142" width="300" height="46" rx="8" fill="#fff" stroke="#1d5fd1" stroke-width="3"/>
+  <g fill="#1f2a37">
+    <circle class="ff ff-k ff-d1" cx="52" cy="165" r="6"/><circle class="ff ff-k ff-d2" cx="72" cy="165" r="6"/><circle class="ff ff-k ff-d3" cx="92" cy="165" r="6"/>
+    <circle class="ff ff-k ff-d4" cx="112" cy="165" r="6"/><circle class="ff ff-k ff-d5" cx="132" cy="165" r="6"/>
+  </g>
+  <g class="ff ff-btn">
+    <rect x="30" y="204" width="130" height="46" rx="10" fill="#16794a"/>
+    <text x="95" y="234" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">Sign up</text>
+  </g>
+  <g class="ff ff-sent"><text x="178" y="234" font-size="20" font-weight="700" fill="#16794a">Sent!</text></g>
+</g>
+<g font-family="Menlo, monospace" font-size="16" font-weight="700">
+  <text x="380" y="40" fill="#1f2a37">&lt;label&gt;</text><text x="470" y="40" font-family="Arial, sans-serif" font-weight="400" fill="#5b6676">says what to type</text>
+  <text x="380" y="82" fill="#1d5fd1">&lt;input&gt;</text><text x="470" y="82" font-family="Arial, sans-serif" font-weight="400" fill="#5b6676">the box you type in</text>
+  <text x="380" y="172" fill="#1d5fd1">type="password"</text><text x="380" y="194" font-family="Arial, sans-serif" font-weight="400" fill="#5b6676">shows dots, not letters</text>
+  <text x="380" y="234" fill="#16794a">&lt;button&gt;</text><text x="470" y="234" font-family="Arial, sans-serif" font-weight="400" fill="#5b6676">sends the form</text>
+</g>
+</svg>
+<figcaption>label says what to type, input is the box, button sends it.</figcaption><button type="button" class="replay">Play again</button></figure>
+<figure class="code"><figcaption>A form with one box and a button</figcaption><pre><code>&lt;form&gt;
+  &lt;label for="name"&gt;Your name&lt;/label&gt;
+  &lt;input type="text" id="name"&gt;
+  &lt;button&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre></figure>
+<div class="scroll"><table><thead><tr><th>Tag</th><th>What it does</th></tr></thead><tbody><tr><td><code>&lt;form&gt;</code></td><td>Holds the whole form</td></tr><tr><td><code>&lt;label&gt;</code></td><td>The words next to a box</td></tr><tr><td><code>&lt;input&gt;</code></td><td>A box to type in. No closing tag</td></tr><tr><td><code>&lt;button&gt;</code></td><td>The button that sends the form</td></tr></tbody></table></div>
+<p><code>for="name"</code> on the label and <code>id="name"</code> on the input join them. Click the label: the box gets ready for typing!</p>
+<p class="uz" lang="uz">label ning for= qiymati input ning id= qiymati bilan bir xil bo'lsin.</p>
+<div class="play"><p class="task">Type your name and press Send. Then click the label "Your name".</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;form&gt;
+  &lt;label for="name"&gt;Your name&lt;/label&gt;
+  &lt;input type="text" id="name"&gt;
+  &lt;button&gt;Send&lt;/button&gt;
+&lt;/form&gt;</textarea><iframe title="Result" sandbox="allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which tag is the box you type in?</p><div class="opts"><button type="button" data-ok="0"><code>&lt;label&gt;</code></button><button type="button" data-ok="1"><code>&lt;input&gt;</code></button><button type="button" data-ok="0"><code>&lt;form&gt;</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-2">Part 2: Different kinds of boxes</h2>
+<p>Change <code>type</code> and you get a different box.</p>
+<figure class="code"><figcaption>4 types of input</figcaption><pre><code>&lt;form&gt;
+  &lt;p&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="pass"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="pass"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="age"&gt;Age&lt;/label&gt;
+    &lt;input type="number" id="age"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="bday"&gt;Birthday&lt;/label&gt;
+    &lt;input type="date" id="bday"&gt;
+  &lt;/p&gt;
+  &lt;button&gt;Sign up&lt;/button&gt;
+&lt;/form&gt;</code></pre></figure>
+<div class="scroll"><table><thead><tr><th>type</th><th>What you get</th></tr></thead><tbody><tr><td><code>text</code></td><td>Any words</td></tr><tr><td><code>email</code></td><td>An email address. It checks the <code>@</code></td></tr><tr><td><code>password</code></td><td>Dots instead of letters</td></tr><tr><td><code>number</code></td><td>Only numbers, with up and down arrows</td></tr><tr><td><code>date</code></td><td>A calendar to pick a day</td></tr></tbody></table></div>
+<div class="play"><p class="task">Try every box. Type letters in the Age box: what happens?</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;form&gt;
+  &lt;p&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="pass"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="pass"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="age"&gt;Age&lt;/label&gt;
+    &lt;input type="number" id="age"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="bday"&gt;Birthday&lt;/label&gt;
+    &lt;input type="date" id="bday"&gt;
+  &lt;/p&gt;
+  &lt;button&gt;Sign up&lt;/button&gt;
+&lt;/form&gt;</textarea><iframe title="Result" sandbox="allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which type shows dots instead of letters?</p><div class="opts"><button type="button" data-ok="0"><code>text</code></button><button type="button" data-ok="1"><code>password</code></button><button type="button" data-ok="0"><code>secret</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-3">Part 3: Helpful extras</h2>
+<figure class="code"><figcaption>placeholder, required, min and max</figcaption><pre><code>&lt;form&gt;
+  &lt;label for="user"&gt;Username&lt;/label&gt;
+  &lt;input type="text" id="user" placeholder="for example: ali2018" required&gt;
+  &lt;label for="age"&gt;Age&lt;/label&gt;
+  &lt;input type="number" id="age" min="5" max="15"&gt;
+  &lt;button&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre></figure>
+<div class="scroll"><table><thead><tr><th>Extra</th><th>What it does</th></tr></thead><tbody><tr><td><code>placeholder="..."</code></td><td>Grey hint text inside the box</td></tr><tr><td><code>required</code></td><td>You must fill it before sending</td></tr><tr><td><code>min="5" max="15"</code></td><td>The smallest and biggest number allowed</td></tr></tbody></table></div>
+<p class="uz" lang="uz">required bo'lsa, bo'sh qoldirib yuborib bo'lmaydi.</p>
+<div class="play"><p class="task">Press Send with an empty Username. Then type age 20 and press Send. What does the browser say?</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;form&gt;
+  &lt;label for="user"&gt;Username&lt;/label&gt;
+  &lt;input type="text" id="user" placeholder="for example: ali2018" required&gt;
+  &lt;label for="age"&gt;Age&lt;/label&gt;
+  &lt;input type="number" id="age" min="5" max="15"&gt;
+  &lt;button&gt;Send&lt;/button&gt;
+&lt;/form&gt;</textarea><iframe title="Result" sandbox="allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which extra makes a box "must fill"?</p><div class="opts"><button type="button" data-ok="0"><code>placeholder</code></button><button type="button" data-ok="1"><code>required</code></button><button type="button" data-ok="0"><code>max</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="watch-out">Watch out!</h2>
+<ul class="mistakes"><li>Writing <code>&lt;/input&gt;</code>. <code>&lt;input&gt;</code> has no closing tag</li><li>The label <code>for</code> and the input <code>id</code> are different</li><li>Using <code>type="text"</code> for a password: everyone can read it</li><li>Forgetting the <code>&lt;button&gt;</code>: there is no way to send</li></ul>
+<footer>Next: <a href="practice.html">Practice tasks</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

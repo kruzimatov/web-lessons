@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 7: Images</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="top"><a href="../../index.html">&larr; All lessons</a><a href="../../cheatsheet.html">My tags</a><a href="../../playground.html">Playground</a></nav>
+<h1><small>Lesson 7 &middot; Week 2</small>Images</h1><div class="subnav"><a href="lesson.html" aria-current="page">Lesson</a><a href="practice.html">Practice</a><a href="homework.html">Homework</a></div>
+<p class="goal">Today you put pictures on your pages, change their size and make a picture you can click.</p>
+<nav class="jump" aria-label="On this page"><a href="#warm-up">Warm-up</a><a href="#part-1">Part 1</a><a href="#part-2">Part 2</a><a href="#part-3">Part 3</a><a href="#watch-out">Watch out</a></nav>
+<h2 id="warm-up">Warm-up</h2>
+<div class="quiz"><p class="q">What is the home page file called?</p><div class="opts"><button type="button" data-ok="1"><code>index.html</code></button><button type="button" data-ok="0"><code>home.html</code></button><button type="button" data-ok="0"><code>start.html</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">How do you link to your own page <code>pets.html</code>?</p><div class="opts"><button type="button" data-ok="1"><code>href="pets.html"</code></button><button type="button" data-ok="0"><code>href="https://pets"</code></button><button type="button" data-ok="0"><code>src="pets.html"</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<div class="quiz"><p class="q">You changed the code but Chrome shows the old page. Why?</p><div class="opts"><button type="button" data-ok="1">You did not save and refresh</button><button type="button" data-ok="0">Chrome is broken</button><button type="button" data-ok="0">HTML is too old</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-1">Part 1: The img tag</h2>
+<p>Pictures make a page fun. The tag is <code>&lt;img&gt;</code>. It has <strong>no closing tag</strong>: the picture is the content.</p>
+<figure class="anim"><svg class="art" data-seconds="6" viewBox="0 0 720 260" role="img" aria-label="src is the picture file, width is how wide it is, alt is the text that shows when the picture cannot load">
+<style>
+  .if { transform-box: fill-box; }
+  .anim.on .if-code { animation: if-fade 0.6s both; }
+  .anim.on .if-pic { transform-origin: center; animation: if-pop 0.8s 0.9s both; }
+  .anim.on .if-w { transform-origin: left; animation: if-grow 0.7s 2s both; }
+  .anim.on .if-broken { animation: if-fade 0.8s 3.4s both; }
+  @keyframes if-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes if-pop { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: none; } }
+  @keyframes if-grow { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: none; } }
+</style>
+<g class="if if-code" font-family="Menlo, monospace" font-size="17">
+  <rect x="20" y="8" width="680" height="40" rx="8" fill="#1e2530"/>
+  <text x="36" y="34" fill="#e9edf2">&lt;img <tspan fill="#ffb347">src="dog.jpg"</tspan> <tspan fill="#7ee2a8">alt="A puppy"</tspan> <tspan fill="#8ab4ff">width="200"</tspan>&gt;</text>
+</g>
+<g class="if if-pic">
+  <rect x="40" y="70" width="240" height="150" rx="8" fill="#e8f0ff" stroke="#1f2a37" stroke-width="3"/>
+  <circle cx="230" cy="105" r="18" fill="#e0a800"/>
+  <path d="M40 220 l70 -80 l50 55 l35 -35 l85 60 z" fill="#16794a"/>
+  <text x="160" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#b45309">src: the picture</text>
+</g>
+<g class="if if-w">
+  <line x1="40" y1="62" x2="280" y2="62" stroke="#1d5fd1" stroke-width="3"/>
+  <path d="M40 56 v12 M280 56 v12" stroke="#1d5fd1" stroke-width="3"/>
+  <text x="300" y="68" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1d5fd1">width</text>
+</g>
+<g class="if if-broken" font-family="Arial, sans-serif">
+  <rect x="420" y="70" width="240" height="150" rx="8" fill="#fff" stroke="#c0392b" stroke-width="3" stroke-dasharray="8 6"/>
+  <path d="M440 90 h22 v18 h-22 z M442 104 l7 -7 l5 5 l4 -4 l4 6" fill="none" stroke="#5b6676" stroke-width="2"/>
+  <text x="472" y="105" font-size="20" fill="#1f2a37">A puppy</text>
+  <text x="540" y="160" text-anchor="middle" font-size="15" fill="#c0392b">Picture missing?</text>
+  <text x="540" y="250" text-anchor="middle" font-size="16" font-weight="700" fill="#16794a">alt: the words you see instead</text>
+</g>
+</svg>
+<figcaption><code>src</code> is the picture, <code>alt</code> is the words you see if it cannot load.</figcaption><button type="button" class="replay">Play again</button></figure>
+<figure class="code"><figcaption>A picture from the internet</figcaption><pre><code>&lt;img src="https://picsum.photos/id/237/400/300" alt="A black puppy"&gt;</code></pre></figure>
+<div class="scroll"><table><thead><tr><th>Part</th><th>Meaning</th></tr></thead><tbody><tr><td><code>&lt;img&gt;</code></td><td>Image. No closing tag</td></tr><tr><td><code>src="..."</code></td><td>Source: where the picture is</td></tr><tr><td><code>alt="..."</code></td><td>Words that describe the picture, for people who cannot see it</td></tr></tbody></table></div>
+<p class="uz" lang="uz">src bu rasm manzili. alt bu rasm haqida so'z: rasm ochilmasa, shu yoziladi.</p>
+<div class="play"><p class="task">Change the <code>src</code> number 237 to 1025. What animal is it now? Change the <code>alt</code> too.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;h2&gt;My favorite animal&lt;/h2&gt;
+&lt;img src="https://picsum.photos/id/237/400/300" alt="A black puppy"&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<p>Now break it on purpose: delete one letter from the <code>src</code>. What do you see instead of the picture? That is the <code>alt</code>!</p>
+<div class="quiz"><p class="q">What does <code>alt</code> do?</p><div class="opts"><button type="button" data-ok="0">Makes the picture bigger</button><button type="button" data-ok="1">Describes the picture in words</button><button type="button" data-ok="0">Adds a link</button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-2">Part 2: Picture size</h2>
+<p><code>width</code> makes a picture wider or smaller. The number is in <strong>pixels</strong>, tiny dots on the screen.</p>
+<figure class="code"><figcaption>Same picture, two sizes</figcaption><pre><code>&lt;img src="https://picsum.photos/id/1074/400/300" alt="A lioness" width="150"&gt;
+&lt;img src="https://picsum.photos/id/1074/400/300" alt="A lioness" width="300"&gt;</code></pre></figure>
+<p>Use only <code>width</code>. The browser changes the height for you, so the picture is not squeezed.</p>
+<div class="play"><p class="task">Make the 3 pictures the same size: all <code>width="200"</code>.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;img src="https://picsum.photos/id/1084/400/300" alt="Walruses on a beach" width="120"&gt;
+&lt;img src="https://picsum.photos/id/219/400/300" alt="A leopard on a road" width="300"&gt;
+&lt;img src="https://picsum.photos/id/1003/400/300" alt="A baby deer"&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Which one changes the size of a picture?</p><div class="opts"><button type="button" data-ok="0"><code>alt="200"</code></button><button type="button" data-ok="1"><code>width="200"</code></button><button type="button" data-ok="0"><code>src="200"</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="part-3">Part 3: Your own pictures, and pictures you can click</h2>
+<p>For your real website, put pictures in an <code>images</code> folder inside <code>my-website</code>. Then the <code>src</code> is the folder name, a <code>/</code>, and the file name.</p>
+<figure class="code"><figcaption>A picture from YOUR folder</figcaption><pre><code>&lt;img src="images/cat.jpg" alt="My cat Momo" width="300"&gt;</code></pre></figure>
+<ol class="steps"><li>In VS Code, make a new folder in <code>my-website</code>: <code>images</code></li><li>Ask a parent to help you save a photo into it, for example <code>cat.jpg</code></li><li>Write <code>&lt;img src="images/cat.jpg" alt="..."&gt;</code></li></ol>
+<p>Put an <code>&lt;img&gt;</code> inside an <code>&lt;a&gt;</code> and the picture becomes a link!</p>
+<figure class="code"><figcaption>Click the picture to go to Wikipedia</figcaption><pre><code>&lt;a href="https://en.wikipedia.org/wiki/Pug" target="_blank"&gt;
+  &lt;img src="https://picsum.photos/id/1025/400/300" alt="A pug in a blanket" width="250"&gt;
+&lt;/a&gt;</code></pre></figure>
+<div class="play"><p class="task">Make the bird picture a link to <code>https://en.wikipedia.org/wiki/Bird</code>.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;img src="https://picsum.photos/id/1024/400/300" alt="A big bird flying" width="250"&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="quiz"><p class="q">Your picture <code>dog.png</code> is in the <code>images</code> folder. What is the src?</p><div class="opts"><button type="button" data-ok="0"><code>src="dog.png"</code></button><button type="button" data-ok="1"><code>src="images/dog.png"</code></button><button type="button" data-ok="0"><code>src="images"</code></button></div><p class="verdict" aria-live="polite"></p></div>
+<h2 id="watch-out">Watch out!</h2>
+<ul class="mistakes"><li>Writing <code>&lt;/img&gt;</code>. <code>&lt;img&gt;</code> has no closing tag</li><li>No <code>alt</code>. Every picture needs words that describe it</li><li>Wrong file name: <code>Cat.JPG</code> and <code>cat.jpg</code> are different names</li><li>Setting width AND a wrong height. The picture gets squeezed</li></ul>
+<footer>Next: <a href="practice.html">Practice tasks</a></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="../../assets/check.js"></script>
+<script src="../../assets/kit.js"></script>
+</body>
+</html>

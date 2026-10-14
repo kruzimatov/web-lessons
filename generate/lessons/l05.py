@@ -1,0 +1,101 @@
+LESSON = {
+    "n": 5,
+    "week": 1,
+    "folder": "week1/lesson05_links",
+    "title": "Links",
+    "goal": "Today you make links: click a word and go to another website.",
+    "cheats": [
+        ("<a href=\"https://www.nasa.gov\">NASA</a>", "A link"),
+        ("target=\"_blank\"", "Open in a new tab"),
+        ("title=\"Space\"", "A small note when the mouse is over it"),
+    ],
+    "review": [
+        ("quiz", "How many `<h1>` should a page have?", ["One", "Two", "Ten"], 0),
+        ("quiz", "Which tag makes a line across the page?", ["`<hr>`", "`<br>`", "`<li>`"], 0),
+        ("quiz", "Which is the right order?", ["`<p><strong>Hi</p></strong>`", "`<p><strong>Hi</strong></p>`"], 1),
+    ],
+    "blocks": [
+        ("h", "Part 1: Your first link"),
+        ("say", "A **link** is a word you can click to go to another page. Links are what make the web a WEB: pages joined together."),
+        ("anim", "link_door", "Click the link and a new page opens."),
+        ("code", "<a href=\"https://www.wikipedia.org\">Go to Wikipedia</a>", "`<a>` makes a link. `href` says where it goes"),
+        ("table", ["Part", "Code", "Meaning"], [
+            ["Tag", "`<a>`", "a = anchor, a link"],
+            ["Where to go", "`href=\"https://...\"`", "The address of the page"],
+            ["Link text", "`Go to Wikipedia`", "The words you click"],
+        ]),
+        ("uz", "href bu manzil: link qayerga olib boradi. Ichidagi so'z bosiladigan matn."),
+        ("try", "Change the link text. Then hold the mouse over the link: it becomes a hand.",
+         "<p>I like to read <a href=\"https://www.wikipedia.org\" target=\"_blank\">Wikipedia</a>.</p>"),
+        ("quiz", "Which part says WHERE the link goes?", ["The link text", "`href`", "`<a>`"], 1),
+
+        ("h", "Part 2: Open in a new tab"),
+        ("say", "Add `target=\"_blank\"` and the link opens in a **new tab**. Your page stays open."),
+        ("code", "<a href=\"https://www.nasa.gov\" target=\"_blank\">Space pictures</a>", "`target=\"_blank\"` = new tab"),
+        ("table", ["Without target", "With `target=\"_blank\"`"], [
+            ["Opens in the same tab", "Opens in a new tab"],
+            ["Your page goes away", "Your page stays open"],
+        ]),
+        ("say", "In our live editor, always use `target=\"_blank\"`. Then the link opens properly in a new tab."),
+        ("try", "Make 2 links that open in a new tab: one to Wikipedia, one to NASA.",
+         "<p><a href=\"https://www.wikipedia.org\" target=\"_blank\">Wikipedia</a></p>\n<p></p>"),
+        ("quiz", "What does `target=\"_blank\"` do?", ["Makes the link blue", "Opens a new tab", "Deletes the link"], 1),
+
+        ("h", "Part 3: A menu of links"),
+        ("say", "Many links together make a **menu**. Put them in a list."),
+        ("code", "<h2>My favorite sites</h2>\n<ul>\n  <li><a href=\"https://www.wikipedia.org\" target=\"_blank\">Wikipedia</a></li>\n  <li><a href=\"https://www.nasa.gov\" target=\"_blank\">NASA</a></li>\n  <li><a href=\"https://www.youtube.com\" target=\"_blank\">YouTube</a></li>\n</ul>", "A link inside each `<li>`"),
+        ("say", "Add `title=\"...\"` to show a small note when the mouse is over the link."),
+        ("try", "Add a `title` to each link. Hold the mouse over a link to see it.",
+         "<ul>\n  <li><a href=\"https://www.wikipedia.org\" target=\"_blank\" title=\"An online book about everything\">Wikipedia</a></li>\n  <li><a href=\"https://www.nasa.gov\" target=\"_blank\">NASA</a></li>\n</ul>"),
+        ("uz", "Link ichidagi matn aniq bo'lsin: \"bu yerga bosing\" emas, \"Kosmos rasmlari\"."),
+        ("quiz", "Which link text is better?", ["\"Click here\"", "\"Space pictures from NASA\""], 1),
+    ],
+    "mistakes": [
+        "Forgetting `https://` at the start of a website address",
+        "Forgetting the quotes: `href=wikipedia.org` must be `href=\"https://www.wikipedia.org\"`",
+        "Forgetting `</a>`: then the whole page becomes a link!",
+        "Link text \"click here\". Say where the link goes instead",
+    ],
+    "practice": [
+        {
+            "task": "Make one link to Wikipedia with the text \"Learn everything\", opening in a new tab.",
+            "hints": ["A link is `<a href=\"...\">text</a>`.", "Add `target=\"_blank\"` inside the opening tag."],
+            "start": "",
+            "answer": "<a href=\"https://www.wikipedia.org\" target=\"_blank\">Learn everything</a>",
+        },
+        {
+            "task": "Write a sentence with a link in the middle: \"I like space pictures from NASA.\" Only \"NASA\" is the link.",
+            "hints": ["Only one word is inside the `<a>`.", "`from <a href=\"https://www.nasa.gov\" target=\"_blank\">NASA</a>.`"],
+            "start": "<p></p>",
+            "answer": "<p>I like space pictures from <a href=\"https://www.nasa.gov\" target=\"_blank\">NASA</a>.</p>",
+        },
+        {
+            "task": "There are 3 mistakes. Fix them.",
+            "hints": ["Check the quotes, the `https://`, the closing tags, and `_blank`.", "href needs quotes and https://. Wikipedia needs `</a>`. `blank` needs `_`."],
+            "start": "<a href=www.wikipedia.org target=\"_blank\">Wikipedia\n<a href=\"https://www.nasa.gov\" target=\"blank\">NASA</a>",
+            "answer": "<a href=\"https://www.wikipedia.org\" target=\"_blank\">Wikipedia</a>\n<a href=\"https://www.nasa.gov\" target=\"_blank\">NASA</a>",
+        },
+        {
+            "task": "A menu: an h2 \"My links\" and a dots list of 3 links (Wikipedia, NASA, YouTube), each with a title.",
+            "hints": ["Each link goes inside an `<li>`.", "Add `title=\"...\"` inside each `<a>`."],
+            "start": "<h2>My links</h2>\n",
+            "answer": "<h2>My links</h2>\n<ul>\n  <li><a href=\"https://www.wikipedia.org\" target=\"_blank\" title=\"Read about anything\">Wikipedia</a></li>\n  <li><a href=\"https://www.nasa.gov\" target=\"_blank\" title=\"Space\">NASA</a></li>\n  <li><a href=\"https://www.youtube.com\" target=\"_blank\" title=\"Videos\">YouTube</a></li>\n</ul>",
+        },
+        {
+            "task": "\"Learn about animals\" page: an h1, a p, and a numbers list of 3 animals. Each animal name is a link to its Wikipedia page, for example `https://en.wikipedia.org/wiki/Lion`.",
+            "hints": ["Numbers list with 3 `<li>`.", "Each animal: `<a href=\"https://en.wikipedia.org/wiki/Lion\" target=\"_blank\">Lion</a>`."],
+            "start": "",
+            "answer": "<h1>Learn about animals</h1>\n<p>Click an animal to read about it.</p>\n<ol>\n  <li><a href=\"https://en.wikipedia.org/wiki/Lion\" target=\"_blank\">Lion</a></li>\n  <li><a href=\"https://en.wikipedia.org/wiki/Elephant\" target=\"_blank\">Elephant</a></li>\n  <li><a href=\"https://en.wikipedia.org/wiki/Penguin\" target=\"_blank\">Penguin</a></li>\n</ol>",
+        },
+    ],
+    "homework": [
+        {
+            "task": "Make 3 links to websites you like (ask a parent which ones are OK). Each opens in a new tab.",
+            "answer": "<a href=\"https://www.wikipedia.org\" target=\"_blank\">Wikipedia</a>\n<a href=\"https://www.nasa.gov\" target=\"_blank\">NASA</a>\n<a href=\"https://www.natgeokids.com\" target=\"_blank\">Nat Geo Kids</a>",
+        },
+        {
+            "task": "Write 2 sentences about your hobby. Put one link inside each sentence.",
+            "answer": "<p>I love <a href=\"https://en.wikipedia.org/wiki/Football\" target=\"_blank\">football</a>.</p>\n<p>My favorite team is <a href=\"https://en.wikipedia.org/wiki/FC_Barcelona\" target=\"_blank\">Barcelona</a>.</p>",
+        },
+    ],
+}

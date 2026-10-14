@@ -1,0 +1,38 @@
+<svg class="art" data-seconds="6" viewBox="0 0 720 260" role="img" aria-label="A form: the label says what to type, the input box is where you type, the password shows dots, the button sends it">
+<style>
+  .ff { transform-box: fill-box; }
+  .anim.on .ff-k { animation: ff-key 0.15s both; }
+  .anim.on .ff-k1 { animation-delay: 0.4s; } .anim.on .ff-k2 { animation-delay: 0.7s; } .anim.on .ff-k3 { animation-delay: 1s; }
+  .anim.on .ff-d1 { animation-delay: 1.8s; } .anim.on .ff-d2 { animation-delay: 2.05s; } .anim.on .ff-d3 { animation-delay: 2.3s; }
+  .anim.on .ff-d4 { animation-delay: 2.55s; } .anim.on .ff-d5 { animation-delay: 2.8s; }
+  .anim.on .ff-btn { transform-origin: center; animation: ff-press 0.4s 3.5s both; }
+  .anim.on .ff-sent { animation: ff-fade 0.5s 4s both; }
+  @keyframes ff-key { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ff-press { 50% { transform: scale(0.9); } }
+  @keyframes ff-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+</style>
+<g font-family="Arial, sans-serif">
+  <text x="30" y="40" font-size="19" font-weight="700" fill="#1f2a37">Name</text>
+  <rect x="30" y="52" width="300" height="46" rx="8" fill="#fff" stroke="#1d5fd1" stroke-width="3"/>
+  <g font-size="24" fill="#1f2a37">
+    <text class="ff ff-k ff-k1" x="44" y="84">A</text><text class="ff ff-k ff-k2" x="61" y="84">l</text><text class="ff ff-k ff-k3" x="68" y="84">i</text>
+  </g>
+  <text x="30" y="130" font-size="19" font-weight="700" fill="#1f2a37">Password</text>
+  <rect x="30" y="142" width="300" height="46" rx="8" fill="#fff" stroke="#1d5fd1" stroke-width="3"/>
+  <g fill="#1f2a37">
+    <circle class="ff ff-k ff-d1" cx="52" cy="165" r="6"/><circle class="ff ff-k ff-d2" cx="72" cy="165" r="6"/><circle class="ff ff-k ff-d3" cx="92" cy="165" r="6"/>
+    <circle class="ff ff-k ff-d4" cx="112" cy="165" r="6"/><circle class="ff ff-k ff-d5" cx="132" cy="165" r="6"/>
+  </g>
+  <g class="ff ff-btn">
+    <rect x="30" y="204" width="130" height="46" rx="10" fill="#16794a"/>
+    <text x="95" y="234" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">Sign up</text>
+  </g>
+  <g class="ff ff-sent"><text x="178" y="234" font-size="20" font-weight="700" fill="#16794a">Sent!</text></g>
+</g>
+<g font-family="Menlo, monospace" font-size="16" font-weight="700">
+  <text x="380" y="40" fill="#1f2a37">&lt;label&gt;</text><text x="470" y="40" font-family="Arial, sans-serif" font-weight="400" fill="#5b6676">says what to type</text>
+  <text x="380" y="82" fill="#1d5fd1">&lt;input&gt;</text><text x="470" y="82" font-family="Arial, sans-serif" font-weight="400" fill="#5b6676">the box you type in</text>
+  <text x="380" y="172" fill="#1d5fd1">type="password"</text><text x="380" y="194" font-family="Arial, sans-serif" font-weight="400" fill="#5b6676">shows dots, not letters</text>
+  <text x="380" y="234" fill="#16794a">&lt;button&gt;</text><text x="470" y="234" font-family="Arial, sans-serif" font-weight="400" fill="#5b6676">sends the form</text>
+</g>
+</svg>
