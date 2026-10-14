@@ -120,3 +120,17 @@ document.querySelectorAll(".anim").forEach((fig) => {
     if (seen[0].isIntersecting) { play(); watcher.disconnect(); }
   }, { threshold: 0.6 }).observe(fig);
 });
+
+// Remember the last lesson he opened, and offer it on the home page.
+const here = document.getElementById("here");
+if (here) store.set("last", JSON.stringify(here.dataset));
+const resume = document.getElementById("continue");
+if (resume) {
+  try {
+    const last = JSON.parse(store.get("last"));
+    if (last && last.href) {
+      resume.href = last.href;
+      resume.textContent = `Continue: Lesson ${last.n}`;
+    }
+  } catch {}
+}

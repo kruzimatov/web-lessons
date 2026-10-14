@@ -30,7 +30,47 @@ a { color: var(--blue); }
 a:hover { text-decoration: none; }
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 
-nav.top { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9em; margin-bottom: 12px; }
+nav.top { display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.95em; margin-bottom: 18px; }
+nav.top a { padding: 6px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; }
+nav.top a:hover { background: var(--blue-soft); }
+nav.top a[aria-current] { background: var(--blue); color: #fff; }
+
+.hero { padding: 28px 24px; border-radius: 18px; background: var(--blue-soft); }
+.hero h1 { font-size: 2.8em; }
+.hero p { margin: 8px 0 0; font-size: 1.1em; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px !important; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 10px 22px;
+  border-radius: 12px; background: var(--blue); color: #fff; text-decoration: none; font-size: 1.05em; font-weight: 600;
+}
+.btn:hover { background: #174ea9; }
+.btn.ghost { background: var(--card); color: var(--blue); border: 2px solid var(--blue); }
+.btn.ghost:hover { background: #fff; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 14px; }
+.tile {
+  display: grid; gap: 2px; padding: 14px 18px; border-radius: 14px; background: var(--card);
+  border: 2px solid var(--line); text-decoration: none; color: var(--ink);
+}
+.tile strong { font-size: 1.2em; font-weight: 600; color: var(--blue); }
+.tile span { color: var(--muted); }
+.tile:hover { border-color: var(--blue); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.card { display: flex; flex-direction: column; padding: 16px 18px; border-radius: 14px; background: var(--card); border: 2px solid var(--line); min-width: 0; }
+.card:hover { border-color: #c9d6ee; }
+.card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.num {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--blue); color: #fff; font-weight: 600; font-size: 1.15em;
+}
+.card h3 { margin: 10px 0 4px; font-size: 1.2em; font-weight: 600; line-height: 1.25; }
+.card h3 a { color: var(--ink); text-decoration: none; }
+.card h3 a:hover { color: var(--blue); }
+.card p { margin: 0; color: var(--muted); font-size: 0.92em; }
+.card .card-links { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: auto; padding-top: 12px; font-weight: 600; }
+.badge { padding: 3px 10px; border-radius: 999px; font-size: 0.78em; font-weight: 700; }
+.badge.practice { background: var(--green-soft); color: var(--green); }
+.badge.review { background: var(--yellow-soft); color: #8a6100; }
+.badge.final { background: var(--red-soft); color: var(--red); }
 nav.jump { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; }
 nav.jump a {
   padding: 4px 12px;
@@ -54,7 +94,9 @@ h2[id] { scroll-margin-top: 12px; }
 .subnav a:hover { background: var(--blue-soft); }
 .subnav a[aria-current]:hover { background: var(--blue); }
 
-h1 { font-size: 2em; line-height: 1.2; margin: 0 0 6px; }
+h1, h2, h3, .num, .btn, .tile strong { font-family: "Fredoka", "Trebuchet MS", Arial, sans-serif; }
+h1 { font-size: 2.2em; font-weight: 600; line-height: 1.15; margin: 0 0 6px; text-wrap: balance; }
+h1 small { font-family: -apple-system, "Segoe UI", Arial, sans-serif; }
 h1 small { display: block; font-size: 0.45em; color: var(--muted); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 h2 { font-size: 1.4em; margin: 2em 0 0.6em; padding-bottom: 6px; border-bottom: 3px solid var(--line); }
 h3 { margin: 1.6em 0 0.4em; }
@@ -130,6 +172,8 @@ ul.mistakes li::marker { color: var(--red); }
   font: 16px/1.5 "SF Mono", Menlo, Consolas, monospace;
 }
 .panes .CodeMirror-scroll { min-height: 280px; }
+.play.big { width: min(1400px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }
+.play.big .panes iframe, .play.big .panes textarea, .play.big .CodeMirror, .play.big .CodeMirror-scroll { min-height: 70vh; }
 .panes .CodeMirror-gutters { background: #171d26; border-right: 1px solid #2b3442; }
 .panes .CodeMirror-linenumber { color: #6b778a; }
 .panes .CodeMirror-cursor { border-left: 2px solid #fff; }

@@ -40,8 +40,9 @@ def header(L, current):
     links = [("lesson.html", "Lesson"), ("practice.html", "Practice"), ("homework.html", "Homework")]
     mark = ' aria-current="page"'
     nav = "".join(f'<a href="{href}"{mark if href == current else ""}>{name}</a>' for href, name in links)
+    here = f'<div id="here" hidden data-href="{L["folder"]}/lesson.html" data-n="{L["n"]}" data-title="{esc(plain(L["title"]))}"></div>'
     return (
-        f'<h1><small>Lesson {L["n"]} &middot; Week {L["week"]}</small>{fmt(L["title"])}</h1>'
+        f'{here}<h1><small>Lesson {L["n"]} &middot; Week {L["week"]}</small>{fmt(L["title"])}</h1>'
         f'<div class="subnav">{nav}</div>'
     )
 
@@ -99,17 +100,43 @@ def answers_page(L):
     return page(f'Answers {L["n"]}: {plain(L["title"])}', "\n".join(parts), root="../site/")
 
 
+def badge(L):
+    t = L["title"].lower()
+    if t.startswith("practice day"):
+        return '<span class="badge practice">Practice day</span>'
+    if "review" in t:
+        return '<span class="badge review">Review game</span>'
+    if "final" in t:
+        return '<span class="badge final">Final project</span>'
+    return ""
+
+
 def index_page(lessons):
-    rows = "".join(
-        f'<tr><td>{L["n"]}</td><td>{L["week"]}</td>'
-        f'<td><a href="{L["folder"]}/lesson.html">{fmt(L["title"])}</a></td></tr>'
-        for L in lessons
-    )
+    first = lessons[0]
+    weeks = {}
+    for L in lessons:
+        weeks.setdefault(L["week"], []).append(L)
+    sections = []
+    for week, items in weeks.items():
+        cards = "".join(
+            f'<article class="card"><div class="card-top"><span class="num">{L["n"]}</span>{badge(L)}</div>'
+            f'<h3><a href="{L["folder"]}/lesson.html">{fmt(L["title"])}</a></h3>'
+            f'<p>{fmt(L["goal"])}</p>'
+            f'<p class="card-links"><a href="{L["folder"]}/lesson.html">Lesson</a>'
+            f'<a href="{L["folder"]}/practice.html">Practice</a>'
+            f'<a href="{L["folder"]}/homework.html">Homework</a></p></article>'
+            for L in items)
+        sections.append(f'<h2>Week {week}</h2><div class="cards">{cards}</div>')
     body = (
-        '<h1><small>HTML + CSS from zero</small>My Web Course</h1>'
-        '<p class="goal">Every lesson: learn, practise, then 3 homework tasks. '
-        '<a href="demo/index.html">See what you will build</a>.</p>'
-        f'<div class="scroll"><table><thead><tr><th>#</th><th>Week</th><th>Lesson</th></tr></thead>'
-        f'<tbody>{rows}</tbody></table></div>'
+        '<header class="hero"><h1><small>HTML from zero &middot; '
+        f'{len(lessons)} lessons</small>My Web Course</h1>'
+        '<p>Learn a little, try it in the editor, then build your own pages.</p>'
+        f'<p class="hero-actions"><a class="btn" id="continue" href="{first["folder"]}/lesson.html">Start lesson 1</a>'
+        '<a class="btn ghost" href="demo/index.html">See what you will build</a></p></header>'
+        '<div class="tiles"><a class="tile" href="cheatsheet.html"><strong>My tags</strong>'
+        '<span>Forgot a tag? Look it up.</span></a>'
+        '<a class="tile" href="playground.html"><strong>Playground</strong>'
+        '<span>A big editor for anything you like.</span></a></div>'
+        + "".join(sections)
     )
-    return page("My Web Course", body, root="")
+    return page("My Web Course", body, root="", current="index.html")

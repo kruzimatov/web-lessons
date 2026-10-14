@@ -34,14 +34,14 @@ def tags_in(code):
     return sorted({t.lower() for t in re.findall(r"<([a-zA-Z][a-zA-Z0-9]*)", code)})
 
 
-def play(start, task="", save="", sandbox=SANDBOX, needs=()):
+def play(start, task="", save="", sandbox=SANDBOX, needs=(), big=False):
     """Live editor. With `save`, his code is kept in the browser between visits.
     `needs`: tags the task asks for; "Check my code" says which are still missing."""
     head = f'<p class="task">{fmt(task)}</p>' if task else ""
     keep = f' data-save="{save}"' if save else ""
     keep += f' data-needs="{" ".join(needs)}"' if needs else ""
     return (
-        f'<div class="play"{keep}>{head}<div class="panes">'
+        f'<div class="play{" big" if big else ""}"{keep}>{head}<div class="panes">'
         f'<textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">{esc(start)}</textarea>'
         f'<iframe title="Result" sandbox="{sandbox}"></iframe></div>'
         f'<div class="tools"><button type="button" class="check-btn">Check my code</button>'
@@ -109,19 +109,28 @@ def blocks_html(blocks, sandbox=SANDBOX):
     return "\n".join(out)
 
 
-def page(title, body, root="../../"):
-    """A full page. `root` is the way back to kids_course/ from the page's folder."""
+NAV = [("index.html", "Home"), ("cheatsheet.html", "My tags"), ("playground.html", "Playground")]
+
+
+def page(title, body, root="../../", current=""):
+    """A full page. `root` is the way back to the site root; `current` marks the open menu item."""
+    nav = "".join(
+        f'<a href="{root}{href}"{" aria-current=\"page\"" if href == current else ""}>{name}</a>'
+        for href, name in NAV)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
 <link rel="stylesheet" href="{CM}/codemirror.min.css">
 <link rel="stylesheet" href="{root}assets/style.css">
 </head>
 <body>
-<nav class="top"><a href="{root}index.html">&larr; All lessons</a><a href="{root}cheatsheet.html">My tags</a><a href="{root}playground.html">Playground</a></nav>
+<nav class="top">{nav}</nav>
 {body}
 {"".join(f'<script src="{CM}/{f}"></script>' for f in EDITOR_FILES)}
 <script src="{root}assets/check.js"></script>

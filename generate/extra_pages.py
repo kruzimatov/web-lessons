@@ -14,16 +14,14 @@ def cheatsheet_page(lessons):
                        for code, meaning in L["cheats"])
         parts.append(f'<h2 id="lesson-{L["n"]}">Lesson {L["n"]}: {fmt(L["title"])}</h2>'
                      f'<div class="scroll"><table class="cheats"><tbody>{rows}</tbody></table></div>')
-    return page("My Tags", "\n".join(parts), root="")
+    return page("My Tags", "\n".join(parts), root="", current="cheatsheet.html")
 
 
 def playground_page():
     parts = ['<h1><small>No tasks, no rules</small>My playground</h1>',
-             '<p class="goal">Build anything you want. Your code saves by itself in this browser.</p>']
-    for i in range(1, 4):
-        parts.append(f"<h2>Box {i}</h2>")
-        parts.append(play("", save=f"free-{i}", sandbox=FREE_SANDBOX))
-    return page("My Playground", "\n".join(parts), root="")
+             '<p class="goal">Build anything you want. Your code saves by itself in this browser.</p>',
+             play("<!-- Build anything you like! -->\n<h1>My page</h1>\n", save="free-1", sandbox=FREE_SANDBOX, big=True)]
+    return page("My Playground", "\n".join(parts), root="", current="playground.html")
 
 
 def anims_of(L):
