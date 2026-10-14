@@ -128,8 +128,7 @@ def index_page(lessons):
             for L in items)
         sections.append(f'<h2>Week {week}</h2><div class="cards">{cards}</div>')
     body = (
-        '<header class="hero"><h1><small>HTML from zero &middot; '
-        f'{len(lessons)} lessons</small>My Web Course</h1>'
+        '<header class="hero"><h1><small>Learn to build websites</small>My Web Course</h1>'
         '<p>Learn a little, try it in the editor, then build your own pages.</p>'
         f'<p class="hero-actions"><a class="btn" id="continue" href="{first["folder"]}/lesson.html">Start lesson 1</a>'
         '<a class="btn ghost" href="demo/index.html">See what you will build</a></p></header>'
