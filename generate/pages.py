@@ -71,6 +71,8 @@ def practice_page(L):
         parts.append('<div class="hints">' + "".join(
             f'<details class="hint"><summary>Hint {k}</summary><p>{fmt(h)}</p></details>'
             for k, h in enumerate(t["hints"], 1)) + "</div>")
+    parts.append(f'<p><button type="button" class="copy-all" data-title="Lesson {L["n"]} practice">'
+                 'Copy my practice</button> <span class="copied" aria-live="polite"></span></p>')
     return page(f'Practice {L["n"]}: {plain(L["title"])}', "\n".join(parts))
 
 
