@@ -14,7 +14,7 @@
   --green-soft: #ecfdf3;
   --red: #b42318;
   --red-soft: #fef3f2;
-  --yellow-soft: #fffbeb;
+  --yellow-soft: #fff4cc;
   --yellow-ink: #92400e;
   --code-bg: #1e2530;
   --code-ink: #e9edf2;
@@ -160,7 +160,7 @@ h1 { font-size: 2.3em; font-weight: 600; line-height: 1.15; margin: 0 0 6px; tex
 h1 small { display: block; font-family: -apple-system, "Segoe UI", Arial, sans-serif; font-size: 0.4em; color: var(--muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
 h2 { font-size: 1.35em; font-weight: 650; margin: 2.2em 0 0.6em; letter-spacing: -0.01em; }
 h3 { font-size: 1.1em; font-weight: 650; margin: 1.6em 0 0.4em; }
-.goal { font-size: 1.1em; background: var(--surface); padding: 14px 18px; border-radius: 10px; }
+.goal { font-size: 1.1em; background: var(--yellow-soft); padding: 14px 18px; border-radius: 10px; }
 
 p.big {
   font-size: 1.3em; font-weight: 700; padding: 14px 18px; border-radius: 10px;
@@ -246,7 +246,7 @@ details { margin: 10px 0; }
 details summary { cursor: pointer; font-weight: 600; color: var(--accent); min-height: 32px; }
 .hints { display: flex; flex-wrap: wrap; gap: 0 18px; margin-top: -8px; }
 details.hint p { margin: 4px 0 0; padding: 8px 12px; background: var(--surface); border-radius: 8px; }
-details.stuck { background: var(--surface); padding: 10px 16px; border-radius: 10px; }
+details.stuck { background: var(--yellow-soft); padding: 10px 16px; border-radius: 10px; }
 details.stuck summary { color: var(--ink); }
 details.stuck ol { margin: 6px 0 0; padding-left: 22px; }
 .lesson-card { margin-top: 2.5em; padding-top: 0.5em; border-top: 1px solid var(--line); }
