@@ -280,6 +280,8 @@ footer { margin-top: 3em; padding-top: 12px; border-top: 1px solid var(--line); 
 /* Login and teacher panel */
 .account { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-left: auto; font-weight: 600; }
 .account span { color: var(--muted); }
+.account .login-btn { padding: 6px 16px; border-radius: 8px; background: var(--blue); color: #fff; text-decoration: none; }
+.account .login-btn:hover { background: #174ea9; }
 .account button { min-height: 36px; padding: 4px 12px; font: inherit; border: 2px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); cursor: pointer; }
 .account button:hover { border-color: var(--blue); }
 .account-form { display: grid; gap: 8px; max-width: 420px; }

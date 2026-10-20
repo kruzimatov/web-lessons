@@ -54,16 +54,16 @@
     badge = document.createElement("span");
     badge.className = "account";
     if (!me) {
-      badge.innerHTML = '<a href="/login.html">Log in</a>';
+      badge.innerHTML = '<a class="login-btn" href="/login">Log in</a>';
     } else {
       badge.innerHTML = "<strong></strong> <span></span> <button type=\"button\">Log out</button>";
       badge.querySelector("strong").textContent = me.username;
       status(me.role === "teacher" ? "Teacher" : "Saved");
-      if (me.role === "teacher") badge.querySelector("span").innerHTML = '<a href="/teacher.html">Teacher panel</a>';
+      if (me.role === "teacher") badge.querySelector("span").innerHTML = '<a href="/teacher">Teacher panel</a>';
       badge.querySelector("button").addEventListener("click", async () => {
         await push();
         await post("/api/logout", "{}").catch(() => {});
-        location.href = "/login.html";
+        location.href = "/login";
       });
     }
     nav.append(badge);
@@ -77,10 +77,12 @@
     let me;
     try {
       const res = await fetch("/api/me");
-      if (res.status === 401) return account(null);
-      if (!res.ok) return;
+      if (!res.ok) throw new Error(res.status);
       me = await res.json();
-    } catch { return; } // opened as a file, or offline
+    } catch {
+      if (location.protocol !== "file:") account(null); // not logged in, or the server is down
+      return;
+    }
     account(me);
     if (me.role !== "student") return;
     on = true;
@@ -121,7 +123,7 @@
         const res = await post("/api/login", JSON.stringify({ username: form.username.value.trim(), password: pw.value }));
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
-        location.href = data.role === "teacher" ? "/teacher.html" : "/index.html";
+        location.href = data.role === "teacher" ? "/teacher" : "/";
       } catch (err) {
         note.className = "checked bad";
         note.textContent = err.message === "Failed to fetch" ? "No internet. Try again." : err.message;
