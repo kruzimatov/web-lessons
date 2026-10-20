@@ -60,7 +60,13 @@
       badge.querySelector(".avatar").textContent = me.username[0].toUpperCase();
       badge.querySelector("strong").textContent = me.username;
       status(me.role === "teacher" ? "" : "Saved");
-      if (me.role === "teacher") badge.querySelector(".state").innerHTML = '<a href="/teacher">Teacher panel</a>';
+      if (me.role === "teacher") {
+        const link = document.createElement("a");
+        link.href = "/teacher";
+        link.textContent = "Teacher";
+        if (location.pathname.startsWith("/teacher")) link.setAttribute("aria-current", "page");
+        nav.insertBefore(link, nav.querySelector(".theme-btn"));
+      }
       badge.querySelector("button").addEventListener("click", async () => {
         await push();
         await post("/api/logout", "{}").catch(() => {});

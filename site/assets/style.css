@@ -313,7 +313,7 @@ footer { margin-top: 3em; padding-top: 12px; border-top: 1px solid var(--line); 
 }
 .account button:hover { color: var(--ink); border-color: var(--muted); }
 
-/* Login form and teacher panel */
+/* Login form */
 .account-form { display: grid; gap: 8px; max-width: 420px; }
 .account-form label { font-weight: 600; margin-top: 6px; }
 .account-form input {
@@ -326,15 +326,3 @@ footer { margin-top: 3em; padding-top: 12px; border-top: 1px solid var(--line); 
 .pw-row input { flex: 1; min-width: 0; }
 .show-pw { min-width: 72px; font: inherit; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); cursor: pointer; }
 .show-pw:hover { border-color: var(--muted); }
-table.students td.actions { display: flex; flex-wrap: wrap; gap: 6px; }
-table.students button {
-  min-height: 40px; padding: 4px 12px; font: inherit; font-size: 0.85em;
-  border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); cursor: pointer;
-}
-table.students button:hover { border-color: var(--muted); }
-table.students button.danger { color: var(--red); }
-table.students button.danger:hover { border-color: var(--red); }
-.work-item { margin: 8px 0; padding: 10px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
-.work-item summary { cursor: pointer; font-weight: 600; }
-.work-item .panes { margin-top: 10px; }
-.work-item iframe { min-height: 240px; border: 1px solid var(--line); border-radius: 8px; width: 100%; }

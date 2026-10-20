@@ -81,7 +81,7 @@ def main():
     write(SITE / "playground.html", playground_page())
     write(SITE / "game.html", game_page())
     write(SITE / "login.html", login_page())
-    write(SITE / "teacher.html", teacher_page())
+    write(SITE / "teacher.html", teacher_page(lessons))
     write(TEACHER / "overview.html", overview_page(lessons))
     print("built index, cheat sheet, playground, game, login, teacher panel, teacher overview")
 
