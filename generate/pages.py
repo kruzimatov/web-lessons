@@ -124,7 +124,7 @@ def index_page(lessons):
     sections = []
     for week, items in weeks.items():
         cards = "".join(
-            f'<article class="card"><div class="card-top"><span class="num">{L["n"]}</span>{badge(L)}</div>'
+            f'<article class="card" data-n="{L["n"]}"><div class="card-top"><span class="num">{L["n"]}</span>{badge(L)}</div>'
             f'<h3><a href="{L["folder"]}/lesson.html">{fmt(L["title"])}</a></h3>'
             f'<p>{fmt(L["goal"])}</p>'
             f'<p class="card-links"><a href="{L["folder"]}/lesson.html">Lesson</a>'
@@ -143,6 +143,7 @@ def index_page(lessons):
         '<span>A big editor for anything you like.</span></a>'
         '<a class="tile" href="game.html"><strong>Game Zone</strong>'
         '<span>Build blocks, race cars, win diamonds.</span></a></div>'
+        + '<section class="player" id="me" hidden></section>'
         + "".join(sections)
     )
     return page("My Web Course", body, root="", current="index.html")

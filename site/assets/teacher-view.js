@@ -29,7 +29,7 @@ function ago(ms) {
 }
 
 const STATUS = {
-  done: "Done", mistakes: "Has mistakes", started: "Not changed yet", empty: "Empty",
+  passed: "Passed", written: "Written, not passed", mistakes: "Has mistakes", started: "Not changed yet", empty: "Empty",
 };
 
 document.addEventListener("click", (e) => {
@@ -58,7 +58,7 @@ function openViewer(list, index) {
 function drawViewer() {
   const w = viewList[viewAt];
   document.getElementById("v-kicker").textContent =
-    `${viewAt + 1} of ${viewList.length} · ${STATUS[w.status]} · saved ${ago(w.t)}`;
+    `${viewAt + 1} of ${viewList.length} · ${STATUS[w.status]}${w.stars ? " " + "★".repeat(w.stars) : ""} · saved ${ago(w.t)}`;
   document.getElementById("v-title").textContent = w.title;
   document.getElementById("v-task").textContent = w.task || "";
   document.getElementById("v-code").textContent = w.code || "(empty)";

@@ -151,6 +151,7 @@ def page(title, body, root="../../", current="", head="", scripts=()):
 {"".join(f'<script src="{CM}/{f}"></script>' for f in EDITOR_FILES)}
 <script src="{root}assets/check.js"></script>
 <script src="{root}assets/kit.js"></script>
+<script src="{root}assets/progress.js"></script>
 <script src="{root}assets/sync.js"></script>
 {"".join(f'<script src="{root}assets/{s}"></script>' for s in scripts)}
 </body>

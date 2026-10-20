@@ -16,11 +16,11 @@
   function statusOf(code, start) {
     if (!code || !code.trim()) return "empty";
     if (code.trim() === (start || "").trim()) return "started";
-    return window.checkHTML && checkHTML(code).length ? "mistakes" : "done";
+    return window.checkHTML && checkHTML(code).length ? "mistakes" : "written";
   }
 
   // Turns a saved key like code:p2-3 into a labelled piece of work.
-  function describe(key, item) {
+  function describe(key, item, passed) {
     let m;
     let w = null;
     if ((m = /^code:([ph])(\d+)-(\d+)$/.exec(key))) {
@@ -29,7 +29,7 @@
       const n = Number(m[3]);
       const task = (LESSON[lesson] || {})[kind]?.[n - 1] || {};
       w = { kind, lesson, n, title: `Lesson ${lesson} · ${kind === "practice" ? "Practice" : "Homework"} task ${n}`,
-        task: task.task, start: task.start };
+        task: task.task, start: task.start, stars: passed[`${m[1]}${lesson}-${n}`] || 0 };
     } else if ((m = /^code:game-(.+)$/.exec(key))) {
       const level = LEVEL[m[1]] || { title: m[1], lesson: 0 };
       w = { kind: "game", lesson: level.lesson, n: COURSE.levels.indexOf(level), level: m[1],
@@ -38,7 +38,7 @@
       w = { kind: "playground", lesson: 0, n: 0, title: "Playground", task: "Free building, no task." };
     }
     if (!w) return null;
-    return { ...w, key, code: item.v || "", t: item.t, status: statusOf(item.v, w.start) };
+    return { ...w, key, code: item.v || "", t: item.t, status: w.stars ? "passed" : statusOf(item.v, w.start) };
   }
 
   const KIND = { practice: 0, homework: 1, game: 2, playground: 3 };
@@ -75,7 +75,7 @@
     const data = await api.get(`/api/teacher/student?id=${id}`);
     let game = {};
     try { game = JSON.parse(data.items.game?.v || "{}") || {}; } catch {}
-    const works = Object.entries(data.items).map(([k, item]) => describe(k, item)).filter(Boolean).sort(byOrder);
+    const works = Object.entries(data.items).map(([k, item]) => describe(k, item, game.tasks || {})).filter(Boolean).sort(byOrder);
     current = { id, username: data.username, works, game, summary: students.find((s) => s.id === id) || {} };
     try { localStorage.setItem("tp-student", id); } catch {}
     drawList();
@@ -111,13 +111,14 @@
     head.append(who, manage);
 
     const count = (kind, status) => c.works.filter((w) => w.kind === kind && (!status || w.status === status)).length;
-    const homeworkLessons = new Set(c.works.filter((w) => w.kind === "homework" && w.status === "done").map((w) => w.lesson)).size;
+    const homeworkLessons = Object.keys(c.game.homework || {}).length;
+    const taskStars = Object.values(c.game.tasks || {}).reduce((a, b) => a + b, 0);
     const stats = el("div", null, "tp-stats");
     stats.append(
-      stat("Practice tasks done", count("practice", "done"), `${count("practice")} saved`),
-      stat("Homework tasks done", count("homework", "done"), `in ${homeworkLessons} lessons`),
-      stat("Game levels", Object.keys(c.game.stars || {}).length, `of ${COURSE.levels.length}`),
-      stat("Stars", s.stars || 0, `of ${COURSE.levels.length * 3}`),
+      stat("Practice passed", count("practice", "passed"), `of ${COURSE.lessons.length * 5} · ${count("practice")} saved`),
+      stat("Homework passed", count("homework", "passed"), `all done in ${homeworkLessons} lessons`),
+      stat("Task stars", taskStars, `of ${COURSE.lessons.length * 8 * 3}`),
+      stat("Game levels", Object.keys(c.game.stars || {}).length, `of ${COURSE.levels.length} · ${s.stars || 0} stars`),
       stat("Diamonds", c.game.gems || 0),
       stat("Best race", c.game.best || 0, "right answers"),
     );
@@ -143,9 +144,9 @@
       td.append(el("span", "", "tp-cell empty"));
       return td;
     }
-    const b = el("button", label, `tp-cell ${work.status}`);
+    const b = el("button", work.stars ? "★".repeat(work.stars) : label, `tp-cell ${work.status}`);
     b.type = "button";
-    b.title = `${work.title}: ${STATUS[work.status]}`;
+    b.title = `${work.title}: ${STATUS[work.status]}${work.stars ? `, ${work.stars} stars` : ""}`;
     b.onclick = () => openViewer(list, list.indexOf(work));
     td.append(b);
     return td;
@@ -156,7 +157,7 @@
     const find = (kind, lesson, n) => tasks.find((w) => w.kind === kind && w.lesson === lesson && w.n === n);
     const wrap = el("div", null, "tp-grid-wrap");
     const legend = el("p", null, "tp-legend");
-    [["done", "Done"], ["mistakes", "Has mistakes"], ["started", "Not changed"], ["empty", "Empty"]]
+    [["passed", "Passed"], ["written", "Written, not passed"], ["mistakes", "Has mistakes"], ["started", "Not changed"], ["empty", "Empty"]]
       .forEach(([k, t]) => legend.append(el("span", t, `tp-key ${k}`)));
     const table = el("table", null, "tp-grid");
     const head = el("tr");
@@ -187,7 +188,7 @@
     b.type = "button";
     const text = el("span", null, "tp-row-text");
     text.append(el("strong", work.title), el("small", work.task || ""));
-    b.append(text, el("span", STATUS[work.status], `tp-chip ${work.status}`), el("span", ago(work.t), "tp-muted"));
+    b.append(text, el("span", STATUS[work.status] + (work.stars ? " " + "★".repeat(work.stars) : ""), `tp-chip ${work.status}`), el("span", ago(work.t), "tp-muted"));
     b.onclick = () => openViewer(list, list.indexOf(work));
     return b;
   }

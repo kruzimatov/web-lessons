@@ -174,6 +174,7 @@ function setupPlay(box) {
     say("good win", [`Task done! ${starText(stars)}` + (gems ? ` +${gems} diamonds!` : "") + bonus]);
     tune([523, 659, 784, 1047]);
     confetti();
+    if (window.drawProgress) drawProgress();
   });
   show();
 }

@@ -18,6 +18,7 @@ function hud() {
   const sound = document.getElementById("sound");
   sound.textContent = "Sound: " + (save.sound ? "on" : "off");
   sound.setAttribute("aria-pressed", save.sound);
+  if (window.drawProgress) drawProgress();
 }
 
 function addGems(n) {

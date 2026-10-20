@@ -1,0 +1,1199 @@
+ ▐▛███▛█   Claude Code v2.1.287
+▝▜██████▀  Opus 5.5 · Claude Pro
+ ▝▝   ▝▝   ~/Desktop/Projects/web-lessons/generate
+
+
+✻ Conversation compacted (ctrl+o for history)
+
+
+⏺ The new teacher panel is live. Open https://webb-lessons.vercel.app/teacher
+  and press Cmd+Shift+R once.
+
+  The two problems
+  - "Teacher panel" kept showing after login: that link sat next to your name
+    even while you were on the panel. Now the navbar has a normal Teacher link,
+    underlined when you're on that page.
+  - "See work" wasn't working properly: his work was on the server (practice for
+    lessons 2 and 3, homework for lessons 1 and 2, game code). The old panel
+    showed it as collapsed rows under the table, with no task text and the same
+    time on everything. It has been replaced.
+
+  How the new panel works
+  - Students column (left): name, "Online now" in green if active in the last 5
+    minutes, otherwise "Active 20 min ago", plus stars and diamonds. + Add 
+    student is at the top. The panel refreshes every 30 seconds, and there's a
+    manual Refresh button.
+  - Student page: six tiles at the top: practice tasks done, homework tasks
+    done, game levels, stars, diamonds and best race.
+  - Progress grid: one row per lesson (1 to 16), with squares for Practice 1 to
+    5 and Homework 1 to 3:
+    - 🟩 Done (changed from the starter code, no mistakes)
+    - 🟨 Has mistakes (the same checker the student sees)
+    - ⬜ Not changed yet
+    - Dashed: empty
+
+    Click any square to open it.
+  - Tabs: Homework and Practice list tasks by lesson, with the task text, status
+    and time. Game shows all 14 levels with his stars, his cars and which
+    homework earned diamonds. Playground shows his free page.
+  - Work viewer: a large window with the task (in yellow), any mistakes with
+    line numbers, his code and a live view of his page. Previous / Next (or the
+    arrow keys) step through all his work.
+  - Manage: New password and Delete open proper windows. Delete clearly warns
+    that it erases all his work. Add student shows errors inside the window,
+    like "Password needs at least 8 characters". Change my password is in the
+    sidebar.
+
+  I tested all of this locally with sample work in Chrome, in light and dark
+  mode: the grid colours, viewer order, mistakes list, adding (including the
+  short-password error), deleting with confirmation, and refresh. There were no
+  JS errors, and the checker and server tests pass. I couldn't click through the
+  live site myself because Vercel's bot check blocks my headless browser, so
+  please confirm it looks right there.
+
+  Your to-dos
+  - Use Change my password in the panel, because pattaxe123 was typed in this
+    chat.
+  - Make the repo private.
+
+✻ Churned for 6m 43s · done 11:27 AM
+
+※ recap: You're building a game-based HTML course for MuhammadRauf, and the new teacher panel with the progress grid and work viewer is now live. Next, open /teacher, hard-refresh, confirm it looks right, then change your teacher password there.
+  ⎿  Read assets/teacher.css (154 lines)
+  ⎿  Referenced file assets/teacher.js
+  ⎿  Read assets/teacher-view.js (123 lines)
+  ⎿  Referenced file assets/style.css
+  ⎿  Read assets/sync.js (143 lines)
+
+⏺ Compacted while idle, before the prompt cache expired
+
+❯ ❯ let's come back to mission control, i want to do mostly update design. one  
+  feature i want to add, in practice and homework when student does it there is 
+  check my code buttonbut                                                       
+    it checks syntax olny, let's add one more button to check the whole task    
+  against real answers. Le't make the whole website gamified like that.         
+
+⏺ Bash(cd /Users/xayrullorozimatov/Desktop/Projects; ls; ls web-lessons/generate
+      web-lessons/generate/lessons | head -50; grep -n "def play\|def task\|def
+      homework\|ch…)
+  ⎿  Chronic_Care/
+     Curriculum/
+     docs_sys_design/
+     … +48 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to 
+     /Users/xayrullorozimatov/Desktop/Projects/web-lessons
+
+⏺ Bash(cd /Users/xayrullorozimatov/Desktop/Projects/mission-control; ls; git log
+      --oneline | head -5; grep -ril "check my code\|homework" --include=*.* .
+      2>/dev/null |…)
+  ⎿  .claude/
+     app/
+     components/
+     … +22 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to 
+     /Users/xayrullorozimatov/Desktop/Projects/web-lessons
+
+⏺ Bash(sed -n 1,200p generate/lessons/l03.py | head -120; sed -n 30,60p
+      generate/html_kit.py; grep -n "check-btn" -A15 assets/kit.js | head -40)
+  ⎿  LESSON = {
+         "n": 3,
+         "week": 1,
+     … +151 lines (ctrl+o to expand)
+
+⏺ Bash(cd generate && python3 -c "
+      import importlib,sys…)
+  ⎿  80 32
+
+⏺ User answered Claude's questions:
+  ⎿  · "Mission control" is a separate project in Projects/mission-control (your
+     dashboard), but the Check button you describe is in web-lessons. Which 
+     site is this for? → web-lessons only
+     · How should "Check my answer" work? Kids write their own words (their own 
+     food, their own games), so copying the answer text exactly can't be 
+     required. → Per-task checks (Recommended)
+     · Which gamification for the lessons? → Stars + diamonds per task, Lesson 
+     progress bars, Levels + badges, Celebration effects
+
+⏺ Bash(cd ..; cat assets/kit.js; cat generate/pages.py; grep -n "needs\|function
+      check\|regex\|querySelectorAll" assets/builder.js | head -30)
+  ⎿  const store = {
+       get(key) { try { return localStorage.getItem(key); } catch { return
+     null; } },
+     … +332 lines (ctrl+o to expand)
+
+⏺ Bash(sed -n 30,60p assets/builder.js; sed -n 1,40p generate/game_data.py; cat
+      generate/game.py | sed -n 1,40p; cat generate/build.py; cat
+      generate/test_check.js | he…)
+  ⎿        const cell = document.createElement("i");
+           cell.dataset.row = rows.length - 1 - y; // 0 is the ground row
+           cell.style.transitionDelay = x * 25 + "ms";
+     … +239 lines (ctrl+o to expand)
+
+⏺ Bash(ls node_modules 2>/dev/null | head; ls generate/*.mjs 2>/dev/null; ls
+      "/Applications/Google Chrome.app" >/dev/null && echo chrome; npm ls -g
+      --depth=0 2>/dev/nu…)
+  ⎿  Error: Exit code 1
+     (eval):1: no matches found: generate/*.mjs
+     chrome
+     .links/
+     b/
+     chromium_headless_shell-1208/
+     chromium_headless_shell-1243/
+     chromium-1208/
+     chromium-1243/
+     ffmpeg-1011/
+     … +2 lines (ctrl+o to expand)
+
+⏺ Bash(tail -15 assets/check.js; sed -n 60,160p assets/builder.js; sed -n 40,80p
+      generate/game.py; grep -n "practice\|homework" generate/game_data.py |
+      head)
+  ⎿      .slice(0, 6);
+     }
+     … +155 lines (ctrl+o to expand)
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ I'm reading all 112 practice and homework tasks to build a proper answer
+  checker for each. Next I'll implement the checker, the "Check my answer"
+  button, and stars/diamonds, then pause for your review before adding progress
+  bars, levels, and design polish.
+
+⏺ Bash(cd generate && python3 -c "
+      import importlib,sys,json…)
+  ⎿  (eval):12: no matches found: ../../*/scratchpad/tasks.txt
+     51427
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(sed -n 1,30p html_kit.py; sed -n 60,160p html_kit.py; grep -rn "needs="
+      --include=*.py . ; grep -n "confetti" ../assets/*.js game.py; sed -n
+      120,135p ../assets/…)
+  ⎿  """Small HTML building blocks shared by every page."""
+
+     import html
+     … +154 lines (ctrl+o to expand)
+
+⏺ Writing the answer rules first, in a new file generate/answer_checks.py.
+
+⏺ Write(answer_checks.py)
+  ⎿  Wrote 321 lines to answer_checks.py
+       1 """What "Check my answer" looks for in each practice (pN-k) and 
+       2 
+       3 A rule is (what to do, test, how many):
+         owser builds,
+       6 - "any:sel1,sel2,...": at least that many of these selectors fin
+         d something.
+         ds, so rules check the
+       8 structure the task asks for, never the exact text of the model a
+       9 test_answers.py checks that every model answer passes its rules 
+      10 """
+     … +514 lines (ctrl+o to expand)
+⏺ Bash(python3 - <<'EOF'
+      import re…)
+  ⎿  30:    return ("Every label's `for` is the same as its box's `id`", r'
+     /for="([^"]+)"[\s\S]*?id="\1"|id="([^"]+)"[\s\S]*?for="\2"/', n)
+     37:SAME_NAME = ("Radio buttons share one `name`, so only one is picked
+     … +3 lines (ctrl+o to expand)
+  ⎿  Updated answer_checks.py (+2 -2)
+      27  
+      28  
+      29  def labels_match(n):
+      30 -    return ("Every label's `for` is the same as its box's `id`"
+         -, r'/for="([^"]+)"[\s\S]*?id="\1"/', n)                        
+      30 +    return ("Every label's `for` is the same as its box's `id`"
+         +, r'/for="([^"]+)"[\s\S]*?id="\1"|id="([^"]+)"[\s\S]*?for="\2"/
+         +', n)                                                          
+      31  
+      32  
+      33  def menu(n):
+      34      return (f"A menu with {n} links to your `.html` pages", 'a[
+          href$=".html"]', n)
+      35  
+      36  
+      37 -SAME_NAME = ("Radio buttons share one `name`, so only one is pi
+         -cked", r'/type="radio"[^>]*name="([^"]+)"[\s\S]*?type="radio"[^
+         ->]*name="\1"/', 1)                                             
+      37 +SAME_NAME = ("Radio buttons share one `name`, so only one is pi
+         +cked", r'/name="([^"]+)"[\s\S]*?name="\1"/', 1)                
+      38  HOME = ("Home goes to `index.html`", 'a[href="index.html"]', 1)
+      39  
+      40  CHECKS = {
+
+⏺ Bash(grep -n 'Every evening' lessons/l10.py; grep -n 'Hobbies</option>'
+      lessons/l14.py; sed -n 1,30p lessons/l10.py | grep -n "answer" | head)
+  ⎿  1 matches in 1F:
+
+     [file] lessons/l10.py (1):
+     … +6 lines (ctrl+o to expand)
+
+⏺ Bash(sed -n 1,45p lessons/l14.py; sed -n 25,45p lessons/l10.py)
+  ⎿  FORMS_SANDBOX = "allow-forms allow-scripts allow-popups allow-popups-t
+     o-escape-sandbox"
+     MENU = '<a href="index.html">Home</a> | <a href="hobbies.html">Hobbies
+     … +63 lines (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='lessons/l10.py'; s=open(p).read()…)
+  ⎿   generate/lessons/l10.py | 1 +
+      generate/lessons/l14.py | 1 +
+      2 files changed, 2 insertions(+)
+  ⎿  Updated lessons/l10.py (+1 -0)
+      35      <tr><th>Hobby</th><th>When</th></tr>
+      36      <tr><td>Football</td><td>Saturday</td></tr>
+      37      <tr><td>Chess</td><td>Every evening</td></tr>
+      38 +    <tr><td>Lego</td><td>Sunday</td></tr>                      
+      39    </table>
+      40    <h2>Watch this</h2>
+      41    <iframe width="400" height="225" src="https://www.youtube.com
+          /embed/jNQXAC9IVRw" title="A video" allowfullscreen></iframe>
+  ⎿  Updated lessons/l14.py (+1 -0)
+      19      <select id="fav">
+      20        <option>Home</option>
+      21        <option>Hobbies</option>
+      22 +      <option>Write to me</option>                             
+      23      </select>
+      24    </p>
+      25    <p>
+
+⏺ Now generate/html_kit.py: the goals list and the new button in the editor box.
+
+⏺ Bash(python3 - <<'EOF'
+      p='html_kit.py'; s=open(p).read()…)
+  ⎿  3:import html
+     4:import json
+  ⎿  Updated game.py (+1 -10)
+       4  import json
+       5  
+       6  from game_data import MISSIONS, QUESTIONS
+       7 -from html_kit import esc, fmt, page, play                      
+       7 +from html_kit import esc, fmt, need_item, page, play           
+       8  
+       9  ARTS = {"sign", "house", "tree", "car", "rocket", "castle"}
+      10  PIXEL_FONT = ('<link rel="stylesheet" href="https://fonts.googl
+          eapis.com/css2?family=Press+Start+2P&display=swap">\n'
+     ...
+      21          assert len(set(q[2:])) == 3, f"game question {q[1]!r}: 
+          the 3 answers must differ"
+      22  
+      23  
+      24 -def attr(text):                                                
+      25 -    return html.escape(text, quote=True)                       
+      26 -                                                               
+      27 -                                                               
+      28 -def need_item(label, rule, n):                                 
+      29 -    kind = "re" if rule.startswith("/") else "sel"             
+      30 -    return f'<li data-{kind}="{attr(rule)}" data-n="{n}">{fmt(l
+         -abel)}</li>'                                                   
+      31 -                                                               
+      32 -                                                               
+      24  def mission(k, m):
+      25      needs = "".join(need_item(*n) for n in m["needs"])
+      26      return (
+  ⎿  Updated html_kit.py (+17 -5)
+      34      return sorted({t.lower() for t in re.findall(r"<([a-zA-Z][a
+          -zA-Z0-9]*)", code)})
+      35  
+      36  
+      37 -def play(start, task="", save="", sandbox=SANDBOX, needs=(), bi
+         -g=False, lazy=False):                                          
+      37 +def attr(text):                                                
+      38 +    return html.escape(text, quote=True)                       
+      39 +                                                               
+      40 +                                                               
+      41 +def need_item(label, rule, n):                                 
+      42 +    """One goal: a CSS selector, a /regex/ or "any:a,b,c" (chec
+         +k.js, meetsRule)."""                                           
+      43 +    kind = "re" if rule.startswith("/") else "any" if rule.star
+         +tswith("any:") else "sel"                                      
+      44 +    rule = rule[4:] if kind == "any" else rule                 
+      45 +    return f'<li data-{kind}="{attr(rule)}" data-n="{n}">{fmt(l
+         +abel)}</li>'                                                   
+      46 +                                                               
+      47 +                                                               
+      48 +def play(start, task="", save="", sandbox=SANDBOX, checks=(), b
+         +ig=False, lazy=False):                                         
+      49      """Live editor. With `save`, his code is kept in the browse
+          r between visits.
+      39 -    `needs`: tags the task asks for; "Check my code" says which
+         - are still missing.                                            
+      50 +    `checks`: the task's goals (answer_checks.py); "Check my an
+         +swer" ticks them and gives stars.                              
+      51      `lazy`: the editor starts only when the page calls setupPla
+          y (kit.js)."""
+      52      head = f'<p class="task">{fmt(task)}</p>' if task else ""
+      53      keep = f' data-save="{save}"' if save else ""
+      43 -    keep += f' data-needs="{" ".join(needs)}"' if needs else ""
+      54      keep += " data-lazy" if lazy else ""
+      55 +    goals = ('<ul class="goals" aria-label="Goals">' + "".join(
+         +need_item(*c) for c in checks) + "</ul>") if checks else ""    
+      56 +    answer = '<button type="button" class="answer-btn">Check my
+         + answer</button>' if checks else ""                            
+      57      return (
+      46 -        f'<div class="play{" big" if big else ""}"{keep}>{head}
+         -<div class="panes">'                                           
+      58 +        f'<div class="play{" big" if big else ""}"{keep}>{head}
+         +{goals}<div class="panes">'                                    
+      59          f'<textarea class="src" spellcheck="false" autocapitali
+          ze="off" aria-label="Code">{esc(start)}</textarea>'
+      60          f'<iframe title="Result" sandbox="{sandbox}"></iframe><
+          /div>'
+      49 -        f'<div class="tools"><button type="button" class="check
+         --btn">Check my code</button>'                                  
+      61 +        f'<div class="tools">{answer}<button type="button" clas
+         +s="check-btn">Check my code</button>'                          
+      62          f'<button type="button" class="reset">Start again</butt
+          on></div>'
+      63          f'<div class="checked" aria-live="polite"></div></div>'
+      64      )
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Now generate/pages.py: pass the rules into practice and homework.
+
+⏺ Bash(sed -i '' '/^import html$/d' game.py && python3 - <<'EOF'
+      p='pages.py'; s=open(p).read()…)
+  ⎿  3:from answer_checks import checks_for, idea_checks
+     36:        "checks": idea_checks(tags_in(" ".join(code for code, _ in
+     L["cheats"]))),
+     … +3 lines (ctrl+o to expand)
+  ⎿  Updated game.py (+0 -1)
+      1  """Game Zone page: Block Builder missions, Tag Racer and the Gar
+         age. Content lives in game_data.py."""
+      2  
+      3 -import html                                                     
+      3  import json
+      4  
+      5  from game_data import MISSIONS, QUESTIONS
+  ⎿  Updated pages.py (+4 -3)
+      1  """The four pages of every lesson, plus the course home page."""
+      2  
+      3 +from answer_checks import checks_for, idea_checks               
+      4  from html_kit import SANDBOX, blocks_html, esc, fmt, page, part_
+         titles, plain, play, tags_in
+      5  
+      6  LEVELS = ["Easy", "Medium", "Find the bug", "Medium", "Mini proj
+         ect"]
+     ...
+      33          "task": f"Your idea! Build any page you like. Use at le
+          ast 3 things from today, for example {tags}. "
+      34                  f"No idea? Try: {topics}.",
+      35          "answer": "(his own page: check that it uses at least 3
+           things from today and that every tag closes)",
+      36 +        "checks": idea_checks(tags_in(" ".join(code for code, _
+         + in L["cheats"]))),                                            
+      37      }
+      38      return L["homework"] + [idea]
+      39  
+     ...
+      69      for i, t in enumerate(L["practice"], 1):
+      70          parts.append(f"<h3>Task {i} &middot; {LEVELS[i - 1]}</h
+          3>")
+      71          parts.append(play(t["start"], t["task"], save=f"p{L['n'
+          ]}-{i}", sandbox=L.get("sandbox", SANDBOX),
+      70 -                          needs=tags_in(t["answer"])))         
+      72 +                          checks=checks_for(f"p{L['n']}-{i}")))
+      73          parts.append('<div class="hints">' + "".join(
+      74              f'<details class="hint"><summary>Hint {k}</summary>
+          <p>{fmt(h)}</p></details>'
+      75              for k, h in enumerate(t["hints"], 1)) + "</div>")
+     ...
+      85               "Log in, and your homework saves on every device.<
+          /p>", STUCK]
+      86      for i, t in enumerate(homework_tasks(L), 1):
+      87          parts.append(f"<h3>Task {i}{' &middot; Your idea' if i 
+          == 3 else ''}</h3>")
+      86 -        needs = [] if t["answer"].startswith("(") else tags_in(
+         -t["answer"])                                                   
+      88          parts.append(play(t.get("start", ""), t["task"], save=f
+          "h{L['n']}-{i}", sandbox=L.get("sandbox", SANDBOX),
+      88 -                          needs=needs))                        
+      89 +                          checks=t.get("checks") or checks_for(
+         +f"h{L['n']}-{i}")))                                            
+      90      parts.append(f'<p><button type="button" class="copy-all" da
+          ta-title="Lesson {L["n"]} homework" '
+      91                   f'data-reward="{L["n"]}">'
+      92                   'Copy my homework</button> <span class="copied
+          " aria-live="polite"></span></p>')
+
+⏺ Now assets/check.js: one shared goal tester for lessons and the game.
+
+⏺ Bash(cd .. && python3 - <<'EOF'
+      p='assets/check.js'; s=open(p).read()…)
+  ⎿  assets/builder.js:84:        const ok = meetsRule(li, src, doc);
+     assets/check.js:104:function meetsRule(li, src, doc) {
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/builder.js (+1 -10)
+      36      })));
+      37    }
+      38  
+      39 -  function isMet(li, src, doc) {                               
+      40 -    const n = Number(li.dataset.n);                            
+      41 -    if (li.dataset.re) {                                       
+      42 -      const [, body, flags] = /^\/(.*)\/(\w*)$/s.exec(li.datase
+         -t.re);                                                         
+      43 -      return (src.match(new RegExp(body, flags + "g")) || []).l
+         -ength >= n;                                                    
+      44 -    }                                                          
+      45 -    try { return doc.querySelectorAll(li.dataset.sel).length >=
+         - n; } catch { return false; }                                  
+      46 -  }                                                            
+      47 -                                                               
+      39    function starText(n) {
+      40      return "★".repeat(n) + "☆".repeat(3 - n);
+      41    }
+     ...
+      81        const src = code.value;
+      82        const doc = new DOMParser().parseFromString(src, "text/ht
+          ml");
+      83        const done = needs.filter((li) => {
+      93 -        const ok = isMet(li, src, doc);                        
+      84 +        const ok = meetsRule(li, src, doc);                    
+      85          li.classList.toggle("done", ok);
+      86          return ok;
+      87        }).length;
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/check.js (+18 -0)
+       98    if ((name === "video" || name === "audio") && !has("controls
+           ")) add(pos, `<${name}> needs controls to show the play button
+           `);
+       99  }
+      100  
+      101 +// One goal from answer_checks.py or game_data.py, on <li data
+          +-sel|data-re|data-any data-n>.                                
+      102 +// sel: that many elements; re: that many matches in his code;
+          + any: that many of these selectors found.                     
+      103 +// n = 0 means it must not be there.                          
+      104 +function meetsRule(li, src, doc) {                            
+      105 +  const n = Number(li.dataset.n);                             
+      106 +  const count = (sel) => { try { return doc.querySelectorAll(s
+          +el).length; } catch { return -1; } };                         
+      107 +  let got;                                                    
+      108 +  if (li.dataset.re) {                                        
+      109 +    const [, body, flags] = /^\/(.*)\/(\w*)$/s.exec(li.dataset
+          +.re);                                                         
+      110 +    got = (src.match(new RegExp(body, flags + "g")) || []).len
+          +gth;                                                          
+      111 +  } else if (li.dataset.any) {                                
+      112 +    got = li.dataset.any.split(",").filter((sel) => count(sel)
+          + > 0).length;                                                 
+      113 +  } else {                                                    
+      114 +    got = count(li.dataset.sel);                              
+      115 +  }                                                           
+      116 +  return n === 0 ? got === 0 : got >= n;                      
+      117 +}                                                             
+      118 +                                                              
+      119  if (typeof module === "object") module.exports = { checkHTML }
+           ;
+
+⏺ Bash(sed -n 100,120p assets/check.js)
+  ⎿  // One goal from answer_checks.py or game_data.py, on <li data-sel|dat
+     a-re|data-any data-n>.
+     // sel: that many elements; re: that many matches in his code; any: th
+     … +20 lines (ctrl+o to expand)
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Moving the game save, sounds and confetti from assets/game.js into
+  assets/kit.js so lesson pages can use them too.
+
+⏺ Bash(python3 - <<'EOF'
+      p='assets/game.js'; s=open(p).read()…)
+  ⎿  // Game Zone: one save for all games, sound, diamonds, the mode button
+     s and the Garage.
+     // The save, sounds and confetti live in kit.js. builder.js and racer.
+     … +24 lines (ctrl+o to expand)
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/builder.js (+0 -4)
+      36      })));
+      37    }
+      38  
+      39 -  function starText(n) {                                       
+      40 -    return "★".repeat(n) + "☆".repeat(3 - n);                  
+      41 -  }                                                            
+      42 -                                                               
+      39    function drawMap() {
+      40      let open = true;
+      41      map.querySelectorAll(".level").forEach((btn) => {
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/game.js (+1 -42)
+       1  // Game Zone: one save for all games, sound, diamonds, the mode
+           buttons and the Garage.
+       2 -// builder.js and racer.js use save, keep, beep, tune, addGems,
+         - confetti and CARS from here.                                  
+       3 -                                                               
+       4 -const save = (() => {                                          
+       5 -  let old = {};                                                
+       6 -  try { old = JSON.parse(store.get("game")) || {}; } catch {}  
+       7 -  return { gems: 0, stars: {}, best: 0, cars: ["red"], car: "re
+         -d", sound: true, upto: 0, ...old };                            
+       8 -})();                                                          
+       9 -const keep = () => store.set("game", JSON.stringify(save));    
+       2 +// The save, sounds and confetti live in kit.js. builder.js and
+         + racer.js use addGems and CARS from here.                      
+       3  
+       4  const CARS = [
+       5    { id: "red", name: "Red Racer", color: "#e53935", price: 0 },
+     ...
+      12  ];
+      13  const carColor = () => (CARS.find((c) => c.id === save.car) || 
+          CARS[0]).color;
+      14  
+      22 -let audio = null;                                              
+      23 -function beep(freq, ms = 120) {                                
+      24 -  if (!save.sound) return;                                     
+      25 -  try {                                                        
+      26 -    audio = audio || new AudioContext();                       
+      27 -    const osc = audio.createOscillator();                      
+      28 -    const vol = audio.createGain();                            
+      29 -    const end = audio.currentTime + ms / 1000;                 
+      30 -    osc.type = "square";                                       
+      31 -    osc.frequency.value = freq;                                
+      32 -    vol.gain.setValueAtTime(0.06, audio.currentTime);          
+      33 -    vol.gain.exponentialRampToValueAtTime(0.001, end);         
+      34 -    osc.connect(vol).connect(audio.destination);               
+      35 -    osc.start();                                               
+      36 -    osc.stop(end);                                             
+      37 -  } catch {}                                                   
+      38 -}                                                              
+      39 -const tune = (notes) => notes.forEach((f, i) => setTimeout(() =
+         -> beep(f, 150), i * 110));                                     
+      40 -                                                               
+      15  function hud() {
+      16    document.getElementById("gems").textContent = save.gems;
+      17    document.getElementById("star-total").textContent = Object.va
+          lues(save.stars).reduce((a, b) => a + b, 0);
+     ...
+      26    hud();
+      27  }
+     … 19 more lines (ctrl+o to expand)
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/kit.js (+61 -0)
+       4    drop(key) { try { localStorage.removeItem(key); } catch {} },
+       5  };
+       6  
+       7 +// One save for the Game Zone and the lessons: diamonds, stars 
+         +per task and per level, cars.                                  
+       8 +const save = { gems: 0, stars: {}, tasks: {}, best: 0, cars: ["
+         +red"], car: "red", sound: true, upto: 0 };                     
+       9 +function freshSave() { // another tab may have won diamonds sin
+         +ce this page opened                                            
+      10 +  try { Object.assign(save, JSON.parse(store.get("game")) || {}
+         +); } catch {}                                                  
+      11 +}                                                              
+      12 +freshSave();                                                   
+      13 +const keep = () => store.set("game", JSON.stringify(save));    
+      14 +const GEMS_PER_STAR = 2;                                       
+      15 +                                                               
+      16 +// A task passed with `stars` (1 to 3). Only new stars win diam
+         +onds, so redoing a task never farms them.                      
+      17 +function winTask(id, stars) {                                  
+      18 +  freshSave();                                                 
+      19 +  const before = save.tasks[id] || 0;                          
+      20 +  const gems = Math.max(0, stars - before) * GEMS_PER_STAR;    
+      21 +  save.tasks[id] = Math.max(before, stars);                    
+      22 +  save.gems += gems;                                           
+      23 +  keep();                                                      
+      24 +  return gems;                                                 
+      25 +}                                                              
+      26 +const starText = (n) => "★".repeat(n) + "☆".repeat(3 - n);     
+      27 +                                                               
+      28 +let audio = null;                                              
+      29 +function beep(freq, ms = 120) {                                
+      30 +  if (!save.sound) return;                                     
+      31 +  try {                                                        
+      32 +    audio = audio || new AudioContext();                       
+      33 +    const osc = audio.createOscillator();                      
+      34 +    const vol = audio.createGain();                            
+      35 +    const end = audio.currentTime + ms / 1000;                 
+      36 +    osc.type = "square";                                       
+      37 +    osc.frequency.value = freq;                                
+      38 +    vol.gain.setValueAtTime(0.06, audio.currentTime);          
+      39 +    vol.gain.exponentialRampToValueAtTime(0.001, end);         
+      40 +    osc.connect(vol).connect(audio.destination);               
+      41 +    osc.start();                                               
+      42 +    osc.stop(end);                                             
+      43 +  } catch {}                                                   
+     … 27 more lines (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='assets/game.js'; s=open(p).read()…)
+  ⎿  24:  freshSave();
+     106:document.addEventListener("visibilitychange", () => { if (!documen
+     t.hidden) { freshSave(); hud(); } });
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/game.js (+2 -0)
+      21  }
+      22  
+      23  function addGems(n) {
+      24 +  freshSave();                                                 
+      25    save.gems += n;
+      26    keep();
+      27    hud();
+     ...
+      103    }
+      104  });
+      105  hud();
+      106 +document.addEventListener("visibilitychange", () => { if (!doc
+          +ument.hidden) { freshSave(); hud(); } });                     
+      107  addEventListener("load", () => showMode(store.get("game-mode")
+            || "builder"));
+
+⏺ Now the "Check my answer" logic in assets/kit.js.
+
+⏺ Bash(python3 - <<'EOF'
+      p='assets/kit.js'; s=open(p).read()…)
+  ⎿    e.target.after(note);
+     });
+     <\/script>`;
+     … +23 lines (ctrl+o to expand)
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/kit.js (+64 -30)
+      118      if (key) store.drop(key);
+      119    });
+      120  
+      121 -  const needs = (box.dataset.needs || "").split(" ").filter(Bo
+          -olean);                                                       
+      121 +  const say = (cls, items) => {                               
+      122 +    const list = document.createElement(items.length > 1 ? "ul
+          +" : "p");                                                     
+      123 +    if (items.length > 1) items.forEach((text) => list.append(
+          +Object.assign(document.createElement("li"), { textContent: tex
+          +t })));                                                       
+      124 +    else list.textContent = items[0];                         
+      125 +    result.className = "checked " + cls;                      
+      126 +    result.replaceChildren(list);                             
+      127 +  };                                                          
+      128 +  const mistakes = () => (window.checkHTML ? checkHTML(code.va
+          +lue) : []).map((p) => `Line ${p.line}: ${p.msg}`);            
+      129    box.querySelector(".check-btn").addEventListener("click", ()
+            => {
+      123 -    const missing = needs.filter((t) => !new RegExp(`<${t}[\\s
+          ->/]`, "i").test(code.value));                                 
+      124 -    const notes = missing.map((t) => `The task needs <${t}>. Y
+          -ou have not used it yet`);                                    
+      125 -    const problems = notes.concat((window.checkHTML ? checkHTM
+          -L(code.value) : []).map((p) => `Line ${p.line}: ${p.msg}`));  
+      126 -    const list = document.createElement(problems.length ? "ul"
+          - : "p");                                                      
+      127 -    if (problems.length) {                                    
+      128 -      for (const text of problems) {                          
+      129 -        const li = document.createElement("li");              
+      130 -        li.textContent = text;                                
+      131 -        list.append(li);                                      
+      132 -      }                                                       
+      133 -    } else {                                                  
+      134 -      list.textContent = needs.length                         
+      135 -        ? "No mistakes, and every tag the task needs is there.
+          - Read the task once more: is everything done?"                
+      136 -        : "No mistakes found. Does the page on the right look 
+          -the way you want?";                                           
+      130 +    const problems = mistakes();                              
+      131 +    if (problems.length) say("bad", problems);                
+      132 +    else say("good", ["No mistakes found. Does the page on the
+          + right look the way you want?"]);                             
+      133 +  });                                                         
+      134 +                                                              
+      135 +  // "Check my answer": ticks the goals. Fewer tries, more sta
+          +rs; new stars win diamonds.                                   
+      136 +  const answer = box.querySelector(".answer-btn");            
+      137 +  if (!answer) { show(); return; }                            
+      138 +  const goals = [...box.querySelectorAll(".goals li")];       
+      139 +  const id = box.dataset.save;                                
+      140 +  const badge = document.createElement("span");               
+      141 +  badge.className = "task-stars";                             
+      142 +  const drawBadge = () => {                                   
+     … 68 more lines (ctrl+o to expand)
+
+⏺ Bash(python3 - <<'EOF'
+      p='assets/kit.js'; s=open(p).read()…)
+  ⎿  ok
+     93:    result.replaceChildren();
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/kit.js (+3 -2)
+      169      const stars = tries === 0 ? 3 : tries <= 2 ? 2 : 1;
+      170      const gems = winTask(id, stars);
+      171      drawBadge();
+      172 -    const bonus = document.querySelector(".copy-all[data-rewar
+          -d]") ? homeworkReward(document.querySelector(".copy-all").data
+          -set.reward) : "";                                             
+      173 -    say("good win", [`Task done! ${starText(stars)}` + (gems ?
+          - ` +${gems} diamonds!` : "") + (stars < 3 && !gems ? " Try aga
+          -in with fewer tries for more stars." : "") + bonus]);         
+      172 +    const homework = document.querySelector(".copy-all[data-re
+          +ward]");                                                      
+      173 +    const bonus = homework ? homeworkReward(homework.dataset.r
+          +eward) : "";                                                  
+      174 +    say("good win", [`Task done! ${starText(stars)}` + (gems ?
+          + ` +${gems} diamonds!` : "") + bonus]);                       
+      175      tune([523, 659, 784, 1047]);
+      176      confetti();
+      177    });
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Bash(sed -n 1,60p assets/style.css; sed -n 200,260p assets/style.css; sed -n
+      78,92p assets/game.css)
+  ⎿  /* Calm, mostly neutral. One accent colour (--accent) for buttons and
+     "you are here". */
+     :root {
+     … +133 lines (ctrl+o to expand)
+
+⏺ Styles in assets/style.css (goals checklist, gold answer button, stars, shake,
+  confetti moved from game.css).
+
+⏺ Bash(python3 - <<'EOF'
+      p='assets/style.css'; s=open(p).read()…)
+  ⎿  133:@media (prefers-reduced-motion: reduce) {
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/game.css (+0 -5)
+      77  .art i.on { opacity: 1; transform: none; }
+      78  .art i.air { visibility: hidden; }
+      79  .built { margin: 8px 0 0; text-align: center; font-weight: 700;
+           }
+      80 -.shake { animation: shake 0.4s; }                              
+      81 -@keyframes shake { 25% { transform: translateX(-8px); } 75% { t
+         -ransform: translateX(8px); } }                                 
+      80  
+      81  .needs { list-style: none; padding: 0; }
+      82  .needs li { position: relative; margin-bottom: 10px; padding: 8
+          px 12px 8px 48px; background: var(--card); border: 3px solid va
+          r(--line); }
+     ...
+      124  .car-card button { width: 100%; font-family: "Fredoka", sans-s
+           erif; font-size: 1em; }
+      125  .car-card button:disabled { cursor: default; opacity: 0.6; }
+      126  
+      129 -.confetti { position: fixed; inset: 0; pointer-events: none; o
+          -verflow: hidden; z-index: 10; }                               
+      130 -.confetti i { position: absolute; top: -20px; width: 12px; hei
+          -ght: 12px; animation: fall 2.4s ease-in forwards; }           
+      131 -@keyframes fall { to { transform: translate(var(--dx), 105vh) 
+          -rotate(540deg); } }                                           
+      127  
+      128  @media (max-width: 700px) {
+      129    .mission-top { grid-template-columns: 1fr; }
+  ⎿  Updated ~/Desktop/Projects/web-lessons/assets/style.css (+25 -0)
+      242  .checked.good { background: var(--green-soft); color: var(--gr
+           een); }
+      243  .checked.bad { background: var(--red-soft); color: var(--red);
+            }
+      244  .checked ul, .checked p { margin: 4px 0; }
+      245 +.checked.win { font-size: 1.1em; }                            
+      246 +                                                              
+      247 +/* Task goals: "Check my answer" ticks them, then stars and di
+          +amonds */                                                     
+      248 +.goals { list-style: none; margin: 0 0 12px; padding: 0; displ
+          +ay: grid; gap: 6px; }                                         
+      249 +.goals li { position: relative; padding: 6px 10px 6px 38px; ba
+          +ckground: var(--card); border: 1px solid var(--line); border-r
+          +adius: 8px; }                                                 
+      250 +.goals li::before {                                           
+      251 +  content: ""; position: absolute; left: 10px; top: 50%; width
+          +: 18px; height: 18px; margin-top: -11px;                      
+      252 +  border: 2px solid var(--muted); border-radius: 5px;         
+      253 +}                                                             
+      254 +.goals li.done { border-color: var(--green); background: var(-
+          +-green-soft); }                                               
+      255 +.goals li.done::before { content: "✓"; display: grid; place-it
+          +ems: center; background: var(--green); border-color: var(--gre
+          +en); color: var(--bg); font-weight: 900; font-size: 13px; }   
+      256 +.play .answer-btn {                                           
+      257 +  margin-top: 10px; min-height: 44px; padding: 8px 18px; font:
+          + inherit; font-size: 0.95em; font-weight: 700;                
+      258 +  border: 0; border-radius: 8px; background: #f5b301; color: #
+          +1f2937; cursor: pointer; box-shadow: 0 3px 0 #b07f00;         
+      259 +}                                                             
+      260 +.play .answer-btn:hover { background: #ffc61a; }              
+      261 +.play .answer-btn:active { transform: translateY(2px); box-sha
+          +dow: 0 1px 0 #b07f00; }                                       
+      262 +.task-stars { align-self: center; margin-top: 10px; color: #f4
+          +b400; font-size: 1.3em; letter-spacing: 2px; }                
+      263 +.play.won { border-color: var(--green); }                     
+      264 +.shake { animation: shake 0.4s; }                             
+      265 +@keyframes shake { 25% { transform: translateX(-8px); } 75% { 
+          +transform: translateX(8px); } }                               
+      266 +.confetti { position: fixed; inset: 0; pointer-events: none; o
+          +verflow: hidden; z-index: 10; }                               
+      267 +.confetti i { position: absolute; top: -20px; width: 12px; hei
+          +ght: 12px; animation: fall 2.4s ease-in forwards; }           
+      268 +@keyframes fall { to { transform: translate(var(--dx), 105vh) 
+          +rotate(540deg); } }                                           
+      269 +@media (prefers-reduced-motion: reduce) { .shake { animation: 
+          +none; } }                                                     
+      270  .play .reset, .quiz button, .anim .replay {
+      271    margin-top: 10px; min-height: 44px; padding: 8px 16px; font:
+            inherit; font-size: 0.9em;
+      272    border: 1px solid var(--line); border-radius: 8px; backgroun
+           d: var(--card); color: var(--ink); cursor: pointer;
+  ⎿  Updated pages.py (+2 -1)
+      16  
+      17  STUCK = """<details class="stuck" open><summary>When I'm stuck<
+          /summary><ol>
+      18  <li>Read my code slowly, line by line.</li>
+      19 +<li>Press <strong>Check my answer</strong> and look at the goal
+         +s without a tick.</li>                                         
+      20  <li>Press <strong>Check my code</strong> and read what it says.
+          </li>
+      21  <li>Check that every tag that opens also closes.</li>
+      22  <li>Look it up in <a href="../../cheatsheet.html">My tags</a>.<
+          /li>
+     ...
+      82  def homework_page(L):
+      83      parts = [header(L, "homework.html"),
+      84               "<p>Write your code in the boxes. It saves by itse
+          lf. When you finish, press "
+      84 -             "<strong>Copy my homework</strong> and send it to 
+         -your teacher on Telegram. Finished homework wins 10 diamonds fo
+         -r the Game Zone. "                                             
+      85 +             "<strong>Copy my homework</strong> and send it to 
+         +your teacher on Telegram. Press <strong>Check my answer</strong
+         +> on every task to win stars and diamonds. Pass all 3 for 10 bo
+         +nus diamonds. "                                                
+      86               "Log in, and your homework saves on every device.<
+          /p>", STUCK]
+      87      for i, t in enumerate(homework_tasks(L), 1):
+      88          parts.append(f"<h3>Task {i}{' &middot; Your idea' if i 
+          == 3 else ''}</h3>")
+
+⏺ Now the test, generate/test_answers.py: runs every rule in real Chrome against
+  the model answers and start code.
+
+⏺ Write(test_answers.py)
+  ⎿  Wrote 88 lines to test_answers.py
+       1 """Every model answer passes its "Check my answer" goals; unchan
+         ged start code does not.
+       2 Runs the real check.js in headless Chrome, because the goals use
+       3 
+       4 Usage (from the repo root): python3 generate/test_answers.py
+       5 """
+       6 
+       8 import os
+       9 import subprocess
+      10 import sys
+     … +99 lines (ctrl+o to expand)
+⏺ Bash(cd .. 2>/dev/null; cd
+      /Users/xayrullorozimatov/Desktop/Projects/web-lessons && python3 - <<'EOF'
+      p='generate/test_answers.py'; s=open(p).read()…)
+  ⎿  Error: Exit code 1
+     7:import html
+     8:import json
+     9:import os
+     10:import subprocess
+     11:import sys
+     12:import tempfile
+     66:    tasks_js = json.dumps(data).replace("</", "<\\/")  # answers like 
+     </p> must not end the script
+     68:            f'<script>const TASKS = {tasks_js};{RUN}</script>')
+     built week3/lesson16_final_project
+     … +6 lines (ctrl+o to expand)
+
+⏺ Nearly everything passed on the first run. The only failures are the "Your
+  idea" task on 4 practice/review days, where the cheat list has no new tags.
+  Checking those:
+
+⏺ Bash(cd generate && python3 -c "
+      import sys; sys.path.insert(0,'.'); sys.dont_write_bytecode=True…)
+  ⎿  1 ['body', 'h1', 'head', 'p', 'title']
+     2 ['b', 'br', 'del', 'em', 'hr', 'i', 'mark', 'small', 'strong', 'sub'
+     , 'sup', 'u']
+     … +14 lines (ctrl+o to expand)
+
+⏺ Fix: the idea task counts tags from every lesson so far, plus at least one
+  from today when the lesson has new tags. The tag list gets built in
+  generate/build.py load_lessons.
+
+⏺ Bash(python3 - <<'EOF'
+      p='build.py'; s=open(p).read()…)
+  ⎿  built index, cheat sheet, playground, game, login, teacher panel, teac
+     her overview
+     answers: all 128 tasks pass
+     … +2 lines (ctrl+o to expand)
+  ⎿  Updated answer_checks.py (+9 -6)
+      304  NOT_TODAY = {"html", "head", "body", "title", "meta"}  # every
+            page has these
+      305  
+      306  
+      307 -def idea_checks(today_tags):                                  
+      308 -    """Homework task 3: his own page, built with things from t
+          -oday."""                                                      
+      309 -    tags = [t for t in today_tags if t not in NOT_TODAY]      
+      310 -    need = min(3, len(tags))                                  
+      311 -    return [(f"Use {need} different tags from today", "any:" +
+          - ",".join(tags), need),                                       
+      312 -            ("Write your own words", r"/>[^<]*[a-zA-Z]{3}/", 2
+          -)]                                                            
+      307 +def idea_checks(today, learned):                              
+      308 +    """Homework task 3: his own page, built with what he knows
+          +, and something from today if it has new tags."""             
+      309 +    today = [t for t in today if t not in NOT_TODAY]          
+      310 +    known = [t for t in learned if t not in NOT_TODAY]        
+      311 +    rules = [("Use 3 different tags you know", "any:" + ",".jo
+          +in(known), 3),                                                
+      312 +             ("Write your own words", r"/>[^<]*[a-zA-Z]{3}/", 
+          +2)]                                                           
+      313 +    if today:                                                 
+      314 +        rules.insert(0, ("Use something new from today: " + ",
+          + ".join(f"`{t}`" for t in today), "any:" + ",".join(today), 1)
+          +)                                                             
+      315 +    return rules                                              
+      316  
+      317  
+      318  def checks_for(key):
+  ⎿  Updated build.py (+5 -0)
+      15  from extra_pages import cheatsheet_page, overview_page, playgro
+          und_page  # noqa: E402
+      16  from account import login_page, teacher_page  # noqa: E402
+      17  from game import game_page  # noqa: E402
+      18 +from html_kit import tags_in  # noqa: E402                     
+      19  from pages import answers_page, homework_page, index_page, less
+          on_page, practice_page  # noqa: E402
+      20  
+      21  ROOT = Path(__file__).resolve().parent.parent
+     ...
+      31          mod = importlib.util.module_from_spec(spec)
+      32          spec.loader.exec_module(mod)
+      33          lessons.append(mod.LESSON)
+      34 +    learned = set()                                            
+      35 +    for L in lessons:  # tags from this lesson and every one be
+         +fore it, for the "your idea" task                              
+      36 +        learned |= set(tags_in(" ".join(code for code, _ in L["
+         +cheats"])))                                                    
+      37 +        L["learned"] = sorted(learned)                         
+      38      return lessons
+      39  
+      40  
+  ⎿  Updated pages.py (+1 -1)
+      34          "task": f"Your idea! Build any page you like. Use at le
+          ast 3 things from today, for example {tags}. "
+      35                  f"No idea? Try: {topics}.",
+      36          "answer": "(his own page: check that it uses at least 3
+           things from today and that every tag closes)",
+      37 -        "checks": idea_checks(tags_in(" ".join(code for code, _
+         - in L["cheats"]))),                                            
+      37 +        "checks": idea_checks(tags_in(" ".join(code for code, _
+         + in L["cheats"])), L["learned"]),                              
+      38      }
+      39      return L["homework"] + [idea]
+      40  
+  ⎿  Updated ~/Desktop/Projects/web-lessons/site/week1/lesson01_what_is_htm
+     l/homework.html (+1 -1)
+      30  <h3>Task 2</h3>
+      31  <div class="play" data-save="h1-2"><p class="task">Upside-down 
+          stairs: write the headings from h6 up to h1.</p><ul class="goal
+          s" aria-label="Goals"><li data-any="h1,h2,h3,h4,h5,h6" data-n="
+          6">All 6 headings: <code>h1</code> to <code>h6</code></li><li d
+          ata-re="/&lt;h6[\s\S]*&lt;h5[\s\S]*&lt;h4[\s\S]*&lt;h3[\s\S]*&l
+          t;h2[\s\S]*&lt;h1/i" data-n="1">Upside down: <code>h6</code> fi
+          rst, <code>h1</code> last</li></ul><div class="panes"><textarea
+           class="src" spellcheck="false" autocapitalize="off" aria-label
+          ="Code"></textarea><iframe title="Result" sandbox="allow-popups
+           allow-popups-to-escape-sandbox"></iframe></div><div class="too
+          ls"><button type="button" class="answer-btn">Check my answer</b
+          utton><button type="button" class="check-btn">Check my code</bu
+          tton><button type="button" class="reset">Start again</button></
+          div><div class="checked" aria-live="polite"></div></div>
+      32  <h3>Task 3 &middot; Your idea</h3>
+      33 -<div class="play" data-save="h1-3"><p class="task">Your idea! B
+         -uild any page you like. Use at least 3 things from today, for e
+         -xample <code>&lt;h1&gt;Title&lt;/h1&gt;</code>, <code>&lt;p&gt;
+         -Text&lt;/p&gt;</code>, <code>&lt;!-- note --&gt;</code>, <code>
+         -&lt;!DOCTYPE html&gt;</code>. No idea? Try: a superhero I made 
+         -up, my football team, space and planets.</p><ul class="goals" a
+         -ria-label="Goals"><li data-any="h1,p" data-n="2">Use 2 differen
+         -t tags from today</li><li data-re="/&gt;[^&lt;]*[a-zA-Z]{3}/" d
+         -ata-n="2">Write your own words</li></ul><div class="panes"><tex
+         -tarea class="src" spellcheck="false" autocapitalize="off" aria-
+         -label="Code"></textarea><iframe title="Result" sandbox="allow-p
+         -opups allow-popups-to-escape-sandbox"></iframe></div><div class
+         -="tools"><button type="button" class="answer-btn">Check my answ
+         -er</button><button type="button" class="check-btn">Check my cod
+         -e</button><button type="button" class="reset">Start again</butt
+         -on></div><div class="checked" aria-live="polite"></div></div>  
+      33 +<div class="play" data-save="h1-3"><p class="task">Your idea! B
+         +uild any page you like. Use at least 3 things from today, for e
+         +xample <code>&lt;h1&gt;Title&lt;/h1&gt;</code>, <code>&lt;p&gt;
+         +Text&lt;/p&gt;</code>, <code>&lt;!-- note --&gt;</code>, <code>
+         +&lt;!DOCTYPE html&gt;</code>. No idea? Try: a superhero I made 
+         +up, my football team, space and planets.</p><ul class="goals" a
+         +ria-label="Goals"><li data-any="h1,p" data-n="1">Use something 
+         +new from today: <code>h1</code>, <code>p</code></li><li data-an
+         +y="h1,p" data-n="3">Use 3 different tags you know</li><li data-
+         +re="/&gt;[^&lt;]*[a-zA-Z]{3}/" data-n="2">Write your own words<
+         +/li></ul><div class="panes"><textarea class="src" spellcheck="f
+         +alse" autocapitalize="off" aria-label="Code"></textarea><iframe
+         + title="Result" sandbox="allow-popups allow-popups-to-escape-sa
+         +ndbox"></iframe></div><div class="tools"><button type="button" 
+         +class="answer-btn">Check my answer</button><button type="button
+         +" class="check-btn">Check my code</button><button type="button"
+         + class="reset">Start again</button></div><div class="checked" a
+         +ria-live="polite"></div></div>                                 
+      34  <p><button type="button" class="copy-all" data-title="Lesson 1 
+          homework" data-reward="1">Copy my homework</button> <span class
+          ="copied" aria-live="polite"></span></p>
+      35  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/
+          5.65.16/codemirror.min.js"></script><script src="https://cdnjs.
+          cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js
+          "></script><script src="https://cdnjs.cloudflare.com/ajax/libs/
+          codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/
+          5.65.16/mode/css/css.min.js"></script><script src="https://cdnj
+          s.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/ht
+          mlmixed.min.js"></script><script src="https://cdnjs.cloudflare.
+          com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></
+          script><script src="https://cdnjs.cloudflare.com/ajax/libs/code
+          mirror/5.65.16/addon/edit/closetag.min.js"></script>
+      36  <script src="../../assets/check.js"></script>
+  ⎿  Updated ~/Desktop/Projects/web-lessons/site/week1/lesson02_formatting_
+     text/homework.html (+1 -1)
+      30  <h3>Task 2</h3>
+      31  <div class="play" data-save="h2-2"><p class="task">"About me": 
+          3 sentences. Make 2 important words strong and 1 word em. Put a
+          n <code>&lt;hr&gt;</code> at the end.</p><ul class="goals" aria
+          -label="Goals"><li data-re="/[.!?]/" data-n="3">3 sentences</li
+          ><li data-sel="strong" data-n="2">2 important words in <code>st
+          rong</code></li><li data-sel="em" data-n="1">1 word in <code>em
+          </code></li><li data-re="/&lt;hr[^&gt;]*&gt;\s*$/i" data-n="1">
+          An <code>&lt;hr&gt;</code> at the end</li></ul><div class="pane
+          s"><textarea class="src" spellcheck="false" autocapitalize="off
+          " aria-label="Code"></textarea><iframe title="Result" sandbox="
+          allow-popups allow-popups-to-escape-sandbox"></iframe></div><di
+          v class="tools"><button type="button" class="answer-btn">Check 
+          my answer</button><button type="button" class="check-btn">Check
+           my code</button><button type="button" class="reset">Start agai
+          n</button></div><div class="checked" aria-live="polite"></div><
+          /div>
+      32  <h3>Task 3 &middot; Your idea</h3>
+      33 -<div class="play" data-save="h2-3"><p class="task">Your idea! B
+         -uild any page you like. Use at least 3 things from today, for e
+         -xample <code>Line one&lt;br&gt;Line two</code>, <code>&lt;hr&gt
+         -;</code>, <code>&lt;strong&gt;hot&lt;/strong&gt;</code>, <code>
+         -&lt;em&gt;really&lt;/em&gt;</code>. No idea? Try: my favorite f
+         -ood, dinosaurs, a trip I want to take.</p><ul class="goals" ari
+         -a-label="Goals"><li data-any="b,br,del,em,hr,i,mark,small,stron
+         -g,sub,sup,u" data-n="3">Use 3 different tags from today</li><li
+         - data-re="/&gt;[^&lt;]*[a-zA-Z]{3}/" data-n="2">Write your own 
+         -words</li></ul><div class="panes"><textarea class="src" spellch
+         -eck="false" autocapitalize="off" aria-label="Code"></textarea><
+         -iframe title="Result" sandbox="allow-popups allow-popups-to-esc
+         -ape-sandbox"></iframe></div><div class="tools"><button type="bu
+         -tton" class="answer-btn">Check my answer</button><button type="
+         -button" class="check-btn">Check my code</button><button type="b
+         -utton" class="reset">Start again</button></div><div class="chec
+         -ked" aria-live="polite"></div></div>                           
+      33 +<div class="play" data-save="h2-3"><p class="task">Your idea! B
+         +uild any page you like. Use at least 3 things from today, for e
+         +xample <code>Line one&lt;br&gt;Line two</code>, <code>&lt;hr&gt
+         +;</code>, <code>&lt;strong&gt;hot&lt;/strong&gt;</code>, <code>
+         +&lt;em&gt;really&lt;/em&gt;</code>. No idea? Try: my favorite f
+         +ood, dinosaurs, a trip I want to take.</p><ul class="goals" ari
+         +a-label="Goals"><li data-any="b,br,del,em,hr,i,mark,small,stron
+         +g,sub,sup,u" data-n="1">Use something new from today: <code>b</
+         +code>, <code>br</code>, <code>del</code>, <code>em</code>, <cod
+         +e>hr</code>, <code>i</code>, <code>mark</code>, <code>small</co
+         +de>, <code>strong</code>, <code>sub</code>, <code>sup</code>, <
+         +code>u</code></li><li data-any="b,br,del,em,h1,hr,i,mark,p,smal
+         +l,strong,sub,sup,u" data-n="3">Use 3 different tags you know</l
+         +i><li data-re="/&gt;[^&lt;]*[a-zA-Z]{3}/" data-n="2">Write your
+         + own words</li></ul><div class="panes"><textarea class="src" sp
+         +ellcheck="false" autocapitalize="off" aria-label="Code"></texta
+         +rea><iframe title="Result" sandbox="allow-popups allow-popups-t
+         +o-escape-sandbox"></iframe></div><div class="tools"><button typ
+         +e="button" class="answer-btn">Check my answer</button><button t
+         +ype="button" class="check-btn">Check my code</button><button ty
+         +pe="button" class="reset">Start again</button></div><div class=
+         +"checked" aria-live="polite"></div></div>                      
+      34  <p><button type="button" class="copy-all" data-title="Lesson 2 
+          homework" data-reward="2">Copy my homework</button> <span class
+          ="copied" aria-live="polite"></span></p>
+      35  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/
+          5.65.16/codemirror.min.js"></script><script src="https://cdnjs.
+          cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js
+          "></script><script src="https://cdnjs.cloudflare.com/ajax/libs/
+          codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/
+          5.65.16/mode/css/css.min.js"></script><script src="https://cdnj
+          s.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/ht
+          mlmixed.min.js"></script><script src="https://cdnjs.cloudflare.
+          com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></
+          script><script src="https://cdnjs.cloudflare.com/ajax/libs/code
+          mirror/5.65.16/addon/edit/closetag.min.js"></script>
+      36  <script src="../../assets/check.js"></script>
+  ⎿  … 14 more files changed
+  ⎿  (timeout 3m)
+
+⏺ All 128 tasks pass. Quick check that the test catches a broken rule:
+
+⏺ Bash(cd generate && python3 -c "
+      import sys; sys.dont_write_bytecode=True; sys.path.insert(0,'.')…)
+  ⎿  answers: 3 problems
+     p1-1: invalid selector div[
+     p1-1: model answer fails div[
+     … +2 lines (ctrl+o to expand)
+
+⏺ Test works. Now clicking through the real page in a browser:
+
+⏺ Bash(python3 -c "import playwright; print('py ok')" 2>&1; ls
+      ~/.claude/projects/-Users-xayrullorozimatov-Desktop-Projects-web-lessons/
+      2>/dev/null | head; ls /privat…)
+  ⎿  Traceback (most recent call last):
+       File "<string>", line 1, in <module>
+         import playwright; print('py ok')
+     … +19 lines (ctrl+o to expand)
+
+⏺ Bash(cd /private/tmp/claude-501/-Users-xayrullorozimatov-Desktop-Projects-web-
+      lessons/a3a49fac-f01c-41c6-8257-4dfdf98c87ec/scratchpad/ && head -40
+      look.mjs; cat devp…)
+  ⎿  Error: The server-side auto mode classifier gave no verdict for Bash: a 
+     hook changed this call's input after the model wrote it, so the review was 
+     of different input from what would run, and no other review of it was 
+     available. This is not a judgment that the action is unsafe. Issue the call
+     again once, as this conversation records it; if it is denied again, the 
+     hook changes it each time, so do not issue it again: continue with other 
+     tasks that don't require it, and tell the user that a hook (a PreToolUse 
+     hook, or a mod's) rewrites the Bash call, that auto mode could not evaluate
+     the rewritten call, and that they can turn that hook or mod off (or ask 
+     their administrator, if their organization set it), or switch out of auto 
+     mode and approve the call themselves. Note: reading files, searching code, 
+     and other read-only operations do not require the classifier and can still 
+     be used.
+
+❯ /usage 
+  ⎿  Settings dialog dismissed
+
+❯ /usage 
+  ⎿  Stats dialog dismissed
+
+  ⏺ Bash(cd /private/tmp/claude-501/-Users-xayrullorozimatov-Desktop-Projects-web-lessons/a3a49fac-f01c-41c6-8257-4dfdf98c87ec/scratchpad &&
+      (python3 -m http.server 8760…)
+  ⎿  fail: Almost! 1 goal to go. Look for the goals without a tick. | ticks=1
+     pass: Task done! ★★☆ +4 diamonds! | badge=★★☆ | save={"gems":4,"stars":{},"tasks":{"p3-1":2},"best":0,"cars":["red"],"car":"red",
+     "sound":true,"upto":0}
+     … +3 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/xayrullorozimatov/Desktop/Projects/web-lessons
+  ⎿  (timeout 1m 30s)
+  ⎿  Allowed by auto mode classifier
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Phase 1 is done and tested locally. Nothing is committed or pushed yet.
+
+  What's new on every practice and homework task
+  - Goals list above the editor. For example, Lists task 1 shows "A dots list: ul" and "4 things: 4 li".
+  - Check my answer (gold button) ticks the goals that are met and says how many are left. If his code has syntax mistakes, it lists those
+    first. "Check my code" still does the syntax check only.
+  - Stars: 3 if he passes on the first try, 2 after one or two failed tries, 1 after more. Each new star gives 2 diamonds; doing a task
+    again only pays for stars he didn't have. Passing all 3 homework tasks gives 10 bonus diamonds once per lesson.
+  - Celebration: confetti, a tune, the earned stars shown next to the task, and a green border. A failed try shakes the box.
+  - His diamonds are the same ones as in the Game Zone, and they sync to his account through the existing game save. No server change was
+    needed.
+
+  How the answers are checked
+  - All 112 tasks (16 lessons × 7) have rules in generate/answer_checks.py. The rules check structure, not exact words, so his own content
+    still passes.
+  - For the "Your idea" homework task, the rules are made automatically from the tags he has learned so far.
+  - A new test, generate/test_answers.py, runs the real checker in Chrome. All 128 checks pass: 112 tasks plus 16 "Your idea" tasks. Every
+    model answer passes its rules, and unchanged starter code fails. I broke a rule on purpose and the test caught it.
+  - The other two test suites also pass.
+
+  Browser test: on Lists task 1, a 1-item list showed "Almost! 1 goal to go". A 4-item list on the second try gave ★★☆ and +4 diamonds. The
+  stars were still there after a reload, the Game Zone showed 4 diamonds, and there were no JS errors.
+
+  I also changed:
+  - Two model answers asked for 3 items but only had 2, so I added one to each: the hobbies table in lesson 10 and the drop-down in
+    lesson 14.
+  - The sound, confetti and save code moved from game.js to kit.js so lesson pages can use them.
+
+  Phase 2, not started: lesson progress bars, levels and badges, the design pass, and showing his stars in the teacher panel.
+
+  Should I commit and push phase 1 now? I'll do phase 2 after that, whenever you're ready (the new session can pick up from here).

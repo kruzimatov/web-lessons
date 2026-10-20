@@ -69,7 +69,8 @@
 /* Progress grid: one row per lesson, a coloured square per task */
 .tp-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 0 0 10px; font-size: 0.85em; }
 .tp-key::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 3px; vertical-align: -1px; }
-.tp-key.done::before { background: #22a55a; }
+.tp-key.passed::before { background: #22a55a; }
+.tp-key.written::before { background: #6b9cff; }
 .tp-key.mistakes::before { background: #f5b301; }
 .tp-key.started::before { background: #9aa3b2; }
 .tp-key.empty::before { border: 2px dashed var(--line); }
@@ -86,7 +87,8 @@
   display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 8px;
   font: inherit; font-size: 0.85em; font-weight: 700; border: 0; cursor: pointer;
 }
-.tp-cell.done { background: #22a55a; color: #fff; }
+.tp-cell.passed { background: #22a55a; color: #fff; font-size: 0.6em; letter-spacing: -1px; }
+.tp-cell.written { background: #6b9cff; color: #fff; }
 .tp-cell.mistakes { background: #f5b301; color: #1f2937; }
 .tp-cell.started { background: #9aa3b2; color: #fff; }
 .tp-cell.empty { color: var(--muted); border: 2px dashed var(--line); cursor: default; }
@@ -105,7 +107,8 @@ button.tp-row:hover { border-color: var(--accent); }
 .tp-row-text { display: grid; min-width: 0; line-height: 1.35; }
 .tp-row-text small { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tp-chip { padding: 2px 10px; border-radius: 6px; font-size: 0.8em; font-weight: 700; white-space: nowrap; }
-.tp-chip.done { background: var(--green-soft); color: var(--green); }
+.tp-chip.passed { background: var(--green-soft); color: var(--green); }
+.tp-chip.written { background: var(--accent-soft); color: var(--accent); }
 .tp-chip.mistakes { background: #fff1b8; color: #6b4e00; }
 .tp-chip.started, .tp-chip.empty { background: var(--surface); color: var(--muted); }
 .tp-stars { color: #f4b400; letter-spacing: 2px; }
