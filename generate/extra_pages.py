@@ -45,8 +45,7 @@ def overview_page(lessons):
         links = " &middot; ".join(
             f'<a href="{href}">{name}</a>' for href, name in (
                 (f"{f}/lesson.html", "Lesson"), (f"{f}/practice.html", "Practice"),
-                (f"{f}/homework.html", "Homework"), (f"lesson{L['n']:02d}_answers.html", "Answers"),
-                (f"{f}/slides.pptx", "Slides")))
+                (f"{f}/homework.html", "Homework"), (f"lesson{L['n']:02d}_answers.html", "Answers")))
         part_list = "".join(f"<li>{fmt(t)}</li>" for t in part_titles(L["blocks"]))
         practice = "".join(
             f'<li><strong>{LEVELS[i]}:</strong> {fmt(t["task"])}'

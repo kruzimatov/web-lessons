@@ -125,5 +125,22 @@ document.getElementById("sound").addEventListener("click", () => {
   hud();
   beep(880);
 });
+// A short report he pastes in Telegram, so the teacher sees his progress without a server.
+document.getElementById("share").addEventListener("click", async () => {
+  const stars = Object.values(save.stars).reduce((a, b) => a + b, 0);
+  const homework = Object.keys(save.homework || {}).map(Number).sort((a, b) => a - b);
+  const levels = document.querySelectorAll(".level").length;
+  const text = [`Game Zone progress`, `Levels done: ${Object.keys(save.stars).length} of ${levels}`,
+    `Stars: ${stars} of ${levels * 3}`, `Diamonds: ${save.gems}`, `Best race: ${save.best}`,
+    `Homework done: ${homework.length ? "lessons " + homework.join(", ") : "none yet"}`,
+    `Cars: ${CARS.filter((c) => save.cars.includes(c.id)).map((c) => c.name).join(", ")}`].join("\n");
+  const note = document.getElementById("shared");
+  try {
+    await navigator.clipboard.writeText(text);
+    note.textContent = "Copied! Paste it in Telegram for your teacher.";
+  } catch {
+    note.textContent = text;
+  }
+});
 hud();
 addEventListener("load", () => showMode(store.get("game-mode") || "builder"));

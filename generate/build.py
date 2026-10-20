@@ -2,7 +2,6 @@
 
 Usage (from the repo root): python3 generate/build.py
 Writes the public website to site/ and the answers to teacher/ (not in git).
-Needs python-pptx, Pillow, Google Chrome and node (for slide animations).
 """
 
 import importlib.util
@@ -16,7 +15,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from extra_pages import cheatsheet_page, overview_page, playground_page  # noqa: E402
 from game import game_page  # noqa: E402
 from pages import answers_page, homework_page, index_page, lesson_page, practice_page  # noqa: E402
-from slides import build_slides  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
@@ -76,7 +74,6 @@ def main():
         write(out / "practice.html", practice_page(L))
         write(out / "homework.html", homework_page(L))
         write(TEACHER / f'lesson{L["n"]:02d}_answers.html', answers_page(L))
-        build_slides(L, out / "slides.pptx")
         print("built", L["folder"])
     write(SITE / "index.html", index_page(lessons))
     write(SITE / "cheatsheet.html", cheatsheet_page(lessons))

@@ -4,7 +4,7 @@
 
 - 6 lessons a week, 20 to 40 minutes each, 24 lessons a month
 - Online lessons (screen share). Student has a computer and an iPad
-- Language: English first, short Uzbek hints where an Uzbek example explains better. Slides in English
+- Language: English first, short Uzbek hints where an Uzbek example explains better.
 - He writes code in the live editor in Chrome. VS Code starts in lesson 6
 - Homework after every lesson: 3 tasks, about 10 minutes
 
@@ -31,7 +31,6 @@ Keep the GitHub repo private: the lesson files in `generate/lessons/` contain th
 | `practice.html` | Student, in class | "When I'm stuck" card. Exactly 5 tasks: Easy, Medium, Find the bug, Medium, Mini project. Each task has Hint 1 (small) and Hint 2 (bigger). No answers. Code autosaves. |
 | `homework.html` | Student, at home | "When I'm stuck" card. 2 set tasks + task 3 "Your idea" (he builds anything with today's tags). Code autosaves. "Copy my homework" copies all 3 for Telegram. |
 | `teacher/lessonNN_answers.html` | Teacher only | Practice and homework answers. Never publish the `teacher/` folder. |
-| `slides.pptx` | Teacher | Built from the lesson page |
 
 Every editor: colored code, line numbers, auto-closing tags (CodeMirror from cdnjs, plain box without internet) and a "Check my code" button (`assets/check.js`, tests in `generate/test_check.js`) that explains mistakes with line numbers.
 

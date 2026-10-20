@@ -39,7 +39,7 @@ def mission(k, m):
         f'<p class="built">0 of {len(m["needs"])} built</p></div>'
         f'<div><h2>Level {k}: {esc(m["title"])}</h2><p class="story">{fmt(m["story"])}</p>'
         f'<ul class="needs">{needs}</ul></div></div>'
-        + play(m["start"], save=f'game-{m["id"]}')
+        + play(m["start"], save=f'game-{m["id"]}', lazy=True)
         + '<p class="finish"><button type="button" class="build-btn">Build it!</button>'
         '<span class="note" aria-live="polite"></span></p></section>'
     )
@@ -63,7 +63,9 @@ def game_page():
     body = f"""<h1><small>Play and learn</small>Game Zone</h1>
 <div class="hud"><span class="gem" aria-hidden="true"></span><b id="gems">0</b> diamonds
 <span class="star-icon" aria-hidden="true"></span><b id="star-total">0</b> of {3 * len(MISSIONS)} stars
-<button type="button" id="sound" aria-pressed="true">Sound: on</button></div>
+<button type="button" id="sound" aria-pressed="true">Sound: on</button>
+<button type="button" id="share">Copy my progress</button></div>
+<p class="shared" id="shared" aria-live="polite"></p>
 <div class="modes">
 <button type="button" data-mode="builder" aria-pressed="true">Block Builder</button>
 <button type="button" data-mode="racer" aria-pressed="false">Tag Racer</button>

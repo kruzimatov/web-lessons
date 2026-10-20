@@ -34,12 +34,14 @@ def tags_in(code):
     return sorted({t.lower() for t in re.findall(r"<([a-zA-Z][a-zA-Z0-9]*)", code)})
 
 
-def play(start, task="", save="", sandbox=SANDBOX, needs=(), big=False):
+def play(start, task="", save="", sandbox=SANDBOX, needs=(), big=False, lazy=False):
     """Live editor. With `save`, his code is kept in the browser between visits.
-    `needs`: tags the task asks for; "Check my code" says which are still missing."""
+    `needs`: tags the task asks for; "Check my code" says which are still missing.
+    `lazy`: the editor starts only when the page calls setupPlay (kit.js)."""
     head = f'<p class="task">{fmt(task)}</p>' if task else ""
     keep = f' data-save="{save}"' if save else ""
     keep += f' data-needs="{" ".join(needs)}"' if needs else ""
+    keep += " data-lazy" if lazy else ""
     return (
         f'<div class="play{" big" if big else ""}"{keep}>{head}<div class="panes">'
         f'<textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">{esc(start)}</textarea>'

@@ -15,7 +15,10 @@ document.addEventListener("submit", (e) => {
 });
 <\/script>`;
 
-document.querySelectorAll(".play").forEach((box) => {
+// Lazy boxes (data-lazy) start only when a page calls setupPlay, so hidden editors cost nothing.
+function setupPlay(box) {
+  if (box.dataset.ready) return;
+  box.dataset.ready = "1";
   const code = box.querySelector("textarea.src");
   const view = box.querySelector("iframe");
   const result = box.querySelector(".checked");
@@ -75,7 +78,8 @@ document.querySelectorAll(".play").forEach((box) => {
     result.replaceChildren(list);
   });
   show();
-});
+}
+document.querySelectorAll(".play:not([data-lazy])").forEach(setupPlay);
 
 // One right answer locks the question. Wrong answers lock one by one, so guessing shows.
 document.querySelectorAll(".quiz").forEach((quiz) => {
@@ -98,17 +102,33 @@ document.querySelectorAll(".quiz").forEach((quiz) => {
   });
 });
 
+// Finished homework wins diamonds once per lesson. The Game Zone (game.js) reads the same save.
+function homeworkReward(key) {
+  const done = [...document.querySelectorAll(".play textarea.src")].every((t) =>
+    t.value.trim() && t.value.trim() !== t.defaultValue.trim() && !(window.checkHTML && checkHTML(t.value).length));
+  if (!done) return " Finish every task with no mistakes to win 10 diamonds.";
+  let game = {};
+  try { game = JSON.parse(store.get("game")) || {}; } catch {}
+  game.homework = game.homework || {};
+  if (game.homework[key]) return "";
+  game.homework[key] = true;
+  game.gems = (game.gems || 0) + 10;
+  store.set("game", JSON.stringify(game));
+  return " +10 diamonds! Spend them in the Game Zone.";
+}
+
 document.querySelectorAll(".copy-all").forEach((btn) => {
   const note = btn.parentElement.querySelector(".copied");
   btn.addEventListener("click", async () => {
     const tasks = [...document.querySelectorAll(".play textarea.src")]
       .map((t, i) => `Task ${i + 1}:\n${t.value.trim() || "(empty)"}`);
     const text = btn.dataset.title + "\n\n" + tasks.join("\n\n");
+    const reward = btn.dataset.reward ? homeworkReward(btn.dataset.reward) : "";
     try {
       await navigator.clipboard.writeText(text);
-      note.textContent = "Copied! Now paste it in Telegram.";
+      note.textContent = "Copied! Now paste it in Telegram." + reward;
     } catch {
-      note.textContent = "Could not copy. Ask your teacher for help.";
+      note.textContent = "Could not copy. Ask your teacher for help." + reward;
     }
   });
 });

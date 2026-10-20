@@ -104,8 +104,14 @@
 
     let wait = 0;
     const later = () => { clearTimeout(wait); wait = setTimeout(update, 250); };
-    const cm = m.querySelector(".CodeMirror");
-    if (cm) cm.CodeMirror.on("change", later); else code.addEventListener("input", later);
+    let cm = null;
+    const start = () => {
+      const box = m.querySelector(".play");
+      if (box.dataset.ready) return;
+      setupPlay(box);
+      cm = m.querySelector(".CodeMirror");
+      if (cm) cm.CodeMirror.on("change", later); else code.addEventListener("input", later);
+    };
 
     m.open = () => {
       missions.forEach((x) => { x.hidden = x !== m; });
@@ -114,6 +120,7 @@
       fails = 0;
       note.textContent = "";
       next.hidden = true;
+      start();
       if (cm) cm.CodeMirror.refresh();
       lastDone = needs.length; // no beeps for work he did last time
       update();
