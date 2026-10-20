@@ -154,3 +154,22 @@ if (resume) {
     }
   } catch {}
 }
+
+// Light / dark switch. The page head applies the saved choice before the page draws.
+const nav = document.querySelector("nav.top");
+if (nav) {
+  const dark = () => document.documentElement.dataset.theme === "dark"
+    || (!document.documentElement.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "theme-btn";
+  const label = () => { btn.textContent = dark() ? "Light" : "Dark"; btn.setAttribute("aria-label", `Switch to ${btn.textContent.toLowerCase()} mode`); };
+  btn.addEventListener("click", () => {
+    const next = dark() ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    store.set("theme", next);
+    label();
+  });
+  label();
+  nav.append(btn);
+}

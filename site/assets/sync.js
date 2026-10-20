@@ -46,7 +46,7 @@
   });
 
   let badge = null;
-  function status(text) { if (badge) badge.querySelector("span").textContent = text; }
+  function status(text) { const el = badge && badge.querySelector(".state"); if (el) el.textContent = text === "Saved" ? "✓ Saved" : text; }
 
   function account(me) {
     const nav = document.querySelector("nav.top");
@@ -56,10 +56,11 @@
     if (!me) {
       badge.innerHTML = '<a class="login-btn" href="/login">Log in</a>';
     } else {
-      badge.innerHTML = "<strong></strong> <span></span> <button type=\"button\">Log out</button>";
+      badge.innerHTML = '<span class="avatar" aria-hidden="true"></span><strong></strong> <span class="state"></span> <button type="button">Log out</button>';
+      badge.querySelector(".avatar").textContent = me.username[0].toUpperCase();
       badge.querySelector("strong").textContent = me.username;
-      status(me.role === "teacher" ? "Teacher" : "Saved");
-      if (me.role === "teacher") badge.querySelector("span").innerHTML = '<a href="/teacher">Teacher panel</a>';
+      status(me.role === "teacher" ? "" : "Saved");
+      if (me.role === "teacher") badge.querySelector(".state").innerHTML = '<a href="/teacher">Teacher panel</a>';
       badge.querySelector("button").addEventListener("click", async () => {
         await push();
         await post("/api/logout", "{}").catch(() => {});

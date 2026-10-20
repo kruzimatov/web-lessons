@@ -131,6 +131,7 @@ def page(title, body, root="../../", current="", head="", scripts=()):
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
 <link rel="stylesheet" href="{CM}/codemirror.min.css">
 <link rel="stylesheet" href="{root}assets/style.css">
+<script>try {{ const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; }} catch {{}}</script>
 {head}</head>
 <body>
 <nav class="top">{nav}</nav>
