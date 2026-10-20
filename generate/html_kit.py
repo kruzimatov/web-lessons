@@ -109,11 +109,12 @@ def blocks_html(blocks, sandbox=SANDBOX):
     return "\n".join(out)
 
 
-NAV = [("index.html", "Home"), ("cheatsheet.html", "My tags"), ("playground.html", "Playground")]
+NAV = [("index.html", "Home"), ("cheatsheet.html", "My tags"), ("playground.html", "Playground"), ("game.html", "Game")]
 
 
-def page(title, body, root="../../", current=""):
-    """A full page. `root` is the way back to the site root; `current` marks the open menu item."""
+def page(title, body, root="../../", current="", head="", scripts=()):
+    """A full page. `root` is the way back to the site root; `current` marks the open menu item.
+    `head` and `scripts` add page-only styles and scripts (loaded after kit.js)."""
     nav = "".join(
         f'<a href="{root}{href}"{" aria-current=\"page\"" if href == current else ""}>{name}</a>'
         for href, name in NAV)
@@ -128,13 +129,14 @@ def page(title, body, root="../../", current=""):
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
 <link rel="stylesheet" href="{CM}/codemirror.min.css">
 <link rel="stylesheet" href="{root}assets/style.css">
-</head>
+{head}</head>
 <body>
 <nav class="top">{nav}</nav>
 {body}
 {"".join(f'<script src="{CM}/{f}"></script>' for f in EDITOR_FILES)}
 <script src="{root}assets/check.js"></script>
 <script src="{root}assets/kit.js"></script>
+{"".join(f'<script src="{root}assets/{s}"></script>' for s in scripts)}
 </body>
 </html>
 """

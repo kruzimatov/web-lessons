@@ -137,7 +137,9 @@ def index_page(lessons):
         '<div class="tiles"><a class="tile" href="cheatsheet.html"><strong>My tags</strong>'
         '<span>Forgot a tag? Look it up.</span></a>'
         '<a class="tile" href="playground.html"><strong>Playground</strong>'
-        '<span>A big editor for anything you like.</span></a></div>'
+        '<span>A big editor for anything you like.</span></a>'
+        '<a class="tile" href="game.html"><strong>Game Zone</strong>'
+        '<span>Build blocks, race cars, win diamonds.</span></a></div>'
         + "".join(sections)
     )
     return page("My Web Course", body, root="", current="index.html")

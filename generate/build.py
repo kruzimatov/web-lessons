@@ -14,6 +14,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from extra_pages import cheatsheet_page, overview_page, playground_page  # noqa: E402
+from game import game_page  # noqa: E402
 from pages import answers_page, homework_page, index_page, lesson_page, practice_page  # noqa: E402
 from slides import build_slides  # noqa: E402
 
@@ -80,8 +81,9 @@ def main():
     write(SITE / "index.html", index_page(lessons))
     write(SITE / "cheatsheet.html", cheatsheet_page(lessons))
     write(SITE / "playground.html", playground_page())
+    write(SITE / "game.html", game_page())
     write(TEACHER / "overview.html", overview_page(lessons))
-    print("built index, cheat sheet, playground, teacher overview")
+    print("built index, cheat sheet, playground, game, teacher overview")
 
 
 if __name__ == "__main__":
