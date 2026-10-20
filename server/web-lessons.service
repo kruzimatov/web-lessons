@@ -1,0 +1,19 @@
+# /etc/systemd/system/web-lessons.service
+[Unit]
+Description=Web Lessons API (logins, saved work, teacher panel)
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/var/www/web-lessons/app
+Environment=WL_DB=/var/www/web-lessons/data/lessons.db
+Environment=WL_PORT=8750
+ExecStart=/usr/bin/python3 server/app.py
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=full
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -3,3 +3,6 @@ teacher/
 __pycache__/
 .DS_Store
 .vercel
+*.db
+*.db-wal
+*.db-shm

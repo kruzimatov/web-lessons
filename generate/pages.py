@@ -80,7 +80,7 @@ def homework_page(L):
     parts = [header(L, "homework.html"),
              "<p>Write your code in the boxes. It saves by itself. When you finish, press "
              "<strong>Copy my homework</strong> and send it to your teacher on Telegram. Finished homework wins 10 diamonds for the Game Zone. "
-             "Finish your homework on the same device you started on.</p>", STUCK]
+             "Log in, and your homework saves on every device.</p>", STUCK]
     for i, t in enumerate(homework_tasks(L), 1):
         parts.append(f"<h3>Task {i}{' &middot; Your idea' if i == 3 else ''}</h3>")
         needs = [] if t["answer"].startswith("(") else tags_in(t["answer"])

@@ -276,3 +276,27 @@ footer { margin-top: 3em; padding-top: 12px; border-top: 1px solid var(--line); 
   .play .tools, .quiz button, .anim .replay, .copy-all, nav.top, .subnav { display: none; }
   details { display: block; }
 }
+
+/* Login and teacher panel */
+.account { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-left: auto; font-weight: 600; }
+.account span { color: var(--muted); }
+.account button { min-height: 36px; padding: 4px 12px; font: inherit; border: 2px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); cursor: pointer; }
+.account button:hover { border-color: var(--blue); }
+.account-form { display: grid; gap: 8px; max-width: 420px; }
+.account-form label { font-weight: 600; margin-top: 6px; }
+.account-form input { min-height: 48px; padding: 8px 12px; font: inherit; border: 2px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); }
+.account-form input:focus { border-color: var(--blue); }
+.account-form .btn { justify-self: start; border: 0; cursor: pointer; margin-top: 8px; }
+.pw-row { display: flex; gap: 8px; }
+.pw-row input { flex: 1; min-width: 0; }
+.show-pw { min-width: 72px; font: inherit; border: 2px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); cursor: pointer; }
+.show-pw:hover { border-color: var(--blue); }
+table.students td.actions { display: flex; flex-wrap: wrap; gap: 6px; }
+table.students button { min-height: 40px; padding: 4px 12px; font: inherit; font-size: 0.85em; border: 2px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); cursor: pointer; }
+table.students button:hover { border-color: var(--blue); }
+table.students button.danger { color: var(--red); }
+table.students button.danger:hover { border-color: var(--red); }
+.work-item { margin: 8px 0; padding: 10px 14px; background: var(--card); border: 2px solid var(--line); border-radius: 10px; }
+.work-item summary { cursor: pointer; font-weight: 600; }
+.work-item .panes { margin-top: 10px; }
+.work-item iframe { min-height: 240px; border: 1px solid var(--line); border-radius: 8px; width: 100%; }

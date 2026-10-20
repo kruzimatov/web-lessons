@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teacher Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<nav class="top"><a href="index.html">Home</a><a href="cheatsheet.html">My tags</a><a href="playground.html">Playground</a><a href="game.html">Game</a></nav>
+<h1><small>Teacher only</small>Teacher panel</h1>
+<div id="gate" hidden><p class="goal">Please <a href="login.html">log in</a> with your teacher account.</p></div>
+<div id="panel" hidden>
+<h2>Students</h2>
+<p>Updates by itself every 30 seconds.</p>
+<div class="scroll"><table class="students"><thead><tr><th>Student</th><th>Last active</th><th>Levels</th>
+<th>Stars</th><th>Diamonds</th><th>Best race</th><th>Homework done</th><th></th></tr></thead>
+<tbody id="students"></tbody></table></div>
+<section id="work" aria-live="polite"></section>
+<h2>Add a student</h2>
+<form id="add-form" class="account-form">
+<label for="new-username">Username</label>
+<input id="new-username" name="username" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+<label for="new-password">Password (at least 8 characters)</label><span class="pw-row"><input id="new-password" name="password" type="password" autocomplete="new-password" required><button type="button" class="show-pw">Show</button></span>
+<button type="submit" class="btn">Add student</button>
+<p class="checked" aria-live="polite"></p>
+</form>
+<h2>Change my password</h2>
+<form id="pw-form" class="account-form">
+<label for="my-password">New password (at least 8 characters)</label><span class="pw-row"><input id="my-password" name="password" type="password" autocomplete="new-password" required><button type="button" class="show-pw">Show</button></span>
+<button type="submit" class="btn">Change password</button>
+<p class="checked" aria-live="polite"></p>
+</form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="assets/check.js"></script>
+<script src="assets/kit.js"></script>
+<script src="assets/sync.js"></script>
+<script src="assets/teacher.js"></script>
+</body>
+</html>
