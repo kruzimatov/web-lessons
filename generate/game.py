@@ -1,10 +1,9 @@
 """Game Zone page: Block Builder missions, Tag Racer and the Garage. Content lives in game_data.py."""
 
-import html
 import json
 
 from game_data import MISSIONS, QUESTIONS
-from html_kit import esc, fmt, page, play
+from html_kit import esc, fmt, need_item, page, play
 
 ARTS = {"sign", "house", "tree", "car", "rocket", "castle"}
 PIXEL_FONT = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">\n'
@@ -19,15 +18,6 @@ def check_game():
         assert m["needs"], f'game mission {m["id"]}: needs at least 1 task'
     for q in QUESTIONS:
         assert len(set(q[2:])) == 3, f"game question {q[1]!r}: the 3 answers must differ"
-
-
-def attr(text):
-    return html.escape(text, quote=True)
-
-
-def need_item(label, rule, n):
-    kind = "re" if rule.startswith("/") else "sel"
-    return f'<li data-{kind}="{attr(rule)}" data-n="{n}">{fmt(label)}</li>'
 
 
 def mission(k, m):

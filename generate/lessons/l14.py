@@ -19,6 +19,7 @@ FORM = """<form>
     <select id="fav">
       <option>Home</option>
       <option>Hobbies</option>
+      <option>Write to me</option>
     </select>
   </p>
   <p>

@@ -1,12 +1,5 @@
 // Game Zone: one save for all games, sound, diamonds, the mode buttons and the Garage.
-// builder.js and racer.js use save, keep, beep, tune, addGems, confetti and CARS from here.
-
-const save = (() => {
-  let old = {};
-  try { old = JSON.parse(store.get("game")) || {}; } catch {}
-  return { gems: 0, stars: {}, best: 0, cars: ["red"], car: "red", sound: true, upto: 0, ...old };
-})();
-const keep = () => store.set("game", JSON.stringify(save));
+// The save, sounds and confetti live in kit.js. builder.js and racer.js use addGems and CARS from here.
 
 const CARS = [
   { id: "red", name: "Red Racer", color: "#e53935", price: 0 },
@@ -19,25 +12,6 @@ const CARS = [
 ];
 const carColor = () => (CARS.find((c) => c.id === save.car) || CARS[0]).color;
 
-let audio = null;
-function beep(freq, ms = 120) {
-  if (!save.sound) return;
-  try {
-    audio = audio || new AudioContext();
-    const osc = audio.createOscillator();
-    const vol = audio.createGain();
-    const end = audio.currentTime + ms / 1000;
-    osc.type = "square";
-    osc.frequency.value = freq;
-    vol.gain.setValueAtTime(0.06, audio.currentTime);
-    vol.gain.exponentialRampToValueAtTime(0.001, end);
-    osc.connect(vol).connect(audio.destination);
-    osc.start();
-    osc.stop(end);
-  } catch {}
-}
-const tune = (notes) => notes.forEach((f, i) => setTimeout(() => beep(f, 150), i * 110));
-
 function hud() {
   document.getElementById("gems").textContent = save.gems;
   document.getElementById("star-total").textContent = Object.values(save.stars).reduce((a, b) => a + b, 0);
@@ -47,24 +21,10 @@ function hud() {
 }
 
 function addGems(n) {
+  freshSave();
   save.gems += n;
   keep();
   hud();
-}
-
-function confetti() {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const box = document.querySelector(".confetti");
-  const colors = ["#5dbb3f", "#f4c430", "#26c6da", "#e53935", "#1e88e5"];
-  for (let i = 0; i < 48; i++) {
-    const bit = document.createElement("i");
-    bit.style.left = Math.random() * 100 + "vw";
-    bit.style.background = colors[i % colors.length];
-    bit.style.animationDelay = Math.random() * 0.5 + "s";
-    bit.style.setProperty("--dx", (Math.random() - 0.5) * 240 + "px");
-    box.append(bit);
-  }
-  setTimeout(() => box.replaceChildren(), 3000);
 }
 
 // A small pixel car, the same one he drives in Tag Racer.
@@ -143,4 +103,5 @@ document.getElementById("share").addEventListener("click", async () => {
   }
 });
 hud();
+document.addEventListener("visibilitychange", () => { if (!document.hidden) { freshSave(); hud(); } });
 addEventListener("load", () => showMode(store.get("game-mode") || "builder"));

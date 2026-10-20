@@ -34,19 +34,31 @@ def tags_in(code):
     return sorted({t.lower() for t in re.findall(r"<([a-zA-Z][a-zA-Z0-9]*)", code)})
 
 
-def play(start, task="", save="", sandbox=SANDBOX, needs=(), big=False, lazy=False):
+def attr(text):
+    return html.escape(text, quote=True)
+
+
+def need_item(label, rule, n):
+    """One goal: a CSS selector, a /regex/ or "any:a,b,c" (check.js, meetsRule)."""
+    kind = "re" if rule.startswith("/") else "any" if rule.startswith("any:") else "sel"
+    rule = rule[4:] if kind == "any" else rule
+    return f'<li data-{kind}="{attr(rule)}" data-n="{n}">{fmt(label)}</li>'
+
+
+def play(start, task="", save="", sandbox=SANDBOX, checks=(), big=False, lazy=False):
     """Live editor. With `save`, his code is kept in the browser between visits.
-    `needs`: tags the task asks for; "Check my code" says which are still missing.
+    `checks`: the task's goals (answer_checks.py); "Check my answer" ticks them and gives stars.
     `lazy`: the editor starts only when the page calls setupPlay (kit.js)."""
     head = f'<p class="task">{fmt(task)}</p>' if task else ""
     keep = f' data-save="{save}"' if save else ""
-    keep += f' data-needs="{" ".join(needs)}"' if needs else ""
     keep += " data-lazy" if lazy else ""
+    goals = ('<ul class="goals" aria-label="Goals">' + "".join(need_item(*c) for c in checks) + "</ul>") if checks else ""
+    answer = '<button type="button" class="answer-btn">Check my answer</button>' if checks else ""
     return (
-        f'<div class="play{" big" if big else ""}"{keep}>{head}<div class="panes">'
+        f'<div class="play{" big" if big else ""}"{keep}>{head}{goals}<div class="panes">'
         f'<textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">{esc(start)}</textarea>'
         f'<iframe title="Result" sandbox="{sandbox}"></iframe></div>'
-        f'<div class="tools"><button type="button" class="check-btn">Check my code</button>'
+        f'<div class="tools">{answer}<button type="button" class="check-btn">Check my code</button>'
         f'<button type="button" class="reset">Start again</button></div>'
         f'<div class="checked" aria-live="polite"></div></div>'
     )

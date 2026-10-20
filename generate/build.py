@@ -15,6 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from extra_pages import cheatsheet_page, overview_page, playground_page  # noqa: E402
 from account import login_page, teacher_page  # noqa: E402
 from game import game_page  # noqa: E402
+from html_kit import tags_in  # noqa: E402
 from pages import answers_page, homework_page, index_page, lesson_page, practice_page  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,6 +31,10 @@ def load_lessons():
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         lessons.append(mod.LESSON)
+    learned = set()
+    for L in lessons:  # tags from this lesson and every one before it, for the "your idea" task
+        learned |= set(tags_in(" ".join(code for code, _ in L["cheats"])))
+        L["learned"] = sorted(learned)
     return lessons
 
 

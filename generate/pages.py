@@ -1,5 +1,6 @@
 """The four pages of every lesson, plus the course home page."""
 
+from answer_checks import checks_for, idea_checks
 from html_kit import SANDBOX, blocks_html, esc, fmt, page, part_titles, plain, play, tags_in
 
 LEVELS = ["Easy", "Medium", "Find the bug", "Medium", "Mini project"]
@@ -15,6 +16,7 @@ IDEAS = [
 
 STUCK = """<details class="stuck" open><summary>When I'm stuck</summary><ol>
 <li>Read my code slowly, line by line.</li>
+<li>Press <strong>Check my answer</strong> and look at the goals without a tick.</li>
 <li>Press <strong>Check my code</strong> and read what it says.</li>
 <li>Check that every tag that opens also closes.</li>
 <li>Look it up in <a href="../../cheatsheet.html">My tags</a>.</li>
@@ -32,6 +34,7 @@ def homework_tasks(L):
         "task": f"Your idea! Build any page you like. Use at least 3 things from today, for example {tags}. "
                 f"No idea? Try: {topics}.",
         "answer": "(his own page: check that it uses at least 3 things from today and that every tag closes)",
+        "checks": idea_checks(tags_in(" ".join(code for code, _ in L["cheats"])), L["learned"]),
     }
     return L["homework"] + [idea]
 
@@ -67,7 +70,7 @@ def practice_page(L):
     for i, t in enumerate(L["practice"], 1):
         parts.append(f"<h3>Task {i} &middot; {LEVELS[i - 1]}</h3>")
         parts.append(play(t["start"], t["task"], save=f"p{L['n']}-{i}", sandbox=L.get("sandbox", SANDBOX),
-                          needs=tags_in(t["answer"])))
+                          checks=checks_for(f"p{L['n']}-{i}")))
         parts.append('<div class="hints">' + "".join(
             f'<details class="hint"><summary>Hint {k}</summary><p>{fmt(h)}</p></details>'
             for k, h in enumerate(t["hints"], 1)) + "</div>")
@@ -79,13 +82,12 @@ def practice_page(L):
 def homework_page(L):
     parts = [header(L, "homework.html"),
              "<p>Write your code in the boxes. It saves by itself. When you finish, press "
-             "<strong>Copy my homework</strong> and send it to your teacher on Telegram. Finished homework wins 10 diamonds for the Game Zone. "
+             "<strong>Copy my homework</strong> and send it to your teacher on Telegram. Press <strong>Check my answer</strong> on every task to win stars and diamonds. Pass all 3 for 10 bonus diamonds. "
              "Log in, and your homework saves on every device.</p>", STUCK]
     for i, t in enumerate(homework_tasks(L), 1):
         parts.append(f"<h3>Task {i}{' &middot; Your idea' if i == 3 else ''}</h3>")
-        needs = [] if t["answer"].startswith("(") else tags_in(t["answer"])
         parts.append(play(t.get("start", ""), t["task"], save=f"h{L['n']}-{i}", sandbox=L.get("sandbox", SANDBOX),
-                          needs=needs))
+                          checks=t.get("checks") or checks_for(f"h{L['n']}-{i}")))
     parts.append(f'<p><button type="button" class="copy-all" data-title="Lesson {L["n"]} homework" '
                  f'data-reward="{L["n"]}">'
                  'Copy my homework</button> <span class="copied" aria-live="polite"></span></p>')

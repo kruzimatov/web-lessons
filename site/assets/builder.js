@@ -36,19 +36,6 @@
     })));
   }
 
-  function isMet(li, src, doc) {
-    const n = Number(li.dataset.n);
-    if (li.dataset.re) {
-      const [, body, flags] = /^\/(.*)\/(\w*)$/s.exec(li.dataset.re);
-      return (src.match(new RegExp(body, flags + "g")) || []).length >= n;
-    }
-    try { return doc.querySelectorAll(li.dataset.sel).length >= n; } catch { return false; }
-  }
-
-  function starText(n) {
-    return "★".repeat(n) + "☆".repeat(3 - n);
-  }
-
   function drawMap() {
     let open = true;
     map.querySelectorAll(".level").forEach((btn) => {
@@ -90,7 +77,7 @@
       const src = code.value;
       const doc = new DOMParser().parseFromString(src, "text/html");
       const done = needs.filter((li) => {
-        const ok = isMet(li, src, doc);
+        const ok = meetsRule(li, src, doc);
         li.classList.toggle("done", ok);
         return ok;
       }).length;

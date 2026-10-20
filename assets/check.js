@@ -98,4 +98,22 @@ function checkAttributes(name, attrs, pos, add) {
   if ((name === "video" || name === "audio") && !has("controls")) add(pos, `<${name}> needs controls to show the play button`);
 }
 
+// One goal from answer_checks.py or game_data.py, on <li data-sel|data-re|data-any data-n>.
+// sel: that many elements; re: that many matches in his code; any: that many of these selectors found.
+// n = 0 means it must not be there.
+function meetsRule(li, src, doc) {
+  const n = Number(li.dataset.n);
+  const count = (sel) => { try { return doc.querySelectorAll(sel).length; } catch { return -1; } };
+  let got;
+  if (li.dataset.re) {
+    const [, body, flags] = /^\/(.*)\/(\w*)$/s.exec(li.dataset.re);
+    got = (src.match(new RegExp(body, flags + "g")) || []).length;
+  } else if (li.dataset.any) {
+    got = li.dataset.any.split(",").filter((sel) => count(sel) > 0).length;
+  } else {
+    got = count(li.dataset.sel);
+  }
+  return n === 0 ? got === 0 : got >= n;
+}
+
 if (typeof module === "object") module.exports = { checkHTML };

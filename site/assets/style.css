@@ -242,6 +242,31 @@ ul.mistakes li::marker { color: var(--red); }
 .checked.good { background: var(--green-soft); color: var(--green); }
 .checked.bad { background: var(--red-soft); color: var(--red); }
 .checked ul, .checked p { margin: 4px 0; }
+.checked.win { font-size: 1.1em; }
+
+/* Task goals: "Check my answer" ticks them, then stars and diamonds */
+.goals { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; }
+.goals li { position: relative; padding: 6px 10px 6px 38px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; }
+.goals li::before {
+  content: ""; position: absolute; left: 10px; top: 50%; width: 18px; height: 18px; margin-top: -11px;
+  border: 2px solid var(--muted); border-radius: 5px;
+}
+.goals li.done { border-color: var(--green); background: var(--green-soft); }
+.goals li.done::before { content: "✓"; display: grid; place-items: center; background: var(--green); border-color: var(--green); color: var(--bg); font-weight: 900; font-size: 13px; }
+.play .answer-btn {
+  margin-top: 10px; min-height: 44px; padding: 8px 18px; font: inherit; font-size: 0.95em; font-weight: 700;
+  border: 0; border-radius: 8px; background: #f5b301; color: #1f2937; cursor: pointer; box-shadow: 0 3px 0 #b07f00;
+}
+.play .answer-btn:hover { background: #ffc61a; }
+.play .answer-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #b07f00; }
+.task-stars { align-self: center; margin-top: 10px; color: #f4b400; font-size: 1.3em; letter-spacing: 2px; }
+.play.won { border-color: var(--green); }
+.shake { animation: shake 0.4s; }
+@keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+.confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 10; }
+.confetti i { position: absolute; top: -20px; width: 12px; height: 12px; animation: fall 2.4s ease-in forwards; }
+@keyframes fall { to { transform: translate(var(--dx), 105vh) rotate(540deg); } }
+@media (prefers-reduced-motion: reduce) { .shake { animation: none; } }
 .play .reset, .quiz button, .anim .replay {
   margin-top: 10px; min-height: 44px; padding: 8px 16px; font: inherit; font-size: 0.9em;
   border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); cursor: pointer;

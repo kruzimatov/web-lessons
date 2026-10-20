@@ -4,6 +4,67 @@ const store = {
   drop(key) { try { localStorage.removeItem(key); } catch {} },
 };
 
+// One save for the Game Zone and the lessons: diamonds, stars per task and per level, cars.
+const save = { gems: 0, stars: {}, tasks: {}, best: 0, cars: ["red"], car: "red", sound: true, upto: 0 };
+function freshSave() { // another tab may have won diamonds since this page opened
+  try { Object.assign(save, JSON.parse(store.get("game")) || {}); } catch {}
+}
+freshSave();
+const keep = () => store.set("game", JSON.stringify(save));
+const GEMS_PER_STAR = 2;
+
+// A task passed with `stars` (1 to 3). Only new stars win diamonds, so redoing a task never farms them.
+function winTask(id, stars) {
+  freshSave();
+  const before = save.tasks[id] || 0;
+  const gems = Math.max(0, stars - before) * GEMS_PER_STAR;
+  save.tasks[id] = Math.max(before, stars);
+  save.gems += gems;
+  keep();
+  return gems;
+}
+const starText = (n) => "★".repeat(n) + "☆".repeat(3 - n);
+
+let audio = null;
+function beep(freq, ms = 120) {
+  if (!save.sound) return;
+  try {
+    audio = audio || new AudioContext();
+    const osc = audio.createOscillator();
+    const vol = audio.createGain();
+    const end = audio.currentTime + ms / 1000;
+    osc.type = "square";
+    osc.frequency.value = freq;
+    vol.gain.setValueAtTime(0.06, audio.currentTime);
+    vol.gain.exponentialRampToValueAtTime(0.001, end);
+    osc.connect(vol).connect(audio.destination);
+    osc.start();
+    osc.stop(end);
+  } catch {}
+}
+const tune = (notes) => notes.forEach((f, i) => setTimeout(() => beep(f, 150), i * 110));
+
+function confetti() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let box = document.querySelector(".confetti");
+  if (!box) {
+    box = document.createElement("div");
+    box.className = "confetti";
+    box.setAttribute("aria-hidden", "true");
+    document.body.append(box);
+  }
+  const colors = ["#5dbb3f", "#f4c430", "#26c6da", "#e53935", "#1e88e5"];
+  for (let i = 0; i < 48; i++) {
+    const bit = document.createElement("i");
+    bit.style.left = Math.random() * 100 + "vw";
+    bit.style.background = colors[i % colors.length];
+    bit.style.animationDelay = Math.random() * 0.5 + "s";
+    bit.style.setProperty("--dx", (Math.random() - 0.5) * 240 + "px");
+    box.append(bit);
+  }
+  setTimeout(() => box.replaceChildren(), 3000);
+}
+
 // In form lessons a sent form stays on the page and says "Sent!" instead of leaving.
 const FORM_HELPER = `<script>
 document.addEventListener("submit", (e) => {
@@ -57,25 +118,62 @@ function setupPlay(box) {
     if (key) store.drop(key);
   });
 
-  const needs = (box.dataset.needs || "").split(" ").filter(Boolean);
-  box.querySelector(".check-btn").addEventListener("click", () => {
-    const missing = needs.filter((t) => !new RegExp(`<${t}[\\s>/]`, "i").test(code.value));
-    const notes = missing.map((t) => `The task needs <${t}>. You have not used it yet`);
-    const problems = notes.concat((window.checkHTML ? checkHTML(code.value) : []).map((p) => `Line ${p.line}: ${p.msg}`));
-    const list = document.createElement(problems.length ? "ul" : "p");
-    if (problems.length) {
-      for (const text of problems) {
-        const li = document.createElement("li");
-        li.textContent = text;
-        list.append(li);
-      }
-    } else {
-      list.textContent = needs.length
-        ? "No mistakes, and every tag the task needs is there. Read the task once more: is everything done?"
-        : "No mistakes found. Does the page on the right look the way you want?";
-    }
-    result.className = "checked " + (problems.length ? "bad" : "good");
+  const say = (cls, items) => {
+    const list = document.createElement(items.length > 1 ? "ul" : "p");
+    if (items.length > 1) items.forEach((text) => list.append(Object.assign(document.createElement("li"), { textContent: text })));
+    else list.textContent = items[0];
+    result.className = "checked " + cls;
     result.replaceChildren(list);
+  };
+  const mistakes = () => (window.checkHTML ? checkHTML(code.value) : []).map((p) => `Line ${p.line}: ${p.msg}`);
+  box.querySelector(".check-btn").addEventListener("click", () => {
+    const problems = mistakes();
+    if (problems.length) say("bad", problems);
+    else say("good", ["No mistakes found. Does the page on the right look the way you want?"]);
+  });
+
+  // "Check my answer": ticks the goals. Fewer tries, more stars; new stars win diamonds.
+  const answer = box.querySelector(".answer-btn");
+  if (!answer) { show(); return; }
+  const goals = [...box.querySelectorAll(".goals li")];
+  const id = box.dataset.save;
+  const badge = document.createElement("span");
+  badge.className = "task-stars";
+  const drawBadge = () => {
+    const got = save.tasks[id] || 0;
+    badge.textContent = got ? starText(got) : "";
+    box.classList.toggle("won", got > 0);
+  };
+  answer.after(badge);
+  drawBadge();
+  let tries = 0;
+  answer.addEventListener("click", () => {
+    const doc = new DOMParser().parseFromString(code.value, "text/html");
+    let left = 0;
+    for (const li of goals) {
+      const ok = meetsRule(li, code.value, doc);
+      li.classList.toggle("done", ok);
+      if (!ok) left += 1;
+    }
+    const problems = mistakes();
+    if (left || problems.length) {
+      tries += 1;
+      beep(150, 300);
+      box.classList.remove("shake");
+      void box.offsetWidth;
+      box.classList.add("shake");
+      if (problems.length) say("bad", ["Fix these mistakes first:", ...problems]);
+      else say("bad", [`Almost! ${left} goal${left > 1 ? "s" : ""} to go. Look for the goals without a tick.`]);
+      return;
+    }
+    const stars = tries === 0 ? 3 : tries <= 2 ? 2 : 1;
+    const gems = winTask(id, stars);
+    drawBadge();
+    const homework = document.querySelector(".copy-all[data-reward]");
+    const bonus = homework ? homeworkReward(homework.dataset.reward) : "";
+    say("good win", [`Task done! ${starText(stars)}` + (gems ? ` +${gems} diamonds!` : "") + bonus]);
+    tune([523, 659, 784, 1047]);
+    confetti();
   });
   show();
 }
@@ -102,19 +200,17 @@ document.querySelectorAll(".quiz").forEach((quiz) => {
   });
 });
 
-// Finished homework wins diamonds once per lesson. The Game Zone (game.js) reads the same save.
-function homeworkReward(key) {
-  const done = [...document.querySelectorAll(".play textarea.src")].every((t) =>
-    t.value.trim() && t.value.trim() !== t.defaultValue.trim() && !(window.checkHTML && checkHTML(t.value).length));
-  if (!done) return " Finish every task with no mistakes to win 10 diamonds.";
-  let game = {};
-  try { game = JSON.parse(store.get("game")) || {}; } catch {}
-  game.homework = game.homework || {};
-  if (game.homework[key]) return "";
-  game.homework[key] = true;
-  game.gems = (game.gems || 0) + 10;
-  store.set("game", JSON.stringify(game));
-  return " +10 diamonds! Spend them in the Game Zone.";
+// Every homework task of a lesson passed: +10 diamonds, once per lesson.
+function homeworkReward(lesson) {
+  freshSave();
+  save.homework = save.homework || {};
+  if (save.homework[lesson]) return "";
+  const ids = [...document.querySelectorAll(".play[data-save]")].map((b) => b.dataset.save);
+  if (!ids.every((id) => save.tasks[id])) return " Pass every task to win 10 bonus diamonds.";
+  save.homework[lesson] = true;
+  save.gems += 10;
+  keep();
+  return " All homework done: +10 bonus diamonds!";
 }
 
 document.querySelectorAll(".copy-all").forEach((btn) => {

@@ -35,6 +35,7 @@ HOBBIES = f"""<!DOCTYPE html>
     <tr><th>Hobby</th><th>When</th></tr>
     <tr><td>Football</td><td>Saturday</td></tr>
     <tr><td>Chess</td><td>Every evening</td></tr>
+    <tr><td>Lego</td><td>Sunday</td></tr>
   </table>
   <h2>Watch this</h2>
   <iframe width="400" height="225" src="https://www.youtube.com/embed/jNQXAC9IVRw" title="A video" allowfullscreen></iframe>

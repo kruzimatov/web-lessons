@@ -16,6 +16,7 @@
 <div id="here" hidden data-href="week1/lesson04_practice_about_me/lesson.html" data-n="4" data-title="Practice day: my "About me" page"></div><h1><small>Lesson 4 &middot; Week 1</small>Practice day: my "About me" page</h1><div class="subnav"><a href="lesson.html">Lesson</a><a href="practice.html" aria-current="page">Practice</a><a href="homework.html">Homework</a></div>
 <details class="stuck" open><summary>When I'm stuck</summary><ol>
 <li>Read my code slowly, line by line.</li>
+<li>Press <strong>Check my answer</strong> and look at the goals without a tick.</li>
 <li>Press <strong>Check my code</strong> and read what it says.</li>
 <li>Check that every tag that opens also closes.</li>
 <li>Look it up in <a href="../../cheatsheet.html">My tags</a>.</li>
@@ -24,10 +25,10 @@
 <li>Still stuck? Ask your teacher.</li>
 </ol></details>
 <h3>Task 1 &middot; Easy</h3>
-<div class="play" data-save="p4-1" data-needs="body h1 head html title"><p class="task">Start the page: the skeleton with the title "About Me" and an <code>&lt;h1&gt;</code> with your name.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code"></textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+<div class="play" data-save="p4-1"><p class="task">Start the page: the skeleton with the title "About Me" and an <code>&lt;h1&gt;</code> with your name.</p><ul class="goals" aria-label="Goals"><li data-re="/&lt;!doctype html&gt;/i" data-n="1">Start with <code>&lt;!DOCTYPE html&gt;</code></li><li data-re="/&lt;html[\s\S]*&lt;\/html&gt;/i" data-n="1"><code>&lt;html&gt;</code> opens and closes</li><li data-re="/&lt;body[\s\S]*&lt;\/body&gt;/i" data-n="1">A <code>&lt;body&gt;</code> that opens and closes</li><li data-re="/&lt;title&gt;\s*About Me\s*&lt;\/title&gt;/i" data-n="1">The title is <code>About Me</code></li><li data-sel="body h1" data-n="1">An <code>h1</code> with your name</li></ul><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code"></textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="answer-btn">Check my answer</button><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
 <div class="hints"><details class="hint"><summary>Hint 1</summary><p>Look at the skeleton in the lesson.</p></details><details class="hint"><summary>Hint 2</summary><p>The title goes in head, the h1 goes in body.</p></details></div>
 <h3>Task 2 &middot; Medium</h3>
-<div class="play" data-save="p4-2" data-needs="em h1 hr p strong"><p class="task">Add two paragraphs about you. Make your age strong and one word em. Then an <code>&lt;hr&gt;</code>.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+<div class="play" data-save="p4-2"><p class="task">Add two paragraphs about you. Make your age strong and one word em. Then an <code>&lt;hr&gt;</code>.</p><ul class="goals" aria-label="Goals"><li data-sel="p" data-n="2">2 paragraphs about you</li><li data-re="/&lt;strong[^&gt;]*&gt;[^&lt;]*\d/i" data-n="1">Your age in <code>strong</code></li><li data-sel="em" data-n="1">One word in <code>em</code></li><li data-sel="p ~ hr" data-n="1">Then an <code>&lt;hr&gt;</code></li></ul><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;About Me&lt;/title&gt;
@@ -35,10 +36,10 @@
 &lt;body&gt;
   &lt;h1&gt;Hi, I am Ali!&lt;/h1&gt;
 &lt;/body&gt;
-&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="answer-btn">Check my answer</button><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
 <div class="hints"><details class="hint"><summary>Hint 1</summary><p>Age in <code>&lt;strong&gt;</code>, one word in <code>&lt;em&gt;</code>.</p></details><details class="hint"><summary>Hint 2</summary><p>The <code>&lt;hr&gt;</code> comes after the second <code>&lt;/p&gt;</code>.</p></details></div>
 <h3>Task 3 &middot; Find the bug</h3>
-<div class="play" data-save="p4-3" data-needs="body h1 head html li p strong title ul"><p class="task">Fix the 4 mistakes in this page.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+<div class="play" data-save="p4-3"><p class="task">Fix the 4 mistakes in this page.</p><ul class="goals" aria-label="Goals"><li data-sel="h1 ~ h1" data-n="0">Only one <code>h1</code></li><li data-re="/&lt;p&gt;\s*I am 9/i" data-n="1">"I am 9" is a <code>p</code></li><li data-sel="li" data-n="2">Dogs is in an <code>&lt;li&gt;</code></li><li data-re="/&lt;\/body&gt;/i" data-n="1">The body closes: <code>&lt;/body&gt;</code></li></ul><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;About Me&lt;/title&gt;
@@ -51,10 +52,10 @@
     &lt;li&gt;Cats&lt;/li&gt;
     Dogs
   &lt;/ul&gt;
-&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="answer-btn">Check my answer</button><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
 <div class="hints"><details class="hint"><summary>Hint 1</summary><p>There are 4: count the h1s, check the order, check the list, check the end.</p></details><details class="hint"><summary>Hint 2</summary><p>Second h1 becomes p. Close strong before p. Dogs needs li. Add <code>&lt;/body&gt;</code>.</p></details></div>
 <h3>Task 4 &middot; Medium</h3>
-<div class="play" data-save="p4-4" data-needs="h2 li ol ul"><p class="task">Add "My favorite things" (h2 + dots list of 3) and "My top 3" (h2 + numbers list).</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+<div class="play" data-save="p4-4"><p class="task">Add "My favorite things" (h2 + dots list of 3) and "My top 3" (h2 + numbers list).</p><ul class="goals" aria-label="Goals"><li data-sel="h2" data-n="2">2 <code>h2</code> parts</li><li data-sel="ul &gt; li" data-n="3">A dots list of 3 favorite things</li><li data-sel="ol &gt; li" data-n="3">A numbers list for your top 3</li></ul><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;About Me&lt;/title&gt;
@@ -69,10 +70,10 @@
   &lt;!-- 4. Top 3 --&gt;
 
 &lt;/body&gt;
-&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="answer-btn">Check my answer</button><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
 <div class="hints"><details class="hint"><summary>Hint 1</summary><p>Favorite things: <code>&lt;ul&gt;</code>. Top 3: <code>&lt;ol&gt;</code>.</p></details><details class="hint"><summary>Hint 2</summary><p>Each part starts with an <code>&lt;h2&gt;</code>.</p></details></div>
 <h3>Task 5 &middot; Mini project</h3>
-<div class="play" data-save="p4-5" data-needs="body em h1 h2 head hr html li ol p strong sub title ul"><p class="task">The full "About me" page: all 4 parts, an <code>&lt;hr&gt;</code> between parts, and a fun fact with <code>&lt;sub&gt;</code> or <code>&lt;sup&gt;</code> at the end.</p><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
+<div class="play" data-save="p4-5"><p class="task">The full "About me" page: all 4 parts, an <code>&lt;hr&gt;</code> between parts, and a fun fact with <code>&lt;sub&gt;</code> or <code>&lt;sup&gt;</code> at the end.</p><ul class="goals" aria-label="Goals"><li data-re="/&lt;!doctype html&gt;/i" data-n="1">Start with <code>&lt;!DOCTYPE html&gt;</code></li><li data-re="/&lt;html[\s\S]*&lt;\/html&gt;/i" data-n="1"><code>&lt;html&gt;</code> opens and closes</li><li data-re="/&lt;body[\s\S]*&lt;\/body&gt;/i" data-n="1">A <code>&lt;body&gt;</code> that opens and closes</li><li data-sel="h1" data-n="1">An <code>h1</code> with your name</li><li data-sel="p strong" data-n="1">About you: a <code>p</code> with <code>strong</code></li><li data-sel="p em" data-n="1">...and <code>em</code></li><li data-sel="ul &gt; li" data-n="3">Favorite things: a dots list</li><li data-sel="ol &gt; li" data-n="3">Top 3: a numbers list</li><li data-sel="hr" data-n="2">An <code>&lt;hr&gt;</code> between parts</li><li data-sel="sub, sup" data-n="1">A fun fact with <code>sub</code> or <code>sup</code></li></ul><div class="panes"><textarea class="src" spellcheck="false" autocapitalize="off" aria-label="Code">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;About Me&lt;/title&gt;
@@ -87,7 +88,7 @@
   &lt;!-- 4. Top 3 --&gt;
 
 &lt;/body&gt;
-&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
+&lt;/html&gt;</textarea><iframe title="Result" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe></div><div class="tools"><button type="button" class="answer-btn">Check my answer</button><button type="button" class="check-btn">Check my code</button><button type="button" class="reset">Start again</button></div><div class="checked" aria-live="polite"></div></div>
 <div class="hints"><details class="hint"><summary>Hint 1</summary><p>Do it part by part, under each comment.</p></details><details class="hint"><summary>Hint 2</summary><p>Fun fact: <code>H&lt;sub&gt;2&lt;/sub&gt;O</code>.</p></details></div>
 <p><button type="button" class="copy-all" data-title="Lesson 4 practice">Copy my practice</button> <span class="copied" aria-live="polite"></span></p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/xml-fold.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
