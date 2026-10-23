@@ -89,6 +89,41 @@ a.pp-stop:hover { transform: scale(1.1); }
 .pp-stop.gift { padding: 8px; color: var(--gold); background: var(--gold-soft); border-color: var(--gold); }
 .pp-stop.gift.passed { color: var(--bg); background: var(--gold); }
 
+/* At a glance grid */
+.pp-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0 0 10px; font-size: 0.8em; }
+.pp-legend .two { margin-right: 8px; }
+.pp-grid-scroll { overflow-x: auto; border-radius: 14px; border: 1px solid var(--line); background: var(--card); }
+.pp-grid { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+.pp-grid th, .pp-grid td { padding: 5px 4px; text-align: center; vertical-align: middle; border-bottom: 1px solid var(--line); border-radius: 0; }
+.pp-grid tbody th { background: var(--card); color: var(--ink); }
+.pp-grid thead th { position: sticky; top: 0; background: var(--surface); font-size: 0.85em; color: var(--muted); }
+.pp-grid tr:last-child > * { border-bottom: 0; }
+.pp-grid .hw { background: color-mix(in srgb, var(--accent-soft) 45%, transparent); }
+.pp-grid td.hw:first-of-type, .pp-grid th.hw:first-of-type { border-left: 2px solid var(--line); }
+.pp-grid-lesson { text-align: left !important; padding-left: 10px !important; font-weight: 600; white-space: nowrap; max-width: 240px; overflow: hidden; text-overflow: ellipsis; }
+.pp-grid-lesson .two { flex-direction: row; gap: 6px; }
+.pp-grid-lesson .two .uz::before { content: "· "; }
+.pp-grid-num {
+  display: inline-grid; place-items: center; width: 24px; height: 24px; margin-right: 6px; border-radius: 50%;
+  font-size: 0.85em; background: var(--surface); color: var(--muted); vertical-align: middle;
+}
+.pp-grid tr.passed .pp-grid-num { background: var(--green); color: var(--bg); }
+.pp-grid tr.now .pp-grid-num { background: var(--accent); color: var(--accent-ink); }
+.pp-grid tr.passed .pp-grid-lesson { color: var(--green); }
+.pp-grid tr.now { outline: 2px solid var(--accent); outline-offset: -2px; }
+.pp-grid-sum { font-weight: 700; padding-right: 10px !important; }
+.pp-grid tr.passed .pp-grid-sum { color: var(--green); }
+.pp-cell {
+  display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
+  font: inherit; font-weight: 700; border: 0; padding: 0;
+}
+button.pp-cell { cursor: pointer; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.18); }
+button.pp-cell:hover { transform: scale(1.12); }
+.pp-cell.s0 { background: var(--surface); color: var(--muted); }
+.pp-cell.s1 { background: color-mix(in srgb, var(--green) 30%, var(--card)); color: var(--ink); }
+.pp-cell.s2 { background: color-mix(in srgb, var(--green) 62%, var(--card)); color: var(--ink); }
+.pp-cell.s3 { background: var(--green); color: var(--bg); }
+
 /* Lessons */
 .pp-lessons { display: grid; gap: 10px; }
 .pp-lesson { margin: 0; border-radius: 14px; background: var(--card); border: 1px solid var(--line); border-left: 6px solid var(--line); }
@@ -169,6 +204,11 @@ a.pp-stop:hover { transform: scale(1.1); }
   .pp-lesson-score { grid-column: 1 / -1; text-align: left; }
   .pp-task { grid-template-columns: auto 1fr auto; }
   .pp-task .pp-btn { grid-column: 2 / -1; justify-self: start; }
+  .pp-grid-title { display: none; } /* the number is enough on a phone, so all columns fit */
+  .pp-grid-lesson { padding-left: 6px !important; }
+  .pp-grid-lesson .two { display: none; }
+  .pp-grid th, .pp-grid td { padding: 4px 2px; }
+  .pp-cell { width: 26px; height: 26px; font-size: 0.9em; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pp *, .pp *::before { animation: none !important; transition: none !important; }

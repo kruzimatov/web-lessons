@@ -109,6 +109,32 @@
     return list;
   }
 
+  // Every task of every lesson in one table, like the teacher's grid. A cell opens his page.
+  function grid(lessons, now) {
+    const head = el("tr", null, el("th", "pp-grid-lesson", two("Lesson", "Dars")),
+      ...TASKS.map(([kind, n]) => el("th", kind === "h" ? "hw" : null, `${kind === "p" ? "P" : "H"}${n}`)),
+      el("th", "pp-grid-sum", "★"));
+    const rows = lessons.map((L) => el("tr", `${L.state}${L.n === now ? " now" : ""}`,
+      el("th", "pp-grid-lesson", el("span", "pp-grid-num", L.state === "passed" ? "✓" : String(L.n)), el("span", "pp-grid-title", `${L.n}. ${L.title}`)),
+      ...L.list.map((t) => {
+        const label = t.stars ? String(t.stars) : "·";
+        const cell = t.code.trim() ? el("button", `pp-cell s${t.stars}`, label) : el("span", `pp-cell s${t.stars}`, label);
+        cell.title = `Lesson ${L.n} · ${t.en}: ${t.stars ? `${t.stars} stars` : "not done yet"}`;
+        if (cell.tagName === "BUTTON") {
+          cell.type = "button";
+          cell.onclick = () => show(`Lesson ${L.n} · ${t.kind === "p" ? "Practice" : "Homework"} ${t.n}: ${t.en}`, t.code);
+        }
+        return el("td", t.kind === "h" ? "hw" : null, cell);
+      }),
+      el("td", "pp-grid-sum", el("b", null, String(L.stars)))));
+    const legend = el("p", "pp-legend",
+      el("span", "pp-cell s3", "3"), two("stars, first try", "yulduz, birinchi urinish"),
+      el("span", "pp-cell s1", "1"), two("stars, more tries", "yulduz, ko'proq urinish"),
+      el("span", "pp-cell s0", "·"), two("not done", "bajarilmagan"));
+    return el("div", null, legend, el("div", "pp-grid-scroll",
+      el("table", "pp-grid", el("thead", null, head), el("tbody", null, ...rows))));
+  }
+
   function taskRow(t, L) {
     const row = el("li", `pp-task${t.stars ? " done" : ""}`,
       el("span", "pp-tick", t.stars ? "✓" : ""),
@@ -162,6 +188,9 @@
       giftCard(passed, stars),
       el("h2", "pp-h", two("The road to the gift", "Sovg'a sari yo'l")),
       road(lessons, now),
+      el("h2", "pp-h", two("At a glance", "Bir qarashda")),
+      el("p", "pp-hint", two("P = practice in class, H = homework. Numbers are stars.", "P = darsdagi mashq, H = uy vazifasi. Raqamlar yulduzlar soni.")),
+      grid(lessons, now),
       el("h2", "pp-h", two("Lessons", "Darslar")),
       el("p", "pp-hint", two("Tap a lesson to see every task.", "Har bir vazifani ko'rish uchun darsni bosing.")),
       el("div", "pp-lessons", ...lessons.map((L) => lessonCard(L, now, open))),
