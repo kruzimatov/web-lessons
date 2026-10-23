@@ -13,7 +13,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from extra_pages import cheatsheet_page, overview_page, playground_page  # noqa: E402
-from account import login_page, teacher_page  # noqa: E402
+from account import login_page, parent_page, teacher_page  # noqa: E402
 from game import game_page  # noqa: E402
 from html_kit import tags_in  # noqa: E402
 from pages import answers_page, homework_page, index_page, lesson_page, practice_page  # noqa: E402
@@ -87,8 +87,9 @@ def main():
     write(SITE / "game.html", game_page())
     write(SITE / "login.html", login_page())
     write(SITE / "teacher.html", teacher_page(lessons))
+    write(SITE / "parent.html", parent_page(lessons))
     write(TEACHER / "overview.html", overview_page(lessons))
-    print("built index, cheat sheet, playground, game, login, teacher panel, teacher overview")
+    print("built index, cheat sheet, playground, game, login, teacher panel, parent page, teacher overview")
 
 
 if __name__ == "__main__":

@@ -107,7 +107,10 @@
     const del = el("button", "Delete", "tp-btn ghost small danger");
     del.type = "button";
     del.onclick = () => openDelete(c.username);
-    manage.append(pw, del);
+    const parent = el("button", "Parent link", "tp-btn ghost small");
+    parent.type = "button";
+    parent.onclick = () => showParentLink(c.username);
+    manage.append(parent, pw, del);
     head.append(who, manage);
 
     const count = (kind, status) => c.works.filter((w) => w.kind === kind && (!status || w.status === status)).length;
@@ -258,6 +261,28 @@
     detail.replaceChildren(el("p", "Pick a student on the left.", "tp-empty"));
     await loadStudents();
   });
+  // The parent link: copy it for Telegram. "New link" turns the old one off, so it asks twice.
+  const openParent = formDialog("parent", (f) => navigator.clipboard.writeText(f.url.value));
+  const parentUrl = document.getElementById("parent-url");
+  const parentNew = document.getElementById("parent-new");
+  const fillParent = async (fresh) => {
+    const { key } = await api.post("/api/teacher/parent-link", { id: current.id, new: fresh });
+    parentUrl.value = `${location.origin}/parent?k=${key}`;
+  };
+  async function showParentLink(name) {
+    openParent(name);
+    parentNew.textContent = "New link";
+    parentUrl.value = "Loading...";
+    await fillParent(false);
+  }
+  parentNew.onclick = async () => {
+    if (parentNew.textContent === "New link") {
+      parentNew.textContent = "Sure? The old link stops working";
+      return;
+    }
+    await fillParent(true);
+    parentNew.textContent = "New link";
+  };
   document.getElementById("add-open").onclick = () => openAdd();
   document.getElementById("pw-open").onclick = () => openPw();
   document.getElementById("refresh").onclick = refresh;

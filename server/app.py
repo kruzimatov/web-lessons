@@ -1,4 +1,5 @@
 """Web Lessons API: login, saving a student's work, and the teacher panel.
+The parent page reads one student's progress through a secret link.
 Python standard library only. Runs behind nginx on 127.0.0.1, the site reaches it as /api/.
 
 Run:      WL_DB=data/lessons.db python3 server/app.py
@@ -175,6 +176,22 @@ def teacher_student(req):
     return found
 
 
+def teacher_parent_link(req):
+    req.user("teacher")
+    key = store.parent_key(req.number("id"), new=req.body.get("new") is True)
+    need(key, "No such student", 404)
+    return {"key": key}
+
+
+def parent(req):
+    """Public and read-only: a parent opens the secret link and sees the progress, no login."""
+    need(not limited(("parent", req.ip), 30), "Too many requests. Wait a minute.", 429)
+    key = req.query.get("k", "")
+    found = store.student_by_key(key) if 20 <= len(key) <= 100 else None
+    need(found, "This link does not work. Ask the teacher for a new one.", 404)
+    return found
+
+
 def password_ok(password):
     need(len(password) >= 8, "Password needs at least 8 characters")
     return password
@@ -218,6 +235,8 @@ ROUTES = {
     ("POST", "/api/teacher/students"): teacher_add,
     ("POST", "/api/teacher/password"): teacher_password,
     ("POST", "/api/teacher/delete"): teacher_delete,
+    ("POST", "/api/teacher/parent-link"): teacher_parent_link,
+    ("GET", "/api/parent"): parent,
     ("GET", "/api/health"): health,
 }
 

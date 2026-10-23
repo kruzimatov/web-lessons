@@ -1,0 +1,175 @@
+/* Parent page: big, calm, one glance. English on top, Uzbek under it. */
+body { max-width: 860px; font-size: 18px; }
+.pp { --gold: #b7791f; --gold-soft: #fff4cc; }
+:root[data-theme="dark"] .pp { --gold: #ffd666; --gold-soft: #3a3016; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pp { --gold: #ffd666; --gold-soft: #3a3016; } }
+
+.two { display: inline-flex; flex-direction: column; line-height: 1.3; }
+.two .uz { font-size: 0.82em; color: var(--muted); font-weight: 400; }
+.pp-wait, .pp-foot, .pp-hint { color: var(--muted); }
+.pp-foot { text-align: center; margin-top: 32px; font-size: 0.9em; }
+.pp-foot .two { align-items: center; }
+
+/* Hero */
+.pp-hero {
+  display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 18px;
+  background: var(--accent-soft); border: 1px solid var(--line);
+}
+.pp-avatar {
+  flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink); font: 600 1.9em "Fredoka", sans-serif;
+}
+.pp-who { flex: 1; min-width: 0; }
+.pp-who h1 { margin: 2px 0; font-size: 2em; overflow-wrap: anywhere; }
+.pp-kicker { font-size: 0.85em; font-weight: 600; color: var(--accent); }
+.pp-seen { margin: 0; font-size: 0.9em; color: var(--muted); }
+.pp-online { font-size: 0.9em; font-weight: 600; color: var(--green); }
+.pp-level {
+  flex: none; display: grid; justify-items: center; gap: 2px; padding: 10px 14px; border-radius: 14px;
+  background: var(--card); border: 2px solid var(--accent); text-align: center;
+}
+.pp-level strong { font: 600 1.8em/1 "Fredoka", sans-serif; color: var(--accent); }
+.pp-level .two { align-items: center; font-size: 0.8em; }
+
+/* Stats */
+.pp-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0; }
+.pp-stat { display: grid; gap: 4px; padding: 14px; border-radius: 14px; background: var(--tint); }
+.pp-stat strong { font: 600 1.7em/1 "Fredoka", sans-serif; color: var(--tone); }
+.pp-stat strong small { font-size: 0.55em; color: var(--muted); }
+.pp-stat .two { font-size: 0.85em; }
+.pp-stat.green { --tint: var(--green-soft); --tone: var(--green); }
+.pp-stat.gold { --tint: var(--gold-soft); --tone: var(--gold); }
+.pp-stat.blue { --tint: var(--accent-soft); --tone: var(--accent); }
+.pp-stat.orange { --tint: var(--orange-soft); --tone: var(--orange); }
+
+/* Bars. The thin line marks the pass score. */
+.pp-bar { position: relative; height: 12px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.pp-bar i { display: block; height: 100%; border-radius: inherit; background: var(--accent); transition: width 0.6s; }
+.pp-bar b { position: absolute; top: 0; bottom: 0; width: 3px; margin-left: -1px; background: var(--ink); opacity: 0.55; }
+
+/* Gift */
+.pp-gift {
+  display: flex; gap: 18px; padding: 20px; border-radius: 18px;
+  background: var(--gold-soft); border: 2px dashed var(--gold);
+}
+.pp-gift.won { border-style: solid; animation: pp-glow 2s ease-in-out infinite alternate; }
+@keyframes pp-glow { to { box-shadow: 0 0 0 6px var(--gold-soft), 0 0 24px var(--gold); } }
+.pp-gift-icon { flex: none; width: 64px; height: 64px; color: var(--gold); }
+.pp-gift-icon svg, .pp-stop.gift svg { width: 100%; height: 100%; }
+.pp-gift.won .pp-gift-icon { animation: pp-bounce 1s ease-in-out infinite alternate; }
+@keyframes pp-bounce { to { transform: translateY(-6px) rotate(-6deg); } }
+.pp-gift-text { flex: 1; min-width: 0; }
+.pp-gift h2 { margin: 0 0 4px; padding: 0; border: 0; font-size: 1.3em; }
+.pp-gift p { margin: 0 0 12px; }
+.pp-meter { display: grid; gap: 4px; margin-bottom: 10px; }
+.pp-meter-label { display: flex; justify-content: space-between; align-items: end; gap: 8px; font-size: 0.9em; }
+.pp-meter-label b { white-space: nowrap; }
+.pp-gift .pp-bar i { background: var(--gold); }
+.pp-left { font-weight: 600; margin: 4px 0 0 !important; }
+
+.pp-h { margin: 32px 0 6px; font-size: 1.3em; }
+.pp-hint { margin: 0 0 10px; font-size: 0.9em; }
+
+/* Road: one stop per lesson, the gift at the end */
+.pp-road {
+  list-style: none; margin: 12px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(48px, 1fr)); gap: 12px 8px;
+}
+.pp-road li { display: grid; place-items: center; }
+.pp-stop {
+  position: relative; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  font-weight: 700; text-decoration: none; color: var(--muted); background: var(--surface);
+  border: 2px solid var(--line); transition: transform 0.15s;
+}
+a.pp-stop:hover { transform: scale(1.1); }
+.pp-stop.passed { background: var(--green); border-color: var(--green); color: var(--bg); }
+.pp-stop.doing { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.pp-stop.now { border-width: 3px; border-color: var(--accent); animation: pp-pulse 1.6s ease-in-out infinite; }
+@keyframes pp-pulse { 50% { box-shadow: 0 0 0 7px var(--accent-soft); } }
+.pp-stop.gift { padding: 8px; color: var(--gold); background: var(--gold-soft); border-color: var(--gold); }
+.pp-stop.gift.passed { color: var(--bg); background: var(--gold); }
+
+/* Lessons */
+.pp-lessons { display: grid; gap: 10px; }
+.pp-lesson { margin: 0; border-radius: 14px; background: var(--card); border: 1px solid var(--line); border-left: 6px solid var(--line); }
+.pp-lesson.passed { border-left-color: var(--green); }
+.pp-lesson.doing, .pp-lesson.now { border-left-color: var(--accent); }
+.pp-lesson summary {
+  display: grid; grid-template-columns: auto 1fr minmax(110px, 30%); align-items: center; gap: 12px;
+  padding: 12px 14px; cursor: pointer; list-style: none;
+}
+.pp-lesson summary::-webkit-details-marker { display: none; }
+.pp-lesson summary:hover { background: var(--surface); border-radius: 12px; }
+.pp-num {
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  font-weight: 700; background: var(--surface); color: var(--muted);
+}
+.pp-lesson.passed .pp-num { background: var(--green); color: var(--bg); }
+.pp-lesson.now .pp-num, .pp-lesson.doing .pp-num { background: var(--accent-soft); color: var(--accent); }
+.pp-lesson-text { display: grid; gap: 2px; min-width: 0; }
+.pp-lesson-text strong { overflow-wrap: anywhere; }
+.pp-state, .pp-now { flex-direction: row; gap: 6px; font-size: 0.85em; font-weight: 600; }
+.pp-state .uz::before, .pp-now .uz::before { content: "· "; }
+.pp-state.passed { color: var(--green); }
+.pp-state.doing, .pp-now { color: var(--accent); }
+.pp-state.todo { color: var(--muted); }
+.pp-lesson-score { display: grid; gap: 4px; text-align: right; font-size: 0.9em; }
+.pp-lesson.passed .pp-bar i { background: var(--green); }
+.pp-lesson-body { padding: 0 14px 14px; }
+.pp-rule { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: var(--surface); font-size: 0.9em; }
+.pp-group h3 { margin: 12px 0 6px; font-size: 1em; }
+.pp-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.pp-task {
+  display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 10px; background: var(--surface);
+}
+.pp-task.done { background: var(--green-soft); }
+.pp-tick {
+  display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid var(--line); font-weight: 700; background: var(--card);
+}
+.pp-task.done .pp-tick { background: var(--green); border-color: var(--green); color: var(--bg); }
+.pp-stars { color: var(--gold); font-size: 1.15em; letter-spacing: 1px; white-space: nowrap; }
+.pp-muted { font-size: 0.85em; color: var(--muted); }
+.pp-btn {
+  min-height: 44px; padding: 6px 14px; font: inherit; font-size: 0.9em; font-weight: 600; color: var(--accent);
+  background: var(--card); border: 1px solid var(--accent); border-radius: 10px; cursor: pointer;
+}
+.pp-btn:hover { background: var(--accent); color: var(--accent-ink); }
+.pp-btn:hover .uz { color: inherit; }
+.pp-btn.small { min-height: 40px; padding: 4px 10px; font-size: 0.8em; }
+
+/* Info and badges */
+.pp-info { margin-top: 24px; padding: 16px 18px; border-radius: 14px; background: var(--surface); }
+.pp-info h2 { margin: 0 0 8px; padding: 0; border: 0; font-size: 1.1em; }
+.pp-info ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.pp-info li { display: flex; align-items: baseline; gap: 6px; }
+.pp-info li > b { color: var(--gold); white-space: nowrap; }
+.pp-badges { display: flex !important; flex-wrap: wrap; gap: 8px !important; }
+.pp-badges li { padding: 6px 12px; border-radius: 10px; background: var(--gold-soft); border: 2px solid var(--gold); font-weight: 600; }
+
+.pp-error { margin-top: 40px; padding: 28px; border-radius: 18px; background: var(--red-soft); text-align: center; }
+.pp-error .two { align-items: center; }
+
+/* His page */
+.pp-view { width: min(960px, 96vw); height: min(720px, 90vh); padding: 0; border: 0; border-radius: 16px; background: var(--card); color: var(--ink); }
+.pp-view[open] { display: flex; flex-direction: column; }
+.pp-view::backdrop { background: rgba(0, 0, 0, 0.55); }
+.pp-view-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.pp-view-head h2 { margin: 0; padding: 0; border: 0; font-size: 1.05em; }
+.pp-view iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .pp-hero { flex-wrap: wrap; padding: 16px; }
+  .pp-stats { grid-template-columns: repeat(2, 1fr); }
+  .pp-gift { flex-direction: column; gap: 10px; }
+  .pp-gift-icon { width: 48px; height: 48px; }
+  .pp-lesson summary { grid-template-columns: auto 1fr; }
+  .pp-lesson-score { grid-column: 1 / -1; text-align: left; }
+  .pp-task { grid-template-columns: auto 1fr auto; }
+  .pp-task .pp-btn { grid-column: 2 / -1; justify-self: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pp *, .pp *::before { animation: none !important; transition: none !important; }
+}

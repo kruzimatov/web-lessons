@@ -126,12 +126,16 @@ def blocks_html(blocks, sandbox=SANDBOX):
 NAV = [("index.html", "Home"), ("cheatsheet.html", "My tags"), ("playground.html", "Playground"), ("game.html", "Game")]
 
 
-def page(title, body, root="../../", current="", head="", scripts=()):
+def page(title, body, root="../../", current="", head="", scripts=(), bare=False):
     """A full page. `root` is the way back to the site root; `current` marks the open menu item.
-    `head` and `scripts` add page-only styles and scripts (loaded after kit.js)."""
+    `head` and `scripts` add page-only styles and scripts (loaded after kit.js).
+    `bare`: no menu, editor or game scripts, only `scripts` (the parent page)."""
     nav = "".join(
         f'<a href="{root}{href}"{" aria-current=\"page\"" if href == current else ""}>{name}</a>'
         for href, name in NAV)
+    nav = "" if bare else f'<nav class="top">{nav}</nav>'
+    kit = "" if bare else "".join(f'<script src="{CM}/{f}"></script>' for f in EDITOR_FILES) + "".join(
+        f'\n<script src="{root}assets/{s}"></script>' for s in ("check.js", "kit.js", "progress.js", "sync.js"))
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,18 +145,14 @@ def page(title, body, root="../../", current="", head="", scripts=()):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
-<link rel="stylesheet" href="{CM}/codemirror.min.css">
+{"" if bare else f'<link rel="stylesheet" href="{CM}/codemirror.min.css">'}
 <link rel="stylesheet" href="{root}assets/style.css">
 <script>try {{ const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; }} catch {{}}</script>
 {head}</head>
 <body>
-<nav class="top">{nav}</nav>
+{nav}
 {body}
-{"".join(f'<script src="{CM}/{f}"></script>' for f in EDITOR_FILES)}
-<script src="{root}assets/check.js"></script>
-<script src="{root}assets/kit.js"></script>
-<script src="{root}assets/progress.js"></script>
-<script src="{root}assets/sync.js"></script>
+{kit}
 {"".join(f'<script src="{root}assets/{s}"></script>' for s in scripts)}
 </body>
 </html>

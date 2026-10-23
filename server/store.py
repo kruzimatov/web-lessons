@@ -44,6 +44,9 @@ def open_db(path):
     db.execute("PRAGMA foreign_keys = ON")
     db.execute("PRAGMA journal_mode = WAL")
     db.executescript(SCHEMA)
+    if "parent_key" not in {row[1] for row in db.execute("PRAGMA table_info(users)")}:
+        db.execute("ALTER TABLE users ADD COLUMN parent_key TEXT")  # older databases
+    db.execute("CREATE UNIQUE INDEX IF NOT EXISTS users_parent_key ON users (parent_key)")
 
 
 def q(sql, *args):
@@ -142,8 +145,25 @@ def students():
 
 
 def student(user_id):
-    rows = q("SELECT username FROM users WHERE id = ? AND role = 'student'", user_id)
-    return {"username": rows[0][0], "items": items(user_id)} if rows else None
+    rows = q("SELECT username, updated FROM users WHERE id = ? AND role = 'student'", user_id)
+    return {"username": rows[0][0], "updated": rows[0][1], "items": items(user_id)} if rows else None
+
+
+def parent_key(user_id, new=False):
+    """The secret in a student's parent link. A new one turns the old link off."""
+    rows = q("SELECT parent_key FROM users WHERE id = ? AND role = 'student'", user_id)
+    if not rows:
+        return None
+    if rows[0][0] and not new:
+        return rows[0][0]
+    key = secrets.token_urlsafe(32)
+    q("UPDATE users SET parent_key = ? WHERE id = ?", key, user_id)
+    return key
+
+
+def student_by_key(key):
+    rows = q("SELECT id FROM users WHERE parent_key = ? AND role = 'student'", key)
+    return student(rows[0][0]) if rows else None
 
 
 def delete_student(user_id):

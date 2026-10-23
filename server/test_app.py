@@ -59,6 +59,14 @@ assert call("/api/teacher/students", {"username": "kid", "password": "another-1"
 assert call("/api/teacher/students", {"username": "kid2", "password": "short"}, teach)[0] == 400
 assert call("/api/teacher/students", {"username": "kid2", "password": "long-enough"}, teach)[0] == 200
 
+assert call("/api/teacher/parent-link", {"id": kid_id}, kid)[0] == 403
+assert call("/api/parent?k=" + "x" * 43)[0] == 404
+key = call("/api/teacher/parent-link", {"id": kid_id}, teach)[1]["key"]
+assert call("/api/teacher/parent-link", {"id": kid_id}, teach)[1]["key"] == key  # same link until a new one
+found = call("/api/parent?k=" + key)[1]
+assert found["username"] == "kid" and found["items"]["code:h1-1"]["v"] == "<h1>Hi</h1>", found
+new_key = call("/api/teacher/parent-link", {"id": kid_id, "new": True}, teach)[1]["key"]
+assert new_key != key and call("/api/parent?k=" + key)[0] == 404 and call("/api/parent?k=" + new_key)[0] == 200
 assert call("/api/teacher/password", {"id": kid_id, "password": "new-kid-pass"}, teach)[0] == 200
 assert call("/api/me", cookie=kid)[0] == 401  # new password logs out his devices
 assert call("/api/teacher/delete", {"id": kid_id}, teach)[0] == 200
