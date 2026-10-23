@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS items (
 DAY = 86400
 SESSION_DAYS = {"student": 365, "teacher": 30}  # a student logs in once per device
 MAX_KEYS = 400
+KEY_LETTERS = "abcdefghjkmnpqrstuvwxyz23456789"  # no 0/o, 1/l/i: easy to read out
 
 lock = threading.RLock()
 db = None
@@ -156,13 +157,13 @@ def parent_key(user_id, new=False):
         return None
     if rows[0][0] and not new:
         return rows[0][0]
-    key = secrets.token_urlsafe(32)
+    key = "".join(secrets.choice(KEY_LETTERS) for _ in range(8))
     q("UPDATE users SET parent_key = ? WHERE id = ?", key, user_id)
     return key
 
 
 def student_by_key(key):
-    rows = q("SELECT id FROM users WHERE parent_key = ? AND role = 'student'", key)
+    rows = q("SELECT id FROM users WHERE parent_key = ? COLLATE NOCASE AND role = 'student'", key)
     return student(rows[0][0]) if rows else None
 
 

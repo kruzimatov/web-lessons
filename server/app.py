@@ -185,9 +185,9 @@ def teacher_parent_link(req):
 
 def parent(req):
     """Public and read-only: a parent opens the secret link and sees the progress, no login."""
-    need(not limited(("parent", req.ip), 30), "Too many requests. Wait a minute.", 429)
-    key = req.query.get("k", "")
-    found = store.student_by_key(key) if 20 <= len(key) <= 100 else None
+    need(not limited(("parent", req.ip), 30) and not limited("parent-all", 300), "Too many requests. Wait a minute.", 429)
+    key = req.query.get("k", "").strip()
+    found = store.student_by_key(key) if 8 <= len(key) <= 100 else None
     need(found, "This link does not work. Ask the teacher for a new one.", 404)
     return found
 

@@ -62,6 +62,8 @@ assert call("/api/teacher/students", {"username": "kid2", "password": "long-enou
 assert call("/api/teacher/parent-link", {"id": kid_id}, kid)[0] == 403
 assert call("/api/parent?k=" + "x" * 43)[0] == 404
 key = call("/api/teacher/parent-link", {"id": kid_id}, teach)[1]["key"]
+assert len(key) == 8 and set(key) <= set(store.KEY_LETTERS), key
+assert call("/api/parent?k=" + key.upper())[0] == 200  # typed in capitals still works
 assert call("/api/teacher/parent-link", {"id": kid_id}, teach)[1]["key"] == key  # same link until a new one
 found = call("/api/parent?k=" + key)[1]
 assert found["username"] == "kid" and found["items"]["code:h1-1"]["v"] == "<h1>Hi</h1>", found
