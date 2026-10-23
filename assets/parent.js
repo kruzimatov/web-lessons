@@ -209,8 +209,11 @@
   const view = document.getElementById("pp-view");
   function show(title, code) {
     document.getElementById("pp-view-title").textContent = title;
-    document.getElementById("pp-frame").srcdoc = code; // sandbox="" : his page runs no scripts
     view.showModal();
+    const frame = document.getElementById("pp-frame");
+    const fresh = frame.cloneNode(false); // a new frame each time, filled once the window is open
+    fresh.srcdoc = code; // sandbox="" : his page runs no scripts
+    frame.replaceWith(fresh);
   }
   document.getElementById("pp-close").onclick = () => view.close();
 
