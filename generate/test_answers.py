@@ -68,6 +68,13 @@ SAMPLES = {
 }
 
 
+# Real answers he wrote (or would write) in his own words: each must pass too.
+KID = {
+    "p1-5": "<h1>My favorite ANIMAL is BEARR</h1>\n<!--no need-->\n<h2>it eats fish &amp; berries</h2>\n<p>yummy</p>\n"
+            "<!-- part 2 -->\n<h2>lives at forest</h2>\n<p>nothing here</p>",
+}
+
+
 def tasks():
     for L in load_lessons():
         for kind, items in (("p", L["practice"]), ("h", homework_tasks(L))):
@@ -77,6 +84,8 @@ def tasks():
                 answer = SAMPLES.get(key) or t["answer"]
                 if answer.startswith("("):  # "your idea": a page like the lesson's mini project or first homework
                     answer = next(a for a in (L["practice"][4]["answer"], items[0]["answer"]) if not a.startswith("("))
+                if key in KID:
+                    yield {"key": key + " (his words)", "answer": KID[key], "start": t.get("start", ""), "rules": [[r, n] for _, r, n in rules]}
                 yield {"key": key, "answer": answer, "start": t.get("start", ""), "rules": [[r, n] for _, r, n in rules]}
 
 

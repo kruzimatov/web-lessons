@@ -19,7 +19,7 @@ NO_EMPTY_ALT = 'img[alt]:not([alt=""])'
 
 
 def title(text):
-    return (f"The title is `{text}`", rf"/<title>\s*{text}\s*<\/title>/i", 1)
+    return (f"The title is `{text}`", rf"/<title>[^<]*{text}[^<]*<\/title>/i", 1)
 
 
 def button(text):
@@ -49,7 +49,7 @@ CHECKS = {
              ("The `h2` closes with `</h2>`", r"/<h2>[^<]*<\/h2>/i", 1)],
     "p1-4": SKELETON + [title("About Me"), ("An `h1` in the body", "body h1", 1), ("A `p` in the body", "body p", 1)],
     "p1-5": [("One `h1`", "h1", 1),
-             ("Two `h2` parts: \"What it eats\" and \"Where it lives\"", r"/<h2[^>]*>\s*What it eats[\s\S]*<h2[^>]*>\s*Where it lives/i", 1),
+             ("Two `h2` parts: \"What it eats\" and \"Where it lives\"", r"/<h2[^>]*>[^<]*eat[\s\S]*<h2[^>]*>[^<]*live/i", 1),
              ("A `p` under each `h2`", "h2 + p", 2),
              ("A comment `<!-- -->` above each part", r"/<!--[\s\S]*?-->\s*<h2/i", 2)],
     "h1-1": [("An `h1` title", "h1", 1), ("A `p` about your family", "p", 1),
@@ -83,7 +83,7 @@ CHECKS = {
     "p3-4": [("Pets and Wild animals each get a small list", "ul > li > ul", 2),
              ("4 animals in the small lists", "li > ul > li", 4)],
     "p3-5": [("An `h1` with a food name", "h1", 1),
-             ("An `h2` \"You need\", then an `h2` \"Steps\"", r"/<h2[^>]*>\s*You need[\s\S]*<h2[^>]*>\s*Steps/i", 1),
+             ("An `h2` \"You need\", then an `h2` \"Steps\"", r"/<h2[^>]*>[^<]*need[\s\S]*<h2[^>]*>[^<]*step/i", 1),
              ("A dots list of things you need", "ul > li", 2), ("A numbers list of 4 steps", "ol > li", 4)],
     "h3-1": [("A numbers list: `ol`", "ol", 1), ("5 things: 5 `li`", "ol > li", 5)],
     "h3-2": [("A dots list of people", "ul", 1), ("A small list under each person", "ul > li > ul", 2),
@@ -103,14 +103,14 @@ CHECKS = {
                         ("A fun fact with `sub` or `sup`", "sub, sup", 1)],
     "h4-1": SKELETON + [("A `<title>`", "title", 1), ("An `h1` with your name", "h1", 1),
                         ("Favorite things: a dots list", "ul > li", 3), ("Top 3: a numbers list", "ol > li", 3)],
-    "h4-2": [("An `h2` \"My family\"", r"/<h2[^>]*>\s*My family/i", 1), ("A list of people", "ul > li, ol > li", 2),
+    "h4-2": [("An `h2` \"My family\"", r"/<h2[^>]*>[^<]*family/i", 1), ("A list of people", "ul > li, ol > li", 2),
              ("Each person has a small list", "li > ul, li > ol", 2)],
 
     # 5. Links
     "p5-1": [("A link to Wikipedia", 'a[href*="wikipedia.org"]', 1), ("The address starts with `https://`", 'a[href^="https://"]', 1),
-             ("The link says \"Learn everything\"", r"/>\s*Learn everything\s*<\/a>/i", 1),
+             ("The link says \"Learn everything\"", r"/>[^<]*Learn everything[^<]*<\/a>/i", 1),
              ("Opens in a new tab: `target=\"_blank\"`", 'a[target="_blank"]', 1)],
-    "p5-2": [("The sentence is in a `p`", r"/<p[^>]*>\s*I like space pictures from/i", 1),
+    "p5-2": [("The sentence is in a `p`", r"/<p[^>]*>[^<]*<a[\s\S]*<\/p>/i", 1),
              ("Only \"NASA\" is the link", r"/<a[^>]*>\s*NASA\s*<\/a>/i", 1),
              ("It goes to nasa.gov", 'p a[href*="nasa.gov"]', 1)],
     "p5-3": [("The Wikipedia link closes with `</a>`", r"/Wikipedia\s*<\/a>/i", 1),
@@ -139,7 +139,7 @@ CHECKS = {
     # 7. Images
     "p7-1": [("The puppy picture: id 237", 'img[src*="picsum.photos/id/237"]', 1),
              ("`alt` words that describe it", NO_EMPTY_ALT, 1)],
-    "p7-2": [("An `h2` \"Wild animals\"", r"/<h2[^>]*>\s*Wild animals/i", 1),
+    "p7-2": [("An `h2` \"Wild animals\"", r"/<h2[^>]*>[^<]*animal/i", 1),
              ("Lioness 1074, leopard 219, walruses 1084", 'any:img[src*="/id/1074/"],img[src*="/id/219/"],img[src*="/id/1084/"]', 3),
              ("All 3 with `width=\"200\"`", 'img[width="200"]', 3), ("Every picture has `alt`", NO_EMPTY_ALT, 3)],
     "p7-3": [("`src`, not `scr`", "img[scr]", 0), ("No `</img>`: img never closes", r"/<\/img>/i", 0),
@@ -217,13 +217,13 @@ CHECKS = {
               ("An `h2` in each section", "section h2", 2)],
 
     # 12. Forms 1
-    "p12-1": [("A `form`", "form", 1), ("A label \"Favorite food\"", r"/<label[^>]*>\s*Favorite food/i", 1),
+    "p12-1": [("A `form`", "form", 1), ("A label \"Favorite food\"", r"/<label[^>]*>[^<]*food/i", 1),
               ("A text box", 'input[type="text"]', 1), labels_match(1), button("Send")],
     "p12-2": [("An email box", 'form input[type="email"]', 1), ("A password box", 'form input[type="password"]', 1),
               ("A label for each box", "label", 2), labels_match(2), button("Log in")],
     "p12-3": [("The name box has `id=\"name\"`", "input#name", 1), ("No `</input>`: input never closes", r"/<\/input>/i", 0),
               ("The password box hides the letters", 'input#pw[type="password"]', 1)],
-    "p12-4": [("A label \"How old are you?\"", r"/<label[^>]*>\s*How old are you\?/i", 1), ("A number box", 'input[type="number"]', 1),
+    "p12-4": [("A label \"How old are you?\"", r"/<label[^>]*>[^<]*old/i", 1), ("A number box", 'input[type="number"]', 1),
               ("From 1 to 100", 'input[min="1"][max="100"]', 1), ("Placeholder \"Your age\"", 'input[placeholder="Your age"]', 1),
               ("`required`", "input[required]", 1)],
     "p12-5": [("Name is `required`", 'input[type="text"][required]', 1), ("An email box", 'input[type="email"]', 1),
@@ -235,13 +235,13 @@ CHECKS = {
               ("All 3 are `required`", "input[required]", 3), ("A label for each box", "label", 3)],
 
     # 13. Forms 2
-    "p13-1": [("3 checkboxes", 'input[type="checkbox"]', 3), ("Cats, dogs and fish", r"/I like cats[\s\S]*I like dogs[\s\S]*I like fish/i", 1),
+    "p13-1": [("3 checkboxes", 'input[type="checkbox"]', 3), ("Cats, dogs and fish", r"/cat[\s\S]*dog[\s\S]*fish/i", 1),
               labels_match(3)],
     "p13-2": [("2 radio buttons", 'input[type="radio"]', 2), SAME_NAME, ("A label for each", "label", 2)],
     "p13-3": [("Both radios have `name=\"drink\"`", 'input[type="radio"][name="drink"]', 2),
               ("A real `<select>`, not an input", 'input[type="select"]', 0), ("The option is in a `select`", "select > option", 1),
               ("The textarea closes", r"/<\/textarea>/i", 1)],
-    "p13-4": [("A label \"Favorite color\"", r"/<label[^>]*>\s*Favorite color/i", 1), ("5 colors", "select > option", 5),
+    "p13-4": [("A label \"Favorite color\"", r"/<label[^>]*>[^<]*colou?r/i", 1), ("5 colors", "select > option", 5),
               ("Blue is `selected`", r"/<option[^>]*selected[^>]*>\s*Blue/i", 1)],
     "p13-5": [("A name box", 'form input[type="text"]', 1), ("3 size radios", 'input[type="radio"]', 3), SAME_NAME,
               ("3 topping checkboxes", 'input[type="checkbox"]', 3), ("A drink drop-down", "select > option", 2),
@@ -269,7 +269,7 @@ CHECKS = {
               ("Every kind of box: text, email, radio, checkbox, select, textarea",
                'any:input[type="text"],input[type="email"],input[type="radio"],input[type="checkbox"],select,textarea', 6),
               ("A button", "form button", 1)],
-    "h14-2": [("The question \"How many stars for my site?\"", r"/How many stars/i", 1),
+    "h14-2": [("The question \"How many stars for my site?\"", r"/stars/i", 1),
               ("A number box from 1 to 5", 'input[type="number"][min="1"][max="5"]', 1), ("A label", "label", 1)],
 
     # 15. Review game and test
