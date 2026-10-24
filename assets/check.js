@@ -99,7 +99,8 @@ function checkAttributes(name, attrs, pos, add) {
 }
 
 // One goal from answer_checks.py or game_data.py, on <li data-sel|data-re|data-any data-n>.
-// sel: that many elements; re: that many matches in his code; any: that many of these selectors found.
+// sel: that many elements; re: that many matches in his code; any: that many of these selectors found;
+// tags: that many different tags on his page (html, head, body and what goes in head do not count).
 // n = 0 means it must not be there.
 function meetsRule(li, src, doc) {
   const n = Number(li.dataset.n);
@@ -108,6 +109,8 @@ function meetsRule(li, src, doc) {
   if (li.dataset.re) {
     const [, body, flags] = /^\/(.*)\/(\w*)$/s.exec(li.dataset.re);
     got = (src.match(new RegExp(body, flags + "g")) || []).length;
+  } else if (li.dataset.tags !== undefined) {
+    got = new Set([...doc.body.querySelectorAll("*")].map((e) => e.localName)).size;
   } else if (li.dataset.any) {
     got = li.dataset.any.split(",").filter((sel) => count(sel) > 0).length;
   } else {

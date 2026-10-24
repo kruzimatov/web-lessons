@@ -35,8 +35,6 @@ def load_lessons():
     for L in lessons:  # tags from this lesson and every one before it, for the "your idea" task
         learned |= set(tags_in(" ".join(code for code, _ in L["cheats"])))
         L["learned"] = sorted(learned)
-    for L in lessons:  # any course tag counts in "your idea", even one from a later lesson
-        L["course_tags"] = sorted(learned)
     return lessons
 
 

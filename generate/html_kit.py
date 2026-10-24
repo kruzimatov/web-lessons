@@ -39,9 +39,9 @@ def attr(text):
 
 
 def need_item(label, rule, n):
-    """One goal: a CSS selector, a /regex/ or "any:a,b,c" (check.js, meetsRule)."""
-    kind = "re" if rule.startswith("/") else "any" if rule.startswith("any:") else "sel"
-    rule = rule[4:] if kind == "any" else rule
+    """One goal: a CSS selector, a /regex/, "any:a,b,c" or "tags:" (check.js, meetsRule)."""
+    kind = "re" if rule.startswith("/") else "any" if rule.startswith("any:") else "tags" if rule == "tags:" else "sel"
+    rule = rule[4:] if kind == "any" else "" if kind == "tags" else rule
     return f'<li data-{kind}="{attr(rule)}" data-n="{n}">{fmt(label)}</li>'
 
 

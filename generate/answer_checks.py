@@ -27,14 +27,14 @@ def button(text):
 
 
 def labels_match(n):
-    return ("Every label's `for` is the same as its box's `id`", r'/for="([^"]+)"[\s\S]*?id="\1"|id="([^"]+)"[\s\S]*?for="\2"/', n)
+    return ("Every label's `for` is the same as its box's `id`", r"""/for=["']?([^"'\s>]+)[\s\S]*?id=["']?\1["'\s>]|id=["']?([^"'\s>]+)[\s\S]*?for=["']?\2["'\s>]/i""", n)
 
 
 def menu(n):
     return (f"A menu with {n} links to your `.html` pages", 'a[href$=".html"]', n)
 
 
-SAME_NAME = ("Radio buttons share one `name`, so only one is picked", r'/name="([^"]+)"[\s\S]*?name="\1"/', 1)
+SAME_NAME = ("Radio buttons share one `name`, so only one is picked", r"""/name=["']?([^"'\s>]+)[\s\S]*?name=["']?\1["'\s>]/i""", 1)
 HOME = ("Home goes to `index.html`", 'a[href="index.html"]', 1)
 
 CHECKS = {
@@ -51,7 +51,7 @@ CHECKS = {
     "p1-5": [("One `h1`", "h1", 1),
              ("Two `h2` parts: \"What it eats\" and \"Where it lives\"", r"/<h2[^>]*>\s*What it eats[\s\S]*<h2[^>]*>\s*Where it lives/i", 1),
              ("A `p` under each `h2`", "h2 + p", 2),
-             ("A comment `<!-- -->` above each part", r"/<!--[\s\S]*?-->\s*<h2/", 2)],
+             ("A comment `<!-- -->` above each part", r"/<!--[\s\S]*?-->\s*<h2/i", 2)],
     "h1-1": [("An `h1` title", "h1", 1), ("A `p` about your family", "p", 1),
              ("3 people: 3 sentences that end with a dot", r"/[.!?]/", 3)],
     "h1-2": [("All 6 headings: `h1` to `h6`", "any:h1,h2,h3,h4,h5,h6", 6),
@@ -93,7 +93,7 @@ CHECKS = {
     "p4-1": SKELETON + [title("About Me"), ("An `h1` with your name", "body h1", 1)],
     "p4-2": [("2 paragraphs about you", "p", 2), ("Your age in `strong`", r"/<strong[^>]*>[^<]*\d/i", 1),
              ("One word in `em`", "em", 1), ("Then an `<hr>`", "p ~ hr", 1)],
-    "p4-3": [("Only one `h1`", "h1 ~ h1", 0), ("\"I am 9\" is a `p`", r"/<p>\s*I am 9/i", 1),
+    "p4-3": [("Only one `h1`", "h1 ~ h1", 0), ("\"I am 9\" is a `p`", r"/<p[^>]*>\s*I am 9/i", 1),
              ("Dogs is in an `<li>`", "li", 2), ("The body closes: `</body>`", r"/<\/body>/i", 1)],
     "p4-4": [("2 `h2` parts", "h2", 2), ("A dots list of 3 favorite things", "ul > li", 3),
              ("A numbers list for your top 3", "ol > li", 3)],
@@ -253,7 +253,7 @@ CHECKS = {
 
     # 14. Practice day: Write to me
     "p14-1": [("3 links", "a[href]", 3), HOME, ("Hobbies goes to `hobbies.html`", 'a[href="hobbies.html"]', 1),
-              ("\"Write to me\" goes to `contact.html`", r'/<a[^>]*href="contact\.html"[^>]*>\s*Write to me/i', 1)],
+              ("\"Write to me\" goes to `contact.html`", r"""/<a[^>]*href=["']?contact\.html["']?[^>]*>\s*Write to me/i""", 1)],
     "p14-2": [("A name box that is `required`", "form input[required]", 1), ("An email box", 'form input[type="email"]', 1),
               ("A label for each box", "label", 2), labels_match(2), button("Send")],
     "p14-3": [("The email label has `for=\"email\"`", 'label[for="email"]', 1),
@@ -304,11 +304,11 @@ CHECKS = {
 NOT_TODAY = {"html", "head", "body", "title", "meta"}  # every page has these
 
 
-def idea_checks(today, tags):
-    """Homework task 3: his own page, built with what he knows, and something from today if it has new tags."""
+def idea_checks(today):
+    """Homework task 3: his own page, built with what he knows, and something from today if it has new tags.
+    "tags:" counts every different tag on his page, whatever lesson it comes from."""
     today = [t for t in today if t not in NOT_TODAY]
-    known = [t for t in tags if t not in NOT_TODAY]
-    rules = [("Use 3 different tags you know", "any:" + ",".join(known), 3),
+    rules = [("Use 3 different tags you know", "tags:", 3),
              ("Write your own words", r"/>[^<]*[a-zA-Z]{3}/", 2)]
     if today:
         rules.insert(0, ("Use something new from today: " + ", ".join(f"`{t}`" for t in today), "any:" + ",".join(today), 1))
