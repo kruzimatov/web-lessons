@@ -128,8 +128,8 @@
       }),
       el("td", "pp-grid-sum", el("b", null, String(L.stars)))));
     const legend = el("p", "pp-legend",
-      el("span", "pp-cell s3", "3"), two("stars, first try", "yulduz, birinchi urinish"),
-      el("span", "pp-cell s1", "1"), two("stars, more tries", "yulduz, ko'proq urinish"),
+      el("span", "pp-cell s3", "3"), two("stars, within 3 misses", "yulduz, 3 xatogacha"),
+      el("span", "pp-cell s2", "2"), two("stars, more misses", "yulduz, ko'proq xato"),
       el("span", "pp-cell s0", "·"), two("not done", "bajarilmagan"));
     return el("div", null, legend, el("div", "pp-grid-scroll",
       el("table", "pp-grid", el("thead", null, head), el("tbody", null, ...rows))));
@@ -197,9 +197,9 @@
       el("section", "pp-info",
         el("h2", null, two("How stars work", "Yulduzlar qanday beriladi")),
         el("ul", null,
-          el("li", null, el("b", null, "★★★ "), two("Right on the first check.", "Birinchi tekshiruvda to'g'ri.")),
-          el("li", null, el("b", null, "★★☆ "), two("Right within 2 tries.", "2 urinishgacha to'g'ri.")),
-          el("li", null, el("b", null, "★☆☆ "), two("Right after more tries.", "Ko'proq urinishdan keyin to'g'ri.")))),
+          el("li", null, el("b", null, "★★★ "), two("Done with 3 or fewer wrong checks.", "3 tagacha xato tekshiruv bilan bajarildi.")),
+          el("li", null, el("b", null, "★★☆ "), two("Done after more wrong checks.", "Ko'proq xato tekshiruvdan keyin bajarildi.")),
+          el("li", null, el("b", null, "★☆☆ "), two("Older tasks from the first rules. Check again to get more.", "Eski qoida bo'yicha. Qayta tekshirsa, ko'proq oladi.")))),
       badges.length ? el("section", "pp-info",
         el("h2", null, two(`Badges: ${badges.length}`, `Nishonlar: ${badges.length}`)),
         el("ul", "pp-badges", ...badges.map((b) => el("li", null, b)))) : null,

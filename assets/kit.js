@@ -166,7 +166,7 @@ function setupPlay(box) {
       else say("bad", [`Almost! ${left} goal${left > 1 ? "s" : ""} to go. Look for the goals without a tick.`]);
       return;
     }
-    const stars = tries === 0 ? 3 : tries <= 2 ? 2 : 1;
+    const stars = tries <= 3 ? 3 : 2; // checking is part of learning: 3 misses are free
     const gems = winTask(id, stars);
     drawBadge();
     const homework = document.querySelector(".copy-all[data-reward]");
