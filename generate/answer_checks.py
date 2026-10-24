@@ -304,10 +304,10 @@ CHECKS = {
 NOT_TODAY = {"html", "head", "body", "title", "meta"}  # every page has these
 
 
-def idea_checks(today, learned):
+def idea_checks(today, tags):
     """Homework task 3: his own page, built with what he knows, and something from today if it has new tags."""
     today = [t for t in today if t not in NOT_TODAY]
-    known = [t for t in learned if t not in NOT_TODAY]
+    known = [t for t in tags if t not in NOT_TODAY]
     rules = [("Use 3 different tags you know", "any:" + ",".join(known), 3),
              ("Write your own words", r"/>[^<]*[a-zA-Z]{3}/", 2)]
     if today:

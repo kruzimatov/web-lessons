@@ -34,7 +34,7 @@ def homework_tasks(L):
         "task": f"Your idea! Build any page you like. Use at least 3 things from today, for example {tags}. "
                 f"No idea? Try: {topics}.",
         "answer": "(his own page: check that it uses at least 3 things from today and that every tag closes)",
-        "checks": idea_checks(tags_in(" ".join(code for code, _ in L["cheats"])), L["learned"]),
+        "checks": idea_checks(tags_in(" ".join(code for code, _ in L["cheats"])), L["course_tags"]),
     }
     return L["homework"] + [idea]
 
