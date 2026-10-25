@@ -110,14 +110,16 @@ def part_titles(blocks):
     return [b[1] for b in blocks if b[0] == "h"]
 
 
-def blocks_html(blocks, sandbox=SANDBOX):
-    out, part = [], 0
+def blocks_html(blocks, sandbox=SANDBOX, save=""):
+    """With `save` (like "t4"), every "Your turn" editor keeps his code as t4-1, t4-2, ..."""
+    out, part, tries = [], 0, 0
     for b in blocks:
         if b[0] == "h":
             part += 1
             out.append(f'<h2 id="part-{part}">{fmt(b[1])}</h2>')
         elif b[0] == "try":
-            out.append(play(b[2], b[1], sandbox=sandbox))
+            tries += 1
+            out.append(play(b[2], b[1], save=f"{save}-{tries}" if save else "", sandbox=sandbox))
         else:
             out.append(BLOCKS[b[0]](*b[1:]))
     return "\n".join(out)

@@ -5,7 +5,7 @@
   const LESSON = Object.fromEntries(COURSE.lessons.map((L) => [L.n, L]));
   const LEVEL = Object.fromEntries(COURSE.levels.map((l) => [l.id, l]));
   const ONLINE_MS = 5 * 60000;
-  const TABS = [["progress", "Progress"], ["homework", "Homework"], ["practice", "Practice"], ["game", "Game"], ["playground", "Playground"]];
+  const TABS = [["progress", "Progress"], ["homework", "Homework"], ["practice", "Practice"], ["lesson", "Lesson"], ["game", "Game"], ["playground", "Playground"]];
   const list = document.getElementById("students");
   const detail = document.getElementById("detail");
   let students = [];
@@ -30,6 +30,11 @@
       const task = (LESSON[lesson] || {})[kind]?.[n - 1] || {};
       w = { kind, lesson, n, title: `Lesson ${lesson} · ${kind === "practice" ? "Practice" : "Homework"} task ${n}`,
         task: task.task, start: task.start, stars: passed[`${m[1]}${lesson}-${n}`] || 0 };
+    } else if ((m = /^code:t(\d+)-(\d+)$/.exec(key))) {
+      const lesson = Number(m[1]);
+      const n = Number(m[2]);
+      const task = (LESSON[lesson] || {}).lesson?.[n - 1] || {};
+      w = { kind: "lesson", lesson, n, title: `Lesson ${lesson} · Your turn ${n}`, task: task.task, start: task.start };
     } else if ((m = /^code:game-(.+)$/.exec(key))) {
       const level = LEVEL[m[1]] || { title: m[1], lesson: 0 };
       w = { kind: "game", lesson: level.lesson, n: COURSE.levels.indexOf(level), level: m[1],
@@ -41,7 +46,7 @@
     return { ...w, key, code: item.v || "", t: item.t, status: w.stars ? "passed" : statusOf(item.v, w.start) };
   }
 
-  const KIND = { practice: 0, homework: 1, game: 2, playground: 3 };
+  const KIND = { lesson: 0, practice: 1, homework: 2, game: 3, playground: 4 };
   const byOrder = (a, b) => a.lesson - b.lesson || KIND[a.kind] - KIND[b.kind] || a.n - b.n;
 
   async function loadStudents() {

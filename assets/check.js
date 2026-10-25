@@ -104,6 +104,12 @@ function checkAttributes(name, attrs, pos, add) {
 // n = 0 means it must not be there.
 function meetsRule(li, src, doc) {
   const n = Number(li.dataset.n);
+  const got = ruleCount(li, src, doc);
+  return n === 0 ? got === 0 : got >= n;
+}
+
+// How many his code has of what one goal asks for. Shown as "found 1, need 2".
+function ruleCount(li, src, doc) {
   const count = (sel) => { try { return doc.querySelectorAll(sel).length; } catch { return -1; } };
   let got;
   if (li.dataset.re) {
@@ -116,7 +122,7 @@ function meetsRule(li, src, doc) {
   } else {
     got = count(li.dataset.sel);
   }
-  return n === 0 ? got === 0 : got >= n;
+  return got;
 }
 
 if (typeof module === "object") module.exports = { checkHTML };

@@ -58,7 +58,7 @@ def lesson_page(L):
              f'<nav class="jump" aria-label="On this page">{"".join(jumps)}</nav>']
     if L["review"]:
         parts += ['<h2 id="warm-up">Warm-up</h2>', blocks_html(L["review"])]
-    parts.append(blocks_html(L["blocks"], L.get("sandbox", SANDBOX)))
+    parts.append(blocks_html(L["blocks"], L.get("sandbox", SANDBOX), save=f"t{L['n']}"))
     items = "".join(f"<li>{fmt(m)}</li>" for m in L["mistakes"])
     parts += ['<h2 id="watch-out">Watch out!</h2>', f'<ul class="mistakes">{items}</ul>']
     parts.append('<footer>Next: <a href="practice.html">Practice tasks</a></footer>')

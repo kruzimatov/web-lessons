@@ -34,7 +34,8 @@ def course_data(lessons):
     tasks = lambda items: [{"task": plain(t["task"]), "start": t.get("start", "")} for t in items]
     return {
         "lessons": [{"n": L["n"], "title": plain(L["title"]), "practice": tasks(L["practice"]),
-                     "homework": tasks(homework_tasks(L))} for L in lessons],
+                     "homework": tasks(homework_tasks(L)),
+                     "lesson": [{"task": plain(b[1]), "start": b[2]} for b in L["blocks"] if b[0] == "try"]} for L in lessons],
         "levels": [{"id": m["id"], "title": m["title"], "lesson": m["lesson"], "start": m["start"]} for m in MISSIONS],
     }
 

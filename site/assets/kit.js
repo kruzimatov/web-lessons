@@ -163,7 +163,17 @@ function setupPlay(box) {
       void box.offsetWidth;
       box.classList.add("shake");
       if (problems.length) say("bad", ["Fix these mistakes first:", ...problems]);
-      else say("bad", [`Almost! ${left} goal${left > 1 ? "s" : ""} to go. Look for the goals without a tick.`]);
+      else {
+        const missing = goals.filter((li) => !li.classList.contains("done")).map((li) => {
+          const n = Number(li.dataset.n);
+          return li.textContent + (n > 1 ? ` (found ${Math.max(0, ruleCount(li, code.value, doc))}, need ${n})` : "");
+        });
+        say("bad", ["Almost! Not yet:", ...missing, "Belgisiz maqsadlarni tuzating."]);
+      }
+      // Practice hints open by themselves: Hint 1 after the 2nd wrong check, Hint 2 after the 4th.
+      const hints = box.nextElementSibling?.classList.contains("hints") ? box.nextElementSibling.querySelectorAll("details") : [];
+      if (tries >= 2 && hints[0]) hints[0].open = true;
+      if (tries >= 4 && hints[1]) hints[1].open = true;
       return;
     }
     const stars = tries <= 3 ? 3 : 2; // checking is part of learning: 3 misses are free
