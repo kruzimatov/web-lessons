@@ -75,8 +75,9 @@
       el("div", "pp-level", el("strong", null, String(game.level || 1)), two("Level", "Daraja")));
   }
 
-  function stat(value, of, en, uz, cls) {
-    return el("div", `pp-stat ${cls}`, el("strong", null, String(value), of ? el("small", null, ` / ${of}`) : null), two(en, uz));
+  function stat(value, of, en, uz, cls, note) {
+    return el("div", `pp-stat ${cls}`, el("strong", null, String(value), of ? el("small", null, ` / ${of}`) : null), two(en, uz),
+      note ? two(...note, "pp-stat-note") : null);
   }
 
   function giftCard(passed, stars) {
@@ -88,9 +89,9 @@
       gift("pp-gift-icon"),
       el("div", "pp-gift-text",
         el("h2", null, two(won ? "Gift unlocked!" : "Gift goal", won ? "Sovg'a ochildi!" : "Sovg'a maqsadi")),
-        el("p", null, two(`Pass all ${ALL} lessons and collect ${PASS.gift} stars.`,
-          `${ALL} ta darsning hammasidan o'tib, ${PASS.gift} ta yulduz to'plasa, sovg'a ochiladi.`)),
-        el("div", "pp-meter", el("span", "pp-meter-label", two("Stars", "Yulduzlar"), el("b", null, `★ ${stars} / ${PASS.gift}`)), bar(stars, PASS.gift)),
+        el("p", null, two(`Pass all ${ALL} lessons and collect ${PASS.gift} stars (tasks and game).`,
+          `${ALL} ta darsning hammasidan o'tib, ${PASS.gift} ta yulduz (vazifa va o'yin) to'plasa, sovg'a ochiladi.`)),
+        el("div", "pp-meter", el("span", "pp-meter-label", two("Stars: tasks + game", "Yulduzlar: vazifa + o'yin"), el("b", null, `★ ${stars} / ${PASS.gift}`)), bar(stars, PASS.gift)),
         el("div", "pp-meter", el("span", "pp-meter-label", two("Lessons passed", "O'tilgan darslar"), el("b", null, `${passed} / ${ALL}`)), bar(passed, ALL)),
         won ? null : el("p", "pp-left", two(`Still to go: ${left.map((l) => l[0]).join(" and ")}.`, `Qoldi: ${left.map((l) => l[1]).join(" va ")}.`))));
   }
@@ -173,7 +174,9 @@
     try { game = JSON.parse((data.items.game || {}).v || "{}") || {}; } catch {}
     const lessons = lessonsOf(game.tasks || {}, data.items);
     const passed = lessons.filter((L) => L.state === "passed").length;
-    const stars = lessons.reduce((a, L) => a + L.stars, 0);
+    const taskStars = lessons.reduce((a, L) => a + L.stars, 0);
+    const gameStars = Object.values(game.stars || {}).reduce((a, b) => a + b, 0);
+    const stars = taskStars + gameStars; // the same total as the star chip on his own pages
     const now = (lessons.find((L) => L.state !== "passed") || {}).n;
     const open = new Set([...root.querySelectorAll("details[open]")].map((d) => d.id));
     const badges = game.badges || [];
@@ -182,7 +185,8 @@
       hero(data, game),
       el("div", "pp-stats",
         stat(passed, ALL, "Lessons passed", "O'tilgan darslar", "green"),
-        stat(stars, lessons.length * 24, "Stars", "Yulduzlar", "gold"),
+        stat(stars, lessons.length * 24 + COURSE.levels * 3, "Stars", "Yulduzlar", "gold",
+          [`${taskStars} from tasks · ${gameStars} from game`, `${taskStars} vazifadan · ${gameStars} o'yindan`]),
         stat(game.gems || 0, null, "Diamonds", "Olmoslar", "blue"),
         stat(Object.keys(game.stars || {}).length, COURSE.levels, "Game levels", "O'yin bosqichlari", "orange")),
       giftCard(passed, stars),

@@ -37,6 +37,7 @@ body { max-width: 860px; font-size: 18px; }
 .pp-stat strong { font: 600 1.7em/1 "Fredoka", sans-serif; color: var(--tone); }
 .pp-stat strong small { font-size: 0.55em; color: var(--muted); }
 .pp-stat .two { font-size: 0.85em; }
+.pp-stat .pp-stat-note { font-size: 0.75em; color: var(--muted); }
 .pp-stat.green { --tint: var(--green-soft); --tone: var(--green); }
 .pp-stat.gold { --tint: var(--gold-soft); --tone: var(--gold); }
 .pp-stat.blue { --tint: var(--accent-soft); --tone: var(--accent); }
