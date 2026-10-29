@@ -51,6 +51,9 @@ assert call("/api/sync", {"items": {"code:x": {"v": "x" * 60_000, "t": 1}}}, kid
 assert call("/api/me", cookie=kid)[1]["items"]["code:h1-1"]["v"] == "<h1>Hi</h1>"
 
 assert call("/api/teacher/students", cookie=kid)[0] == 403
+assert call("/api/teacher/answers", cookie=kid)[0] == 403
+assert call("/api/teacher/answers")[0] == 401
+assert "p3-4" in call("/api/teacher/answers", cookie=teach)[1]["answers"]
 listing = call("/api/teacher/students", cookie=teach)[1]["students"]
 assert listing[0]["username"] == "kid" and listing[0]["stars"] == 3 and listing[0]["gems"] == 15, listing
 kid_id = listing[0]["id"]

@@ -5,12 +5,13 @@
   const LESSON = Object.fromEntries(COURSE.lessons.map((L) => [L.n, L]));
   const LEVEL = Object.fromEntries(COURSE.levels.map((l) => [l.id, l]));
   const ONLINE_MS = 5 * 60000;
-  const TABS = [["progress", "Progress"], ["homework", "Homework"], ["practice", "Practice"], ["lesson", "Lesson"], ["game", "Game"], ["playground", "Playground"]];
+  const TABS = [["progress", "Progress"], ["homework", "Homework"], ["practice", "Practice"], ["lesson", "Lesson"], ["game", "Game"], ["playground", "Playground"], ["answers", "Answers"]];
   const list = document.getElementById("students");
   const detail = document.getElementById("detail");
   let students = [];
   let current = null; // { id, username, items, works, game }
   let tab = "progress";
+  let answers = null; // { "p3-4": "<ul>...", ... } from the server, loaded on first open
   try { tab = localStorage.getItem("tp-tab") || tab; } catch {}
 
   function statusOf(code, start) {
@@ -134,7 +135,7 @@
     const tabs = el("div", null, "tp-tabs");
     tabs.setAttribute("role", "tablist");
     TABS.forEach(([key, label]) => {
-      const n = key === "progress" ? "" : ` ${c.works.filter((w) => w.kind === key).length}`;
+      const n = key === "progress" || key === "answers" ? "" : ` ${c.works.filter((w) => w.kind === key).length}`;
       const b = el("button", label + n, "tp-tab");
       b.type = "button";
       b.setAttribute("role", "tab");
@@ -143,7 +144,7 @@
       tabs.append(b);
     });
 
-    detail.replaceChildren(head, stats, tabs, tab === "progress" ? progressGrid() : tab === "game" ? gameTab() : workList(tab));
+    detail.replaceChildren(head, stats, tabs, tab === "progress" ? progressGrid() : tab === "game" ? gameTab() : tab === "answers" ? answersTab() : workList(tab));
   }
 
   function cell(work, label, list) {
@@ -238,6 +239,47 @@
         line.onclick = () => openViewer(works, works.indexOf(work));
       }
       box.append(line);
+    });
+    return box;
+  }
+
+  // Model answers for every practice and homework task. Opens on the newest lesson he has work in.
+  function answersTab() {
+    const box = el("div", null, "tp-rows");
+    if (!answers) {
+      box.append(el("p", "Loading answers...", "tp-empty"));
+      api.get("/api/teacher/answers").then((d) => { answers = d.answers; if (tab === "answers") drawDetail(); })
+        .catch((e) => box.replaceChildren(el("p", e.message, "tp-empty")));
+      return box;
+    }
+    const newest = Math.max(1, ...current.works.map((w) => w.lesson));
+    COURSE.lessons.forEach((L) => {
+      const lesson = el("details", null, "tp-answers");
+      lesson.open = L.n === newest;
+      lesson.append(el("summary", `Lesson ${L.n}: ${L.title}`));
+      [["p", "practice", "Practice"], ["h", "homework", "Homework"]].forEach(([k, kind, label]) => {
+        L[kind].forEach((t, i) => {
+          const code = answers[`${k}${L.n}-${i + 1}`];
+          const item = el("div", null, "tp-answer");
+          item.append(el("p", `${label} ${i + 1}: ${t.task}`, "tp-task"));
+          if (!code) {
+            item.append(el("p", "His own idea, no model answer.", "tp-muted"));
+          } else {
+            const panes = el("div", null, "tp-viewer-panes");
+            const view = el("iframe");
+            view.title = "Answer page";
+            view.sandbox = "";
+            view.srcdoc = code;
+            panes.append(el("pre", code), view);
+            const copy = el("button", "Copy code", "tp-btn ghost small");
+            copy.type = "button";
+            copy.onclick = () => navigator.clipboard.writeText(code).then(() => { copy.textContent = "Copied"; });
+            item.append(panes, copy);
+          }
+          lesson.append(item);
+        });
+      });
+      box.append(lesson);
     });
     return box;
   }

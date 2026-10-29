@@ -26,6 +26,7 @@ KEY = re.compile(r"^(code:[\w-]{1,40}|game|last)$")  # only what the site saves
 USERNAME = re.compile(r"^[A-Za-z0-9_.-]{3,30}$")
 MAX_BODY, MAX_VALUE = 1_000_000, 50_000
 
+ANSWERS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "answers.json")  # written by generate/build.py
 hits, hits_lock = {}, threading.Lock()
 
 
@@ -176,6 +177,12 @@ def teacher_student(req):
     return found
 
 
+def teacher_answers(req):
+    req.user("teacher")
+    with open(ANSWERS, encoding="utf-8") as f:
+        return {"answers": json.load(f)}
+
+
 def teacher_parent_link(req):
     req.user("teacher")
     key = store.parent_key(req.number("id"), new=req.body.get("new") is True)
@@ -232,6 +239,7 @@ ROUTES = {
     ("POST", "/api/sync"): sync,
     ("GET", "/api/teacher/students"): teacher_students,
     ("GET", "/api/teacher/student"): teacher_student,
+    ("GET", "/api/teacher/answers"): teacher_answers,
     ("POST", "/api/teacher/students"): teacher_add,
     ("POST", "/api/teacher/password"): teacher_password,
     ("POST", "/api/teacher/delete"): teacher_delete,

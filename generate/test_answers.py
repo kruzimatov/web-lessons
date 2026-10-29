@@ -70,8 +70,29 @@ SAMPLES = {
 
 # Real answers he wrote (or would write) in his own words: each must pass too.
 KID = {
-    "p1-5": "<h1>My favorite ANIMAL is BEARR</h1>\n<!--no need-->\n<h2>it eats fish &amp; berries</h2>\n<p>yummy</p>\n"
-            "<!-- part 2 -->\n<h2>lives at forest</h2>\n<p>nothing here</p>",
+    "p1-5": ["<h1>My favorite ANIMAL is BEARR</h1>\n<!--no need-->\n<h2>it eats fish &amp; berries</h2>\n<p>yummy</p>\n"
+             "<!-- part 2 -->\n<h2>lives at forest</h2>\n<p>nothing here</p>"],
+    "p2-3": ["<p>Hello<br>world</p>\n<p><em><strong>Wow</strong></em></p>\n<p>H<sub>2</sub>O</p>"],
+    "p3-4": ["<ol>\n  <li><strong>Pets</strong>\n    <ul>\n      <li>cat</li>\n      <li>dog</li>\n    </ul>\n  </li>\n"
+             "  <li><strong>Wild animals</strong>\n    <ul>\n      <li>lion</li>\n      <li>bear</li>\n    </ul>\n  </li>\n</ol>"],
+    "h3-2": ["<ul>\n<li>Mom<ol><li>Cooking</li><li>Flowers</li></ol></li>\n<li>Dad<ol><li>Cars</li><li>Chess</li></ol></li>\n</ul>"],
+    "p5-5": ['<h1>Animals</h1>\n<p>Click one!</p>\n<ol>\n<li><strong><a href="https://en.wikipedia.org/wiki/Lion">Lion</a></strong></li>\n'
+             '<li><strong><a href="https://en.wikipedia.org/wiki/Tiger">Tiger</a></strong></li>\n'
+             '<li><strong><a href="https://en.wikipedia.org/wiki/Bear">Bear</a></strong></li>\n</ol>'],
+    "p6-4": ['<!DOCTYPE html>\n<html>\n<head><title>Hobbies</title></head>\n<body>\n'
+             '<nav><a href="index.html">Home</a> | <a href="hobbies.html">Hobbies</a></nav>\n<h1>My hobbies</h1>\n</body>\n</html>'],
+    "p9-4": ['<h1>Dinosaurs</h1>\n<p>T-Rex was big.</p>\n<audio controls>\n'
+             '<source src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3">\n</audio>'],
+    "h9-2": ['<h2>I want to see Paris</h2>\n<p><iframe src="https://www.google.com/maps?q=Paris&output=embed" title="Paris"></iframe></p>'],
+    "p11-2": ['<p>I like <span style="background: yellow">red apples</span> a lot.</p>'],
+    "p13-1": ['<input type="checkbox" id="d"><label for="d">I like dogs</label>\n'
+              '<input type="checkbox" id="c"><label for="c">I like cats</label>\n'
+              '<input type="checkbox" id="f"><label for="f">I like fish</label>'],
+    "h12-1": ['<form>\n<label for="n">Name</label> <input id="n">\n<label for="h">How many?</label>\n'
+              '<input type="number" id="h" min="1" max="5">\n<button>Order</button>\n</form>'],
+    "h13-2": ['<select><option>Japan</option><option>Italy</option><option>Turkey</option><option>Egypt</option></select>\n'
+              '<input type="checkbox"> Hat <input type="checkbox"> Ball <input type="checkbox"> Book\n<p>Why</p>\n<textarea></textarea>'],
+    "p16-5": ["<p>I like the pets page most because it has my cat.</p>"],
 }
 
 
@@ -84,8 +105,8 @@ def tasks():
                 answer = SAMPLES.get(key) or t["answer"]
                 if answer.startswith("("):  # "your idea": a page like the lesson's mini project or first homework
                     answer = next(a for a in (L["practice"][4]["answer"], items[0]["answer"]) if not a.startswith("("))
-                if key in KID:
-                    yield {"key": key + " (his words)", "answer": KID[key], "start": t.get("start", ""), "rules": [[r, n] for _, r, n in rules]}
+                for kid in KID.get(key, []):
+                    yield {"key": key + " (his words)", "answer": kid, "start": t.get("start", ""), "rules": [[r, n] for _, r, n in rules]}
                 yield {"key": key, "answer": answer, "start": t.get("start", ""), "rules": [[r, n] for _, r, n in rules]}
 
 

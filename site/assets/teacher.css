@@ -112,6 +112,11 @@ button.tp-row:hover { border-color: var(--accent); }
 .tp-chip.mistakes { background: #fff1b8; color: #6b4e00; }
 .tp-chip.started, .tp-chip.empty { background: var(--surface); color: var(--muted); }
 .tp-stars { color: #f4b400; letter-spacing: 2px; }
+.tp-answers { margin-bottom: 8px; padding: 10px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.tp-answers summary { font-weight: 700; cursor: pointer; }
+.tp-answer { margin: 14px 0 22px; }
+.tp-answer .tp-viewer-panes pre, .tp-answer .tp-viewer-panes iframe { height: 260px; }
+.tp-answer .tp-btn { margin-top: 8px; }
 
 /* Windows */
 .tp-dialog, .tp-viewer {

@@ -5,6 +5,7 @@ Writes the public website to site/ and the answers to teacher/ (not in git).
 """
 
 import importlib.util
+import json
 import shutil
 import sys
 from pathlib import Path
@@ -89,6 +90,10 @@ def main():
     write(SITE / "teacher.html", teacher_page(lessons))
     write(SITE / "parent.html", parent_page(lessons))
     write(TEACHER / "overview.html", overview_page(lessons))
+    # The API serves these to the teacher panel only, never to the public site
+    answers = {f"{k}{L['n']}-{i}": t["answer"] for L in lessons for k, kind in (("p", "practice"), ("h", "homework"))
+               for i, t in enumerate(L[kind], 1)}
+    write(ROOT / "server" / "answers.json", json.dumps(answers, indent=1))
     print("built index, cheat sheet, playground, game, login, teacher panel, parent page, teacher overview")
 
 
